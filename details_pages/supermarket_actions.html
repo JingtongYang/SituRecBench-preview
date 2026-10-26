@@ -37,6 +37,12 @@
   --docs-nav-row-padding:10px;
   --docs-nav-item-gap:4px;
   --docs-nav-group-gap:16px;
+  --docs-top-space:48px;
+  --docs-brand-line:26px;
+  --docs-brand-gap:16px;
+  --docs-home-line:19.6px;
+  --docs-home-gap:32px;
+  --docs-main-top:calc(var(--docs-top-space) + var(--docs-brand-line) + var(--docs-brand-gap) + var(--docs-home-line) + var(--docs-home-gap) + var(--docs-nav-row-padding));
 }
 * { box-sizing:border-box; scrollbar-width:none; }
 *::-webkit-scrollbar { display:none; }
@@ -52,8 +58,8 @@ main :is(h1,h2,h3)[id], main section[id] { scroll-margin-top:var(--anchor-offset
 a { color:inherit; text-decoration:none; }
 .skip-link { position:fixed; top:12px; left:24px; z-index:100; padding:10px 14px; border-radius:var(--radius-sm); background:var(--ink); color:var(--panel); transform:translateY(-200%); }
 .skip-link:focus { transform:none; }
-.docs-sidebar { grid-column:1; grid-row:1 / span 2; position:relative; z-index:30; width:calc(100% + 24px); min-width:0; min-height:100dvh; margin-left:-24px; padding:48px 16px 32px 24px; overflow:visible; border-right:var(--divider); background:#f8f9fa; font-family:var(--font-family); font-size:var(--docs-nav-size); line-height:var(--docs-nav-line); }
-.docs-brand { display:inline-block; margin-bottom:16px; color:var(--ink); font-size:var(--docs-brand-size); font-weight:600; line-height:26px; letter-spacing:-.02em; white-space:nowrap; }
+.docs-sidebar { grid-column:1; grid-row:1 / span 2; position:relative; z-index:30; width:calc(100% + 24px); min-width:0; min-height:100dvh; margin-left:-24px; padding:var(--docs-top-space) 16px 32px 24px; overflow:visible; border-right:var(--divider); background:#f8f9fa; font-family:var(--font-family); font-size:var(--docs-nav-size); line-height:var(--docs-nav-line); }
+.docs-brand { display:inline-block; margin-bottom:var(--docs-brand-gap); color:var(--ink); font-size:var(--docs-brand-size); font-weight:600; line-height:var(--docs-brand-line); letter-spacing:-.02em; white-space:nowrap; }
 .docs-brand span { color:inherit; font-weight:inherit; }
 .docs-navigation { margin:0; padding:0; border:0; background:transparent; }
 .docs-navigation > summary { display:none; }
@@ -74,10 +80,10 @@ a { color:inherit; text-decoration:none; }
 .docs-page-link { display:block; padding:var(--docs-nav-row-padding) 8px; border-radius:0; color:var(--muted); font-size:inherit; font-weight:400; line-height:inherit; overflow-wrap:anywhere; transition:color 80ms ease; }
 .docs-page-link:hover { color:var(--ink); background:transparent; text-decoration:underline; text-underline-offset:4px; text-decoration-color:#aaa; }
 .docs-page-link[aria-current="page"] { color:var(--ink); background:transparent; font-weight:600; }
-.docs-home { display:flex; align-items:center; gap:7px; width:fit-content; margin:0 0 32px; color:var(--ink); font-size:14px; font-weight:500; line-height:1.4; }
+.docs-home { display:flex; align-items:center; gap:7px; width:fit-content; margin:0 0 var(--docs-home-gap); color:var(--ink); font-size:14px; font-weight:500; line-height:var(--docs-home-line); }
 .docs-home:hover { color:var(--ink); }
 .docs-sidebar a:focus-visible, .docs-navigation > summary:focus-visible { outline-offset:-2px; }
-.page-wrap { grid-column:2; grid-row:1; width:100%; min-width:0; max-width:var(--content-width); padding:0; margin:48px auto 64px; scroll-margin-top:24px; }
+.page-wrap { grid-column:2; grid-row:1; width:100%; min-width:0; max-width:var(--content-width); padding:0; margin:var(--docs-main-top) auto 64px; scroll-margin-top:24px; }
 .overview-document .page-wrap { grid-column:2 / -1; grid-row:1; }
 .page-wrap :where(div, section, article, header, details, pre) { min-width:0; }
 .page-wrap :where(code, h1, h2, h3, summary, .api-group-note) { overflow-wrap:anywhere; }
@@ -193,7 +199,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .action-table th { padding-right:24px; }
 .action-table thead th { padding-top:8px; padding-bottom:8px; color:var(--muted); font-size:13px; font-weight:500; }
 .action-table tbody tr:last-child > :is(th, td) { border-bottom:0; }
-.action-entry { height:var(--action-row-height, auto); }
 .action-entry h3 { margin:0; font-size:13px; font-weight:600; line-height:1.5; overflow-wrap:anywhere; }
 .action-description { margin:0; color:var(--ink); font-size:13px; font-weight:400; line-height:1.55; overflow-wrap:anywhere; }
 .action-entry .action-call { margin-top:4px; }
@@ -402,6 +407,7 @@ body.details-document {
   --docs-section-size:20px;
   --docs-section-gap:28px;
   --docs-title-gap:56px;
+  --docs-table-row-height:97px;
 }
 body.details-document main.page-wrap { position:relative; width:100%; max-width:none; margin-left:0; margin-right:0; }
 body.details-document.overview-document main.page-wrap { grid-column:2; }
@@ -444,6 +450,7 @@ body.details-document main.page-wrap .catalog-map-image-supermarket { height:220
 body.details-document main.page-wrap .catalog-card .catalog-name { font-size:15px; line-height:1.5; }
 body.details-document main.page-wrap :is(.catalog-badge, .catalog-price, .catalog-map-title, .catalog-map-note, .profile-number, .shopping_goal-number) { font-size:13px; }
 body.details-document main.page-wrap table { font-size:14px; line-height:1.6; }
+body.details-document main.page-wrap table tbody tr { height:var(--docs-table-row-height); }
 body.details-document main.page-wrap table :is(th, td) { padding:12px 16px; font-size:14px; line-height:1.6; vertical-align:top; }
 body.details-document main.page-wrap table tr > :first-child { padding-left:0; }
 body.details-document main.page-wrap table tr > :last-child { padding-right:0; }
@@ -456,7 +463,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
   body.details-document:not(.overview-document) main.page-wrap h1 { padding-right:76px; }
 }
 @media (max-width:900px) {
-  body.details-document { --docs-title-size:28px; --docs-title-gap:48px; --docs-section-gap:24px; }
+  body.details-document { --docs-title-size:28px; --docs-title-gap:48px; --docs-section-gap:24px; --docs-table-row-height:141px; }
 }
 @media (max-width:600px) {
   body.details-document main.page-wrap .catalog-map { grid-template-columns:minmax(0,1fr); gap:16px; }
@@ -700,42 +707,6 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
 }</pre><button class="action-copy" type="button" data-copy-action="call-idle" aria-label="Copy Idle call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn.</p></div></details></td></tr></tbody></table></div></section>
 </div>
 <script>
-(() => {
-  const page = document.querySelector('.actions-page');
-  if (!page) return;
-  const tables = Array.from(page.querySelectorAll('.action-table'));
-  const cellHeight = (cell, contentHeight) => {
-    const style = getComputedStyle(cell);
-    return contentHeight + parseFloat(style.paddingTop) + parseFloat(style.paddingBottom)
-      + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
-  };
-  const equalizeRows = () => {
-    tables.forEach((table) => {
-      const heights = Array.from(table.querySelectorAll('.action-entry')).map((row) => {
-        const heading = row.querySelector('th');
-        const content = row.querySelector('td');
-        let textHeight = row.querySelector('.action-description').getBoundingClientRect().height;
-        const call = row.querySelector('.action-call');
-        if (call) {
-          textHeight += parseFloat(getComputedStyle(call).marginTop)
-            + call.querySelector('summary').getBoundingClientRect().height;
-        }
-        return Math.max(cellHeight(heading, heading.querySelector('h3').getBoundingClientRect().height),
-          cellHeight(content, textHeight));
-      });
-      if (heights.length) table.style.setProperty('--action-row-height', `${Math.ceil(Math.max(...heights))}px`);
-    });
-  };
-  let pending = false;
-  const schedule = () => {
-    if (pending) return;
-    pending = true;
-    requestAnimationFrame(() => { pending = false; equalizeRows(); });
-  };
-  equalizeRows();
-  window.addEventListener('resize', schedule);
-  if (document.fonts) document.fonts.ready.then(schedule);
-})();
 document.querySelectorAll('[data-copy-action]').forEach((button) => {
   button.addEventListener('click', async () => {
     const code = document.getElementById(button.dataset.copyAction);
