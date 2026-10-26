@@ -61,7 +61,7 @@ a { color:inherit; text-decoration:none; }
 .docs-sidebar { grid-column:1; grid-row:1 / span 2; position:sticky; top:0; z-index:30; width:calc(100% + 24px); min-width:0; height:100dvh; min-height:0; margin-left:-24px; padding:var(--docs-top-space) 16px 32px 24px; overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; border-right:var(--divider); background:#f8f9fa; font-family:var(--font-family); font-size:var(--docs-nav-size); line-height:var(--docs-nav-line); }
 .docs-brand { display:inline-block; margin-bottom:var(--docs-brand-gap); color:var(--ink); font-size:var(--docs-brand-size); font-weight:600; line-height:var(--docs-brand-line); letter-spacing:-.02em; white-space:nowrap; }
 .docs-brand span { color:inherit; font-weight:inherit; }
-.docs-navigation { margin:calc(1.25 * var(--docs-title-size) + var(--docs-title-gap) - var(--docs-home-line) - var(--docs-home-gap) - var(--docs-nav-row-padding)) 0 0; padding:0; border:0; background:transparent; }
+.docs-navigation { margin:0; padding:calc(1.25 * var(--docs-title-size) + var(--docs-title-gap) - var(--docs-home-line) - var(--docs-home-gap) - var(--docs-nav-row-padding)) 0 0; border:0; background:transparent; }
 .docs-navigation > summary { display:none; }
 .docs-tree { display:grid; gap:var(--docs-nav-group-gap); font-size:var(--docs-nav-size); line-height:var(--docs-nav-line); }
 .docs-tree ul { margin:0; padding:0; list-style:none; }
@@ -372,7 +372,7 @@ body.details-document main.page-wrap .prompt-markdown > :last-child { margin-bot
   body.details-document { grid-template-columns:minmax(0, 1fr); column-gap:0; padding:0 20px; }
   .docs-sidebar { grid-column:1; grid-row:1; position:static; width:100%; height:auto; min-height:0; max-height:none; margin:32px 0 0; padding:0 0 16px; overflow:visible; overscroll-behavior:auto; border-right:0; border-bottom:var(--divider); background:var(--bg); }
   .docs-brand { margin-bottom:0; font-size:var(--docs-brand-size); }
-  .docs-navigation { margin-top:16px; }
+  .docs-navigation { margin-top:16px; padding:0; }
   .docs-navigation > summary { display:flex; align-items:center; justify-content:flex-start; gap:0; padding:9px 0; color:var(--muted); font-size:14px; font-weight:400; list-style:none; }
   .docs-navigation > summary::-webkit-details-marker { display:none; }
   .docs-tree { grid-template-columns:minmax(0, 1fr); padding-top:16px; }
