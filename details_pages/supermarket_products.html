@@ -144,7 +144,7 @@ a { color:inherit; text-decoration:none; }
 .docs-sidebar { grid-column:1; grid-row:1 / span 2; position:sticky; top:0; z-index:30; width:calc(100% + 24px); min-width:0; height:100dvh; min-height:0; margin-left:-24px; padding:var(--docs-top-space) 16px 32px 24px; overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; border-right:var(--divider); background:#f8f9fa; font-family:var(--font-family); font-size:var(--docs-nav-size); line-height:var(--docs-nav-line); }
 .docs-brand { display:inline-block; margin-bottom:var(--docs-brand-gap); color:var(--ink); font-size:var(--docs-brand-size); font-weight:600; line-height:var(--docs-brand-line); letter-spacing:-.02em; white-space:nowrap; }
 .docs-brand span { color:inherit; font-weight:inherit; }
-.docs-navigation { margin:0; padding:calc(1.25 * var(--docs-title-size) + var(--docs-title-gap) - var(--docs-home-line) - var(--docs-home-gap) - var(--docs-nav-row-padding)) 0 0; border:0; background:transparent; }
+.docs-navigation { margin:0; padding:calc(1.25 * var(--docs-title-size) + var(--docs-title-gap) + var(--docs-heading-extra-height, 0px) - var(--docs-home-line) - var(--docs-home-gap) - var(--docs-nav-row-padding)) 0 0; border:0; background:transparent; }
 .docs-navigation > summary { display:none; }
 .docs-tree { display:grid; gap:var(--docs-nav-group-gap); font-size:var(--docs-nav-size); line-height:var(--docs-nav-line); }
 .docs-tree ul { margin:0; padding:0; list-style:none; }
@@ -636,6 +636,21 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     menu.open = false;
     summary.focus();
   });
+  const alignHeading = () => {
+    const heading = document.querySelector('main .docs-page-heading');
+    const title = heading && heading.querySelector('h1');
+    if (!title) return;
+    const extra = Math.max(0, heading.getBoundingClientRect().height - parseFloat(getComputedStyle(title).lineHeight));
+    document.body.style.setProperty('--docs-heading-extra-height', `${extra}px`);
+  };
+  const observeHeading = () => {
+    alignHeading();
+    const heading = document.querySelector('main .docs-page-heading');
+    if (heading) new ResizeObserver(alignHeading).observe(heading);
+    if (document.fonts) document.fonts.ready.then(alignHeading);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', observeHeading, {once:true});
+  else observeHeading();
 })();
 </script>
 
