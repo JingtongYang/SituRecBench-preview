@@ -703,26 +703,28 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
 (() => {
   const page = document.querySelector('.actions-page');
   if (!page) return;
-  const rows = Array.from(page.querySelectorAll('.action-entry'));
+  const tables = Array.from(page.querySelectorAll('.action-table'));
   const cellHeight = (cell, contentHeight) => {
     const style = getComputedStyle(cell);
     return contentHeight + parseFloat(style.paddingTop) + parseFloat(style.paddingBottom)
       + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
   };
   const equalizeRows = () => {
-    const heights = rows.map((row) => {
-      const heading = row.querySelector('th');
-      const content = row.querySelector('td');
-      let textHeight = row.querySelector('.action-description').getBoundingClientRect().height;
-      const call = row.querySelector('.action-call');
-      if (call) {
-        textHeight += parseFloat(getComputedStyle(call).marginTop)
-          + call.querySelector('summary').getBoundingClientRect().height;
-      }
-      return Math.max(cellHeight(heading, heading.querySelector('h3').getBoundingClientRect().height),
-        cellHeight(content, textHeight));
+    tables.forEach((table) => {
+      const heights = Array.from(table.querySelectorAll('.action-entry')).map((row) => {
+        const heading = row.querySelector('th');
+        const content = row.querySelector('td');
+        let textHeight = row.querySelector('.action-description').getBoundingClientRect().height;
+        const call = row.querySelector('.action-call');
+        if (call) {
+          textHeight += parseFloat(getComputedStyle(call).marginTop)
+            + call.querySelector('summary').getBoundingClientRect().height;
+        }
+        return Math.max(cellHeight(heading, heading.querySelector('h3').getBoundingClientRect().height),
+          cellHeight(content, textHeight));
+      });
+      if (heights.length) table.style.setProperty('--action-row-height', `${Math.ceil(Math.max(...heights))}px`);
     });
-    if (heights.length) page.style.setProperty('--action-row-height', `${Math.ceil(Math.max(...heights))}px`);
   };
   let pending = false;
   const schedule = () => {
