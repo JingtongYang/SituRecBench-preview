@@ -1,0 +1,888 @@
+{
+  "generated_by": "scripts/build_fixed_point_map_images.py",
+  "scene_name": "supermarket",
+  "base_map": "project_page/assets/supermarket_store_layout_map_current.png",
+  "base_map_label_role": "assistant",
+  "points_map": "project_page/assets/supermarket_store_layout_map_fixed_points.png",
+  "containers_json": "scenes/supermarket/spatial/containers.json",
+  "container_sizes_json": "scenes/supermarket/spatial/containers_size.json",
+  "start_pose": {
+    "location": [
+      1070.0,
+      1310.0,
+      90.0
+    ],
+    "rotation": [
+      0.0,
+      -90.0,
+      0.0
+    ]
+  },
+  "point_count": 43,
+  "counts_by_source": {
+    "fixed_points.json": 43
+  },
+  "pose_warnings": [],
+  "points": [
+    {
+      "point_id": "uprightFreezer2_front",
+      "target_type": "container",
+      "target_id": "uprightFreezer2",
+      "target_label": "A",
+      "role": "front",
+      "location": [
+        -1513.21,
+        1466.26,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        90.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 1
+    },
+    {
+      "point_id": "uprightFreezer1_front",
+      "target_type": "container",
+      "target_id": "uprightFreezer1",
+      "target_label": "B",
+      "role": "front",
+      "location": [
+        -1003.22,
+        1466.26,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        90.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 2
+    },
+    {
+      "point_id": "checkoutCounter_front",
+      "target_type": "container",
+      "target_id": "checkoutCounter",
+      "target_label": "C",
+      "role": "front",
+      "location": [
+        245.87,
+        1060.06,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        90.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 3
+    },
+    {
+      "point_id": "uprightFreezer3_front",
+      "target_type": "container",
+      "target_id": "uprightFreezer3",
+      "target_label": "D",
+      "role": "front",
+      "location": [
+        -1588.87,
+        1256.38,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 4
+    },
+    {
+      "point_id": "woodStand2_front",
+      "target_type": "container",
+      "target_id": "woodStand2",
+      "target_label": "E",
+      "role": "front",
+      "location": [
+        1044.86,
+        1129.97,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 5
+    },
+    {
+      "point_id": "woodStand2_back",
+      "target_type": "container",
+      "target_id": "woodStand2",
+      "target_label": "E",
+      "role": "back",
+      "location": [
+        1617.86,
+        1129.97,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 6
+    },
+    {
+      "point_id": "chestFreezer3_front",
+      "target_type": "container",
+      "target_id": "chestFreezer3",
+      "target_label": "F",
+      "role": "front",
+      "location": [
+        -1175.8,
+        1127.45,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 7
+    },
+    {
+      "point_id": "woodStand1_front",
+      "target_type": "container",
+      "target_id": "woodStand1",
+      "target_label": "G",
+      "role": "front",
+      "location": [
+        1502.3,
+        1028.42,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 8
+    },
+    {
+      "point_id": "uprightFreezer4_front",
+      "target_type": "container",
+      "target_id": "uprightFreezer4",
+      "target_label": "H",
+      "role": "front",
+      "location": [
+        -1588.87,
+        746.41,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 9
+    },
+    {
+      "point_id": "chestFreezer2_front",
+      "target_type": "container",
+      "target_id": "chestFreezer2",
+      "target_label": "I",
+      "role": "front",
+      "location": [
+        -1175.8,
+        533.47,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 10
+    },
+    {
+      "point_id": "shelf7_front",
+      "target_type": "container",
+      "target_id": "shelf7",
+      "target_label": "J",
+      "role": "front",
+      "location": [
+        1188.94,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 11
+    },
+    {
+      "point_id": "shelf7_back",
+      "target_type": "container",
+      "target_id": "shelf7",
+      "target_label": "J",
+      "role": "back",
+      "location": [
+        656.94,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 12
+    },
+    {
+      "point_id": "shelf10_front",
+      "target_type": "container",
+      "target_id": "shelf10",
+      "target_label": "K",
+      "role": "front",
+      "location": [
+        102.42,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 13
+    },
+    {
+      "point_id": "shelf10_back",
+      "target_type": "container",
+      "target_id": "shelf10",
+      "target_label": "K",
+      "role": "back",
+      "location": [
+        -429.7,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 14
+    },
+    {
+      "point_id": "shelf9_front",
+      "target_type": "container",
+      "target_id": "shelf9",
+      "target_label": "L",
+      "role": "front",
+      "location": [
+        506.16,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 15
+    },
+    {
+      "point_id": "shelf9_back",
+      "target_type": "container",
+      "target_id": "shelf9",
+      "target_label": "L",
+      "role": "back",
+      "location": [
+        -26.13,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 16
+    },
+    {
+      "point_id": "shelf11_front",
+      "target_type": "container",
+      "target_id": "shelf11",
+      "target_label": "M",
+      "role": "front",
+      "location": [
+        -273.22,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 17
+    },
+    {
+      "point_id": "shelf11_back",
+      "target_type": "container",
+      "target_id": "shelf11",
+      "target_label": "M",
+      "role": "back",
+      "location": [
+        -805.34,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 18
+    },
+    {
+      "point_id": "shelf8_front",
+      "target_type": "container",
+      "target_id": "shelf8",
+      "target_label": "N",
+      "role": "front",
+      "location": [
+        838.84,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 19
+    },
+    {
+      "point_id": "shelf8_back",
+      "target_type": "container",
+      "target_id": "shelf8",
+      "target_label": "N",
+      "role": "back",
+      "location": [
+        306.79,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 20
+    },
+    {
+      "point_id": "shelf12_front",
+      "target_type": "container",
+      "target_id": "shelf12",
+      "target_label": "O",
+      "role": "front",
+      "location": [
+        -615.42,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 21
+    },
+    {
+      "point_id": "shelf12_back",
+      "target_type": "container",
+      "target_id": "shelf12",
+      "target_label": "O",
+      "role": "back",
+      "location": [
+        -1148.09,
+        270.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 22
+    },
+    {
+      "point_id": "uprightFreezer8_front",
+      "target_type": "container",
+      "target_id": "uprightFreezer8",
+      "target_label": "P",
+      "role": "front",
+      "location": [
+        1588.93,
+        -14.64,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 23
+    },
+    {
+      "point_id": "chestFreezer1_front",
+      "target_type": "container",
+      "target_id": "chestFreezer1",
+      "target_label": "Q",
+      "role": "front",
+      "location": [
+        -1185.8,
+        -242.86,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 24
+    },
+    {
+      "point_id": "openCooler1_front",
+      "target_type": "container",
+      "target_id": "openCooler1",
+      "target_label": "R",
+      "role": "front",
+      "location": [
+        -1605.18,
+        -392.01,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 25
+    },
+    {
+      "point_id": "openCooler4_front",
+      "target_type": "container",
+      "target_id": "openCooler4",
+      "target_label": "S",
+      "role": "front",
+      "location": [
+        1597.29,
+        -392.3,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 26
+    },
+    {
+      "point_id": "openCooler2_front",
+      "target_type": "container",
+      "target_id": "openCooler2",
+      "target_label": "T",
+      "role": "front",
+      "location": [
+        -1605.18,
+        -612.36,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 27
+    },
+    {
+      "point_id": "openCooler3_front",
+      "target_type": "container",
+      "target_id": "openCooler3",
+      "target_label": "U",
+      "role": "front",
+      "location": [
+        1597.29,
+        -612.8,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 28
+    },
+    {
+      "point_id": "shelf6_front",
+      "target_type": "container",
+      "target_id": "shelf6",
+      "target_label": "V",
+      "role": "front",
+      "location": [
+        1188.94,
+        -691.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 29
+    },
+    {
+      "point_id": "shelf6_back",
+      "target_type": "container",
+      "target_id": "shelf6",
+      "target_label": "V",
+      "role": "back",
+      "location": [
+        656.91,
+        -691.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 30
+    },
+    {
+      "point_id": "shelf3_front",
+      "target_type": "container",
+      "target_id": "shelf3",
+      "target_label": "W",
+      "role": "front",
+      "location": [
+        102.42,
+        -691.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 31
+    },
+    {
+      "point_id": "shelf3_back",
+      "target_type": "container",
+      "target_id": "shelf3",
+      "target_label": "W",
+      "role": "back",
+      "location": [
+        -429.73,
+        -691.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 32
+    },
+    {
+      "point_id": "shelf4_front",
+      "target_type": "container",
+      "target_id": "shelf4",
+      "target_label": "X",
+      "role": "front",
+      "location": [
+        506.13,
+        -691.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 33
+    },
+    {
+      "point_id": "shelf4_back",
+      "target_type": "container",
+      "target_id": "shelf4",
+      "target_label": "X",
+      "role": "back",
+      "location": [
+        -26.13,
+        -691.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 34
+    },
+    {
+      "point_id": "shelf2_front",
+      "target_type": "container",
+      "target_id": "shelf2",
+      "target_label": "Y",
+      "role": "front",
+      "location": [
+        -273.25,
+        -691.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 35
+    },
+    {
+      "point_id": "shelf2_back",
+      "target_type": "container",
+      "target_id": "shelf2",
+      "target_label": "Y",
+      "role": "back",
+      "location": [
+        -805.34,
+        -691.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 36
+    },
+    {
+      "point_id": "shelf5_front",
+      "target_type": "container",
+      "target_id": "shelf5",
+      "target_label": "Z",
+      "role": "front",
+      "location": [
+        838.84,
+        -691.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 37
+    },
+    {
+      "point_id": "shelf5_back",
+      "target_type": "container",
+      "target_id": "shelf5",
+      "target_label": "Z",
+      "role": "back",
+      "location": [
+        306.76,
+        -691.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 38
+    },
+    {
+      "point_id": "shelf1_front",
+      "target_type": "container",
+      "target_id": "shelf1",
+      "target_label": "a",
+      "role": "front",
+      "location": [
+        -615.45,
+        -691.62,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        180.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 39
+    },
+    {
+      "point_id": "shelf1_back",
+      "target_type": "container",
+      "target_id": "shelf1",
+      "target_label": "a",
+      "role": "back",
+      "location": [
+        -1148.09,
+        -691.62,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 40
+    },
+    {
+      "point_id": "uprightFreezer6_front",
+      "target_type": "container",
+      "target_id": "uprightFreezer6",
+      "target_label": "b",
+      "role": "front",
+      "location": [
+        474.32,
+        -939.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        -90.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 41
+    },
+    {
+      "point_id": "uprightFreezer7_front",
+      "target_type": "container",
+      "target_id": "uprightFreezer7",
+      "target_label": "d",
+      "role": "front",
+      "location": [
+        984.28,
+        -939.61,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        -90.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 42
+    },
+    {
+      "point_id": "uprightFreezer5_front",
+      "target_type": "container",
+      "target_id": "uprightFreezer5",
+      "target_label": "e",
+      "role": "front",
+      "location": [
+        -627.61,
+        -939.62,
+        90.0
+      ],
+      "rotation": [
+        0.0,
+        -90.0,
+        0.0
+      ],
+      "notes": "Generated from current container navigation geometry with SITREC_SHELF_APPROACH_MARGIN=200; shelf convention is left=back and right=front.",
+      "source": "fixed_points.json",
+      "idx": 43
+    }
+  ]
+}

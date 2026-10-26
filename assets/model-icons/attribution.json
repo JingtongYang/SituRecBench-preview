@@ -1,0 +1,53 @@
+{
+  "collection": "LobeHub Icons",
+  "repository": "https://github.com/lobehub/lobe-icons",
+  "retrieved_on": "2026-09-23",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2023 LobeHub",
+  "license_url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/LICENSE",
+  "license_text": "MIT License\n\nCopyright (c) 2023 LobeHub\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+  "brand_notice": "Brand names and marks belong to their respective owners. These marks identify evaluated models and do not imply endorsement.",
+  "icons": [
+    {
+      "file": "claude.svg",
+      "upstream_file": "claude-color.svg",
+      "source_url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/claude-color.svg",
+      "source_sha256": "a3101f3047a119aa11825ad9369510f0c472428c8c52d420e31bc62db44a8364",
+      "local_sha256": "e95ecec12d870f5edcf3d3d8ae9435553c19bc6ad828da5e6faece8f58f52bce",
+      "modifications": "Added attribution comment and trailing newline only; SVG geometry and colors unchanged."
+    },
+    {
+      "file": "openai.svg",
+      "upstream_file": "openai.svg",
+      "source_url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/openai.svg",
+      "source_sha256": "a595df6b423920c67a7f8f73c063e4bfb72d415948097b6cac063a2366bb5186",
+      "local_sha256": "471fd89e0d3c1bba822c9f544cf09a4291ed1fbd439753ba4df0001ccf85ccfe",
+      "modifications": "Added attribution comment and trailing newline only; SVG geometry and colors unchanged."
+    },
+    {
+      "file": "gemini.svg",
+      "upstream_file": "gemini-color.svg",
+      "source_url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/gemini-color.svg",
+      "source_sha256": "8ab0a9bafec11f7e69bcb9fc4ffd8f1bc927d1ddcbbb6ff36dee5ae8b5a9d602",
+      "local_sha256": "d8c036771dc8c2b088bd79096010ac5a0c236bbeb528f8901ff45661fc89bfbf",
+      "modifications": "Added attribution comment and trailing newline only; SVG geometry and colors unchanged."
+    },
+    {
+      "file": "qwen.svg",
+      "upstream_file": "qwen-color.svg",
+      "source_url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/qwen-color.svg",
+      "source_sha256": "77f5768c66d08ce1d3d14e73373975c1bc0454be88c81523ddd0ffd7e2974029",
+      "local_sha256": "debc871d322bf591d7a8cb38ec9ad75f5e1110254dfcc7c8cd6956646fcc963c",
+      "modifications": "Added attribution comment and trailing newline only; SVG geometry and colors unchanged."
+    },
+    {
+      "file": "gemma.svg",
+      "upstream_file": "gemma-color.svg",
+      "source_url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/gemma-color.svg",
+      "retrieved_on": "2026-10-20",
+      "source_sha256": "8cdc48e35113d2f76f602fc93977ce8b8eebe41bc66a65f532ed9c89f6a68e2d",
+      "local_sha256": "c9f2fafd90ffe89b5cf1dda2b3db1441c67bedbcab41d29c2f6b7639b4feae7c",
+      "modifications": "Added attribution comment and trailing newline only; SVG geometry and colors unchanged."
+    }
+  ]
+}

@@ -1,0 +1,2056 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SituRecBench</title>
+<link rel="preload" href="assets/fonts/mona-sans/MonaSansVF.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/fonts/mona-sans/fonts.css">
+<script>document.documentElement.classList.add("has-reveal");</script>
+<style>
+:root {
+  --content-width:1120px;
+  --media-width:1000px;
+  --data-width:1120px;
+  --bg:#ffffff;
+  --panel:#ffffff;
+  --paper:#f6f6f6;
+  --ink:#242424;
+  --muted:#666666;
+  --line:#363636;
+  --soft-line:#e4e4e4;
+  --accent:#555555;
+  --accent-2:#363636;
+  --good:#11844a;
+  --bad:#cf3f3f;
+  --void:#181818;
+  --void-muted:#c9c9c9;
+  --hover:#eeeeee;
+  --glass:var(--panel);
+  --glass-strong:var(--panel);
+  --glass-soft:var(--paper);
+  --frame-line:rgba(36,36,36,.10);
+  --strong-line:rgba(36,36,36,.20);
+  --glass-line:var(--frame-line);
+  --shadow:0 8px 24px rgba(0,0,0,.05);
+  --shadow-soft:none;
+  --shadow-hover:none;
+  --frame:1px solid var(--frame-line);
+  --strong-frame:1px solid var(--strong-line);
+  --divider:1px solid rgba(36,36,36,.08);
+  --radius:10px;
+  --radius-sm:6px;
+  --fs-xs:11px;
+  --fs-sm:12px;
+  --fs-body:16px;
+  --fs-md:17px;
+  --fs-lg:18px;
+  --fs-icon:16px;
+  --fs-stat:24px;
+  --fs-h2:28px;
+  --fs-h2-sm:24px;
+  --fs-h1:40px;
+  --fs-h1-md:36px;
+  --fs-h1-sm:30px;
+}
+* { box-sizing:border-box; }
+button, input, select, textarea, pre, code, kbd, samp { font-family:var(--font-family); }
+html {
+  scroll-behavior:auto;
+  background:var(--bg);
+}
+body {
+  position:relative;
+  isolation:isolate;
+  margin:0;
+  color:var(--ink);
+  background:transparent;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  background-size:100% 100vh;
+  font-family:var(--font-family);
+  font-size:var(--fs-body);
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+
+  line-height:1.65;
+}
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:var(--bg);
+  background-size:100% 100vh;
+  background-repeat:no-repeat;
+}
+a { color:inherit; text-decoration:none; }
+main {
+  display:grid;
+  grid-template-columns:minmax(0, 1fr);
+  min-width:0;
+  gap:0;
+}
+.nav {
+  position:sticky;
+  top:12px;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  width:min(calc(var(--content-width) + 56px), calc(100% - 32px));
+  margin:12px auto 0;
+  padding:12px 24px;
+  border:1px solid rgba(36,36,36,.08);
+  border-radius:12px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  box-shadow:none;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  font-size:18px;
+  font-weight:600;
+  line-height:1.4;
+  flex-shrink:0;
+  letter-spacing:-.015em;
+}
+.nav-links {
+  display:flex;
+  justify-content:flex-end;
+  gap:6px;
+  flex-wrap:nowrap;
+}
+.nav-group {
+  position:relative;
+  display:none;
+  align-items:center;
+}
+.nav-group summary {
+  min-height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:0 10px;
+  border-radius:var(--radius-sm);
+  color:var(--muted);
+  font-size:var(--fs-sm);
+  font-weight:400;
+  line-height:1.4;
+  cursor:pointer;
+  list-style:none;
+  transition:color 80ms ease, background 80ms ease;
+}
+.nav-group summary::-webkit-details-marker {
+  display:none;
+}
+.nav-group summary::after {
+  content:"";
+  width:6px;
+  height:6px;
+  margin-top:-3px;
+  border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;
+  opacity:.55;
+  transform:rotate(45deg);
+  transition:transform 80ms ease, margin-top 80ms ease;
+}
+.nav-group[open] summary,
+.nav-group summary:hover {
+  background:rgba(36,36,36,.035);
+  box-shadow:none;
+}
+.nav-group[open] summary::after {
+  margin-top:3px;
+  transform:rotate(225deg);
+}
+.nav-sub {
+  position:absolute;
+  top:calc(100% + 7px);
+  right:0;
+  min-width:190px;
+  display:grid;
+  gap:4px;
+  padding:6px;
+  border-radius:10px;
+  background:var(--panel);
+  box-shadow:var(--shadow);
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(-4px);
+  transition:opacity 80ms ease, transform 80ms ease;
+  z-index:22;
+}
+.nav-group[open] .nav-sub {
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.nav-links a {
+  min-height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 10px;
+  border-radius:var(--radius-sm);
+  color:var(--muted);
+  font-size:var(--fs-sm);
+  font-weight:400;
+  line-height:1.4;
+  transition:color 80ms ease, background 80ms ease;
+}
+.nav-links a:hover {
+  color:var(--ink);
+  background:rgba(36,36,36,.035);
+  box-shadow:none;
+}
+.nav-links .nav-details {
+  gap:6px;
+  padding-inline:12px;
+  color:var(--ink);
+  background:transparent;
+  font-weight:500;
+}
+.nav-links .nav-details:hover { background:transparent; }
+.nav-sub a { justify-content:flex-start; }
+.wrap {
+  min-width:0;
+  max-width:100%;
+  width:min(calc(var(--content-width) + 56px), 100%);
+  margin:0 auto;
+  padding:0 28px;
+}
+.wrap > * { min-width:0; }
+#benchmark, #construction, #leaderboard { --content-width:var(--data-width); }
+.construction-figure { max-width:900px; margin:0 auto; }
+.construction-figure a { display:block; }
+.construction-figure img {
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:calc(100svh - 280px);
+  margin:0 auto;
+}
+.hero {
+  min-height:calc(100vh - 54px);
+  min-width:0;
+  display:grid;
+  grid-template-columns:minmax(0, 1fr);
+  align-items:center;
+  padding:72px 0 88px;
+  text-align:center;
+  scroll-margin-top:86px;
+}
+.eyebrow {
+  margin:0 0 10px;
+  color:var(--accent);
+  font-size:var(--fs-xs);
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:none;
+}
+h1 {
+  max-width:var(--content-width);
+  margin:0 auto;
+  font-size:var(--fs-h1);
+  font-weight:650;
+  line-height:1.2;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+}
+@media (min-width: 1100px) {
+  h1 { font-size:clamp(34px, 2.78vw, 40px); }
+  .title-line { display:block; white-space:nowrap; }
+}
+h1,
+h2,
+h3 {
+  text-shadow:none;
+}
+.authors {
+  max-width:var(--media-width);
+  margin:20px auto 0;
+  color:var(--ink);
+  font-size:20px;
+  line-height:1.7;
+}
+.author-name { white-space:nowrap; }
+.author-name a { color:#209cee; }
+.author-name a:hover { color:#1676b7; text-decoration:underline; }
+.author-name sup { margin-left:2px; font-size:.65em; }
+.author-name abbr { text-decoration:none; cursor:help; }
+.affiliations { margin:5px 0 0; font-size:16px; }
+.actions {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-top:24px;
+}
+.button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:40px;
+  padding:10px 16px;
+  border:var(--frame);
+  border-radius:var(--radius-sm);
+  color:var(--line);
+  background:var(--panel);
+  box-shadow:none;
+  font-size:var(--fs-sm);
+  font-weight:600;
+  transition:border-color 80ms ease, box-shadow 80ms ease, transform 80ms ease, background 80ms ease;
+}
+.button.ghost {
+  background:var(--paper);
+}
+.button.primary {
+  color:#f6f6f6;
+  border-color:var(--line);
+  background:var(--line);
+  box-shadow:none;
+}
+.button:hover {
+  transform:translateY(-1px);
+  border-color:var(--strong-line);
+  background:var(--hover);
+  box-shadow:none;
+}
+.button.primary:hover {
+  color:#f6f6f6;
+  background:#292929;
+  box-shadow:none;
+}
+.publication-links { gap:8px; }
+.publication-link {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:40px;
+  padding:8px 18px;
+  border:1px solid transparent;
+  border-radius:9999px;
+  background:#363636;
+  color:#fff;
+  font-size:15px;
+  font-weight:500;
+  line-height:22px;
+  white-space:nowrap;
+  transition:background 80ms ease;
+}
+.publication-link:not([aria-disabled="true"]):hover { background:#292929; }
+.publication-link[aria-disabled="true"] { cursor:not-allowed; }
+.publication-icon { display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; }
+.publication-icon svg { display:block; width:100%; height:100%; fill:currentColor; }
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline:2px solid var(--accent);
+  outline-offset:4px;
+}
+.demo-main,
+.card {
+  border:0;
+  border-radius:var(--radius);
+  background:var(--panel);
+  box-shadow:none;
+  overflow:hidden;
+}
+.demo-main {
+  width:100%;
+  max-width:var(--media-width);
+  margin:38px auto 0;
+  border-color:var(--strong-line);
+  box-shadow:none;
+  overflow:hidden;
+
+  border-radius:0;
+}
+.video {
+  position:relative;
+  aspect-ratio:16 / 8.2;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:#eeeeee;
+
+  border-radius:var(--radius);
+}
+.video.missing-video {
+  background:var(--paper);
+}
+.video.missing-video::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:var(--paper);
+}
+.video img {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.58;
+  filter:saturate(1.04) contrast(1.05);
+}
+.video.missing-video img {
+  display:none;
+}
+.video::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(24,24,24,.52));
+}
+.video.missing-video::after {
+  background:none;
+}
+.play {
+  position:relative;
+  z-index:2;
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(246,246,246,.78);
+  border-radius:var(--radius-sm);
+  color:#f6f6f6;
+  background:rgba(24,24,24,.66);
+  box-shadow:none;
+  font-size:var(--fs-icon);
+}
+.missing-video .play {
+  border-color:transparent;
+  background:#eaeaea;
+  box-shadow:none;
+
+  color:var(--muted);
+
+  border-radius:50%;
+}
+.video-status {
+  position:absolute;
+  left:18px;
+  bottom:16px;
+  z-index:2;
+  text-align:left;
+}
+.video-status strong {
+  display:block;
+  color:var(--ink);
+  font-size:var(--fs-body);
+}
+.video-status span {
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:14px;
+}
+.stats {
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:18px;
+  max-width:var(--media-width);
+  margin:32px auto 0;
+  padding-top:20px;
+  border-top:var(--frame);
+}
+.stat {
+  padding:12px 14px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+.stat strong {
+  display:block;
+  color:var(--accent-2);
+  font-size:var(--fs-stat);
+  font-weight:600;
+  line-height:1.15;
+  font-variant-numeric:tabular-nums;
+}
+.stat span {
+  display:block;
+  margin-top:7px;
+  color:var(--muted);
+  font-size:14px;
+}
+.section {
+  min-height:auto;
+  min-width:0;
+  display:grid;
+  grid-template-columns:minmax(0, 1fr);
+  align-items:center;
+  padding:clamp(64px, 6.5vw, 96px) 0;
+  scroll-margin-top:86px;
+}
+.section + .section {
+  margin-top:0;
+}
+.section-head {
+  display:grid;
+  justify-items:center;
+  gap:12px;
+  max-width:760px;
+  margin:0 auto 36px;
+  text-align:center;
+}
+.kicker {
+  color:var(--accent);
+  font-size:var(--fs-xs);
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:none;
+}
+h2 {
+  margin:6px 0 0;
+  font-size:var(--fs-h2);
+  font-weight:600;
+  line-height:1.25;
+  letter-spacing:-.02em;
+}
+.section-head p {
+  max-width:620px;
+  margin:0;
+  color:var(--muted);
+  font-size:var(--fs-body);
+  line-height:1.7;
+}
+.tabs {
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:0 0 12px;
+}
+.tabs span {
+  padding:6px 10px;
+  border:var(--frame);
+  border-radius:var(--radius-sm);
+  color:var(--ink);
+  background:var(--panel);
+  font-size:var(--fs-sm);
+  font-weight:600;
+  line-height:1.2;
+}
+.tabs span.active {
+  color:#f6f6f6;
+  border-color:var(--line);
+  background:var(--line);
+}
+.table-wrap { width:100%; min-width:0; max-width:100%; overflow:auto; box-shadow:none; 
+  border-radius:0;
+}
+.table-wrap th {
+  border-top:0;
+}
+.table-wrap tr:last-child td {
+  border-bottom:0;
+}
+table {
+  width:100%;
+  min-width:820px;
+  border-collapse:collapse;
+  color:var(--line);
+  font-size:13px;
+}
+th, td {
+  padding:10px 11px;
+  border-bottom:var(--divider);
+  text-align:left;
+  vertical-align:middle;
+  line-height:1.42;
+}
+th {
+  color:var(--line);
+  background:var(--paper);
+  font-size:var(--fs-sm);
+  font-weight:600;
+  letter-spacing:0;
+  text-transform:none;
+  border-top:var(--strong-frame);
+  border-bottom:var(--strong-frame);
+}
+td {
+  color:#555555;
+}
+tr:last-child td { border-bottom:var(--strong-frame); }
+.rank {
+  display:inline-grid;
+  place-items:center;
+  min-width:24px;
+  height:24px;
+  padding:0 7px;
+  border:var(--strong-frame);
+  border-radius:var(--radius-sm);
+  color:#f6f6f6;
+  background:var(--line);
+  font-weight:900;
+  font-size:var(--fs-xs);
+}
+.rank.pending {
+  border-color:transparent;
+  color:var(--muted);
+  background:var(--paper);
+  font-weight:500;
+}
+.model {
+  display:inline-flex;
+  min-height:23px;
+  align-items:center;
+  padding:3px 8px;
+  border:var(--frame);
+  border-radius:var(--radius-sm);
+  color:var(--line);
+  background:var(--panel);
+  font-weight:760;
+}
+.model-cell {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:210px;
+}
+.model-logo {
+  width:36px;
+  height:36px;
+  display:grid;
+  flex:0 0 36px;
+  place-items:center;
+  border-radius:9px;
+  background:#f4f4f4;
+}
+.model-logo img {
+  width:22px;
+  height:22px;
+  display:block;
+  object-fit:contain;
+}
+.model-name {
+  display:grid;
+  gap:3px;
+}
+.model-name strong {
+  color:var(--ink);
+  font-size:13px;
+  line-height:1.25;
+  font-weight:600;
+}
+.model-name small {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+}
+.model-strip {
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:14px;
+  margin:0 0 24px;
+}
+.model-card {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 6px;
+  border:0;
+  border-radius:var(--radius);
+  background:transparent;
+  box-shadow:none;
+}
+.model-card strong {
+  display:block;
+  color:var(--ink);
+  font-size:14px;
+  line-height:1.25;
+  font-weight:600;
+}
+.model-card > div > span {
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+}
+.charts {
+  display:grid;
+  grid-template-columns:1.18fr .82fr;
+  gap:26px;
+}
+.chart-stack {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:26px;
+}
+.chart {
+  padding:12px;
+}
+.chart h3 {
+  margin:0 0 12px;
+  color:var(--ink);
+  font-size:var(--fs-md);
+  line-height:1.3;
+}
+.figure-placeholder {
+  position:relative;
+  height:170px;
+  display:grid;
+  align-content:end;
+  gap:5px;
+  overflow:hidden;
+  padding:16px;
+  border:var(--frame);
+  border-radius:var(--radius);
+  color:#f6f6f6;
+  border-color:#303030;
+  background:linear-gradient(180deg, #202020 0%, var(--void) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 6px 14px rgba(24,24,24,.1);
+}
+.chart.large .figure-placeholder {
+  height:285px;
+}
+.figure-placeholder::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, #202020 0%, var(--void) 100%);
+}
+.figure-placeholder strong,
+.figure-placeholder span {
+  position:relative;
+  z-index:1;
+}
+.figure-placeholder strong {
+  font-size:var(--fs-body);
+}
+.figure-placeholder span {
+  color:var(--void-muted);
+  font-size:var(--fs-sm);
+}
+.note {
+  margin:12px 0 0;
+  color:var(--muted);
+  font-size:var(--fs-sm);
+  line-height:1.65;
+}
+.action-section,
+.benchmark-section {
+  min-height:auto;
+}
+@media (min-width: 901px) {
+  .benchmark-section { min-height:calc(100svh - 86px); }
+}
+.action-showcase {
+  display:grid;
+  grid-template-columns:minmax(0, .95fr) minmax(0, 1.15fr);
+  align-items:center;
+  gap:40px;
+}
+.action-wheel-column { min-width:0; }
+.action-wheel {
+  position:relative;
+  width:100%;
+  max-width:460px;
+  aspect-ratio:1;
+  margin:auto;
+  border:0;
+  border-radius:50%;
+  background:var(--panel);
+  box-shadow:none;
+  isolation:isolate;
+}
+.action-sector {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  clip-path:var(--sector);
+  background:var(--paper);
+  color:var(--line);
+  font:inherit;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  transition:background 80ms ease, color 80ms ease;
+}
+.action-sector:nth-child(even) { background:var(--hover); }
+.action-sector:hover { background:var(--soft-line); }
+.action-sector[aria-pressed="true"] { background:var(--line); color:var(--paper); }
+.action-sector:focus-visible { background:var(--accent-2); color:var(--paper); outline:none; }
+.action-label {
+  position:absolute;
+  left:var(--label-x);
+  top:var(--label-y);
+  transform:translate(-50%, -50%);
+  width:24%;
+  display:grid;
+  justify-items:center;
+  gap:8px;
+  pointer-events:none;
+  text-align:center;
+  font-size:var(--fs-sm);
+  font-weight:600;
+  line-height:1.2;
+}
+.action-icon { display:block; width:38px; height:38px; }
+.action-sector:focus-visible .action-label { text-decoration:underline; text-underline-offset:3px; }
+.action-hub {
+  position:absolute;
+  inset:32%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:10px;
+  border:0;
+  border-radius:50%;
+  background:var(--panel);
+  box-shadow:none;
+  text-align:center;
+  pointer-events:none;
+}
+.action-hub strong { font-size:var(--fs-lg); font-weight:600; line-height:1.2; }
+.action-wheel-note { margin:14px 0 0; text-align:center; color:var(--muted); font-size:14px; line-height:1.65; }
+.action-wheel-note a { display:inline-block; margin-top:6px; color:var(--line); font-weight:700; text-decoration:underline; text-underline-offset:4px; }
+.action-preview {
+  min-width:0;
+  overflow:hidden;
+  border:0;
+  border-radius:0;
+  background:var(--panel);
+  box-shadow:none;
+}
+.action-screen {
+  position:relative;
+  display:grid;
+  aspect-ratio:16 / 8.2;
+  background:var(--paper);
+  color:var(--ink);
+
+  border-radius:var(--radius);
+
+  overflow:hidden;
+}
+.action-screen video { display:block; width:100%; height:100%; position:absolute; inset:0; object-fit:contain; }
+.action-empty { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:18px; text-align:center; }
+.action-empty svg { width:48px; height:48px; margin-bottom:8px; color:var(--muted); }
+.action-empty strong { font-size:var(--fs-body); font-weight:600; }
+.action-empty span { color:var(--muted); font-size:14px; line-height:1.6; }
+.action-preview [hidden] { display:none; }
+.action-preview-copy { min-height:150px; padding:22px 0 0; border-top:0; }
+.action-preview-copy h3 { margin:0 0 8px; font-size:var(--fs-md); font-weight:600; }
+.action-preview-copy p { margin:0; color:var(--muted); font-size:var(--fs-body); line-height:1.65; }
+@media (max-width: 900px) {
+  .action-showcase { grid-template-columns:1fr; gap:30px; max-width:600px; margin:auto; }
+  .action-wheel { max-width:440px; }
+}
+@media (max-width: 420px) {
+  .action-label { font-size:calc(var(--fs-xs) - 1px); gap:5px; }
+  .action-icon { width:28px; height:28px; }
+  .action-hub span { font-size:calc(var(--fs-xs) - 2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .action-sector { transition:none; }
+}
+.benchmark-figure {
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  margin-top:42px;
+  overflow:auto;
+  border:0;
+  border-radius:0;
+  background:var(--panel);
+  box-shadow:none;
+}
+.benchmark-figure table {
+  min-width:980px;
+  font-family:inherit;
+  font-size:13px;
+}
+.benchmark-figure caption {
+  padding:0 0 18px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.55;
+  text-align:left;
+  border-bottom:0;
+}
+.benchmark-figure th,
+.benchmark-figure td {
+  padding:7px 9px;
+  border-bottom:var(--divider);
+  white-space:nowrap;
+}
+.benchmark-figure th {
+  border-top:0;
+  border-bottom:var(--strong-frame);
+  font-weight:600;
+  text-align:center;
+}
+.benchmark-figure th:first-child,
+.benchmark-figure th:last-child {
+  text-align:left;
+}
+.benchmark-figure tr.siturec-row td {
+  border-top:var(--strong-frame);
+  font-weight:800;
+}
+.benchmark-figure tr:last-child td {
+  border-bottom:0;
+}
+.check { color:var(--good); text-align:center; }
+.cross { color:var(--bad); text-align:center; }
+.benchmark-figure td.check,
+.benchmark-figure td.cross { line-height:1; }
+.benchmark-mark {
+  display:inline-block;
+  width:18px;
+  height:18px;
+  vertical-align:middle;
+}
+.benchmark-key { display:inline-flex; vertical-align:middle; }
+.benchmark-sr-only {
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip-path:inset(50%);
+  white-space:nowrap;
+  border:0;
+}
+.env {
+  display:grid;
+  grid-template-columns:minmax(0, 1.08fr) minmax(320px, .92fr);
+  gap:30px;
+}
+.env-actions {
+  display:grid;
+  gap:14px;
+}
+.env-link {
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  min-height:64px;
+  padding:12px 14px;
+  border:var(--frame);
+  border-radius:var(--radius);
+  background:var(--panel);
+  box-shadow:var(--shadow-soft);
+  transition:border-color 80ms ease, box-shadow 80ms ease, transform 80ms ease, background 80ms ease;
+}
+.env-link:hover {
+  transform:translateY(-1px);
+  border-color:var(--strong-line);
+  background:var(--hover);
+  box-shadow:var(--shadow-hover);
+}
+.env-link strong {
+  display:block;
+  margin-bottom:5px;
+  color:var(--ink);
+  font-size:var(--fs-md);
+  font-weight:820;
+  line-height:1.25;
+}
+.env-link span {
+  color:var(--muted);
+  font-size:var(--fs-sm);
+  line-height:1.6;
+}
+.env-link i {
+  color:var(--line);
+  font-style:normal;
+  font-weight:900;
+}
+.demo-row {
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:24px;
+  margin-top:28px;
+}
+.demo-tile {
+  min-height:122px;
+  display:grid;
+  align-content:end;
+  padding:14px;
+  border:var(--frame);
+  border-radius:var(--radius);
+  background:var(--panel);
+  box-shadow:var(--shadow-soft);
+}
+.demo-tile.missing-video {
+  color:#f6f6f6;
+  border-color:#303030;
+  background:linear-gradient(180deg, #202020 0%, var(--void) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 6px 14px rgba(24,24,24,.1);
+}
+.demo-tile::before {
+  content:"";
+  width:34px;
+  height:2px;
+  margin-bottom:44px;
+  border-radius:0;
+  background:rgba(85,85,85,.72);
+}
+.demo-tile.missing-video::before {
+  background:#f6f6f6;
+}
+.demo-tile strong {
+  color:var(--ink);
+  font-size:var(--fs-body);
+}
+.demo-tile.missing-video strong {
+  color:#f6f6f6;
+}
+.demo-tile span {
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:var(--fs-sm);
+}
+.demo-tile.missing-video span {
+  color:var(--void-muted);
+}
+.overview {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+.method-grid {
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:16px;
+  margin-top:22px;
+}
+.method {
+  padding:12px;
+  border:var(--frame);
+  border-radius:var(--radius);
+  background:var(--panel);
+  box-shadow:var(--shadow-soft);
+}
+.method b {
+  display:block;
+  margin-bottom:6px;
+  color:var(--line);
+  font-size:var(--fs-body);
+  font-weight:820;
+  line-height:1.25;
+}
+.method span {
+  color:var(--muted);
+  font-size:var(--fs-sm);
+  line-height:1.62;
+}
+.abstract {
+  padding:20px;
+}
+.abstract p {
+  margin:0 0 14px;
+  color:#444444;
+  font-size:var(--fs-md);
+  line-height:1.72;
+}
+.abstract p:last-child { margin-bottom:0; }
+.scene-pair {
+  display:grid;
+  gap:12px;
+}
+.scene-img img {
+  display:block;
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  border-bottom:var(--frame);
+  background:var(--panel);
+}
+.scene-img.missing-image {
+  min-height:230px;
+  display:grid;
+  align-content:end;
+  padding:14px;
+  border-color:var(--line);
+  color:#f6f6f6;
+  background:linear-gradient(180deg, #202020 0%, var(--void) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 6px 14px rgba(24,24,24,.1);
+}
+.scene-img.missing-image img {
+  display:none;
+}
+.scene-img.missing-image div {
+  padding:0;
+  color:var(--void-muted);
+}
+.scene-img.missing-image div::before {
+  content:"Image pending";
+  display:block;
+  margin-bottom:5px;
+  color:#f6f6f6;
+  font-weight:800;
+}
+.scene-img div {
+  padding:12px 13px;
+  color:var(--muted);
+  font-size:var(--fs-body);
+}
+.citation {
+  width:100%;
+  max-width:var(--media-width);
+  min-width:0;
+  margin:0 auto;
+}
+.citation-card {
+  min-width:0;
+  overflow:hidden;
+  border:0;
+  border-radius:12px;
+  background:var(--paper);
+  box-shadow:none;
+}
+.citation-toolbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px 22px;
+  border-bottom:0;
+  background:transparent;
+}
+.citation-toolbar h3 {
+  margin:0;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.015em;
+}
+.citation-copy-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-width:122px;
+  min-height:34px;
+  padding:7px 11px;
+  border:var(--frame);
+  border-radius:var(--radius-sm);
+  background:var(--panel);
+  color:var(--line);
+  font:inherit;
+  font-size:var(--fs-sm);
+  font-weight:600;
+  cursor:pointer;
+  transition:background 80ms ease, border-color 80ms ease;
+}
+.citation-copy-button[hidden] { display:none; }
+.citation-copy-button:hover { background:var(--hover); border-color:var(--strong-line); }
+.citation-copy-button:disabled { cursor:wait; opacity:.65; }
+.citation-copy-button svg { width:14px; height:14px; }
+.citation-note {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:8px 20px;
+  margin:0;
+  padding:0 22px 20px;
+  border-top:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+.citation-note[role="status"] { color:var(--accent); }
+.citation-note:empty { padding:0; }
+#citation { padding-top:48px; padding-bottom:56px; }
+pre {
+  margin:0;
+  padding:20px;
+  overflow:auto;
+  color:var(--line);
+  background:var(--paper);
+  border:0;
+  border-radius:var(--radius);
+  box-shadow:none;
+  font-family:var(--font-family);
+  font-size:14px;
+  line-height:1.65;
+}
+.citation-card pre {
+  min-width:0;
+  padding:8px 24px 20px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  line-height:1.8;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  tab-size:2;
+}
+.citation-card pre:focus-visible { outline:2px solid var(--accent); outline-offset:-3px; }
+.footer {
+  width:min(1124px, calc(100% - 36px));
+  margin:32px auto 0;
+  padding:28px;
+  border-top:var(--divider);
+  color:var(--muted);
+  font-size:var(--fs-sm);
+  text-align:center;
+}
+.jump-rail {
+  position:fixed;
+  right:28px;
+  top:50%;
+  z-index:18;
+  display:grid;
+  gap:10px;
+  width:104px;
+  overflow:visible;
+  padding:0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+  transform:translateY(-50%);
+}
+.jump-rail a {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  min-height:40px;
+  padding:4px 0;
+  border:0;
+  border-radius:var(--radius-sm);
+  color:var(--line);
+  background:transparent;
+  font-size:var(--fs-sm);
+  font-weight:400;
+  line-height:1.2;
+  text-align:right;
+  white-space:nowrap;
+  box-shadow:none;
+}
+.jump-rail a span {
+  display:inline-block;
+  font-size:var(--fs-sm);
+  opacity:.5;
+  transition:font-size 80ms ease-out, opacity 80ms ease-out;
+}
+.jump-rail a.active span {
+  font-size:calc(var(--fs-sm) + .5px);
+  font-weight:400;
+  opacity:1;
+}
+.jump-rail a:hover span,
+.jump-rail a:focus-visible span {
+  font-size:calc(var(--fs-sm) + .5px);
+  opacity:1;
+}
+.jump-rail a:focus-visible {
+  outline:2px solid var(--line);
+  outline-offset:-2px;
+}
+.hero.anchor-focus,
+.section.anchor-focus {
+  animation:anchorFocus 120ms ease-out;
+}
+.has-reveal :where(
+  .hero .eyebrow,
+  .hero h1,
+  .hero .authors,
+  .hero .actions,
+  .demo-main,
+  .stats,
+  .stat,
+  .section-head,
+  .tabs,
+  .model-card,
+  .table-wrap,
+  .chart,
+  .action-showcase,
+  .benchmark-figure,
+  .env .card,
+  .env-link,
+  .demo-tile,
+  .abstract,
+  .method,
+  .scene-img,
+  .citation-card
+):not(.is-visible) {
+  opacity:0;
+  transform:translateY(8px);
+}
+.reveal {
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity 120ms ease-out, transform 120ms ease-out;
+  transition-delay:0ms;
+  will-change:opacity, transform;
+}
+.reveal.is-visible {
+  opacity:1;
+  transform:translateY(0);
+}
+.hero.reveal {
+  transform:translateY(8px);
+}
+.section-head.reveal {
+  transform:translateY(8px);
+}
+.hero.reveal.is-visible,
+.section-head.reveal.is-visible {
+  transform:translateY(0);
+}
+.demo-main.reveal,
+.action-showcase.reveal,
+.benchmark-figure.reveal,
+.stats.reveal {
+  transition-duration:120ms;
+}
+@keyframes anchorFocus {
+  0% { background:rgba(36,36,36,0); }
+  22% { background:rgba(36,36,36,.055); }
+  100% { background:rgba(36,36,36,0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jump-rail a span { transition:none; }
+  .hero.anchor-focus,
+  .section.anchor-focus { animation:none; }
+  .reveal,
+  .reveal.is-visible {
+    opacity:1;
+    transform:none;
+    transition:none;
+    transition-delay:0ms;
+  }
+}
+@media (min-width: 1400px) {
+  .wrap { width:min(calc(var(--content-width) + 56px), calc(100% - 240px)); }
+}
+@media (max-width: 1399px) {
+  .jump-rail { display:none; }
+  .nav-group { display:block; }
+}
+@media (max-height: 560px) {
+  .jump-rail { gap:clamp(0px, 1vh, 4px); }
+  .jump-rail a { min-height:clamp(22px, 5.7vh, 32px); padding-block:2px; }
+}
+@media (max-width: 1100px) {
+  .model-strip { grid-template-columns:repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .nav {
+    top:8px;
+    gap:8px;
+    width:calc(100% - 18px);
+    margin:8px auto 0;
+    padding:10px 12px;
+  }
+  .nav-links { gap:2px; }
+  .nav-links a, .nav-group summary { padding-inline:7px; }
+  .brand { font-size:16px; }
+  .wrap { padding:0 18px; }
+  main { gap:0; }
+  .hero { min-height:auto; padding:46px 0 58px; }
+  .section { min-height:auto; padding:64px 0; }
+  .section + .section { margin-top:0; }
+  h1 { font-size:var(--fs-h1-md); }
+  .stats { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  .section-head { text-align:center; }
+  .charts, .env, .overview, .model-strip { grid-template-columns:1fr; }
+  .method-grid { grid-template-columns:1fr; }
+}
+@media (max-width: 560px) {
+  .publication-link { padding-inline:12px; }
+  h1 { font-size:var(--fs-h1-sm); }
+  h2 { font-size:var(--fs-h2-sm); }
+  .stats { gap:18px 8px; }
+  .stat { padding:10px 4px; }
+  .demo-row { grid-template-columns:1fr; }
+  .view-grid { grid-template-columns:1fr; }
+  .benchmark-figure table { font-size:13px; }
+  .citation-toolbar { padding:12px 16px; }
+  .citation-card pre { padding:18px 16px; }
+  .citation-note { padding:12px 16px; }
+}
+
+
+/* Keep the five model families together without stretching across the table. */
+#leaderboard .model-strip {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px 24px;
+  margin-bottom:24px;
+}
+#leaderboard .model-card { padding:8px 0; }
+
+
+#leaderboard th[title] { cursor:help; }
+</style>
+
+
+
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top" aria-label="SituRecBench home"><span>SituRecBench</span></a>
+  <nav class="nav-links" aria-label="Project navigation">
+    <details class="nav-group">
+      <summary>Sections</summary>
+      <div class="nav-sub">
+        <a href="#actions" title="From Movement to Purchase">Action Demos</a>
+        <a href="#benchmark">Related Benchmarks</a>
+        <a href="#construction" title="Benchmark Construction">Construction</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#citation">Citation</a>
+      </div>
+    </details>
+    <a class="nav-details" href="details.html">Docs <span aria-hidden="true">→</span></a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">NeurIPS 2026 · Evaluations &amp; Datasets Track</p>
+    <h1><span class="title-line">SituRecBench: Evaluating Frontier Models as Situated</span> <span class="title-line">Recommendation Assistants in 3D Environments</span></h1>
+    <div class="authors">
+      <div class="author-list">
+        <span class="author-name"><a href="#top">Jingtong Yang</a><sup>1,<abbr title="Equal contribution" aria-label="Equal contribution">*</abbr></sup></span>,
+        <span class="author-name"><a href="https://lindongding.com/" target="_blank" rel="noopener noreferrer">Dongding Lin</a><sup>1,<abbr title="Equal contribution" aria-label="Equal contribution">*</abbr></sup></span>,
+        <span class="author-name"><a href="http://iwangjian.github.io/" target="_blank" rel="noopener noreferrer">Jian Wang</a><sup>2,<abbr title="Corresponding author" aria-label="Corresponding author">†</abbr></sup></span>,
+        <span class="author-name"><a href="https://www4.comp.polyu.edu.hk/~cswjli/" target="_blank" rel="noopener noreferrer">Wenjie Li</a><sup>1</sup></span>
+      </div>
+      <p class="affiliations"><sup>1</sup> The Hong Kong Polytechnic University &nbsp; <sup>2</sup> Sichuan University</p>
+    </div>
+    <div class="actions publication-links" role="group" aria-label="Project links">
+      <!-- To activate an entry, add its confirmed href and remove role, aria-disabled, tabindex, title. -->
+      <a class="publication-link" data-publication="paper" role="link" aria-disabled="true" tabindex="0" title="Paper link coming soon">
+        <span class="publication-icon" data-icon="paper" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"/></svg></span><span>Paper</span>
+      </a>
+      <a class="publication-link" data-publication="arxiv" role="link" aria-disabled="true" tabindex="0" title="arXiv link coming soon">
+        <span class="publication-icon" data-icon="arxiv" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Academicons by James Walsh and contributors; SIL OFL 1.1: https://openfontlicense.org/ . arXiv glyph U+E974 from https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/fonts/academicons.svg; standalone SVG export with unchanged glyph outline. --><g transform="translate(0 448) scale(1 -1)"><path fill="currentColor" d="M62.2578 439.994v0.000976563c8.7373 -0.208008 17.0049 -10.248 17.0049 -10.248l139.339 -133.672l101.071 91.6465l0.19043 0.172852l0.203125 0.166016c4.90625 4.81934 11.3877 7.70312 18.252 8.12207l0.00585938 0.0185547 c1.05957 -0.00195312 2.11816 -0.0712891 3.16699 -0.211914c10.166 -2.4209 18.7891 -9.11816 23.6465 -18.3701c4.01758 -9.88574 0.291016 -17.6826 -7.50195 -27.8057l-0.102539 -0.139648l-0.115234 -0.132812l-87.1963 -102.987l25.2568 -24.2285 c17.0928 -15.6211 17.002 -42.5723 -0.197266 -58.0762l-23.0615 -21.4434l128.783 -155.019c6.05273 -6.27637 8.49609 -15.2041 6.48145 -23.6885c-2.51465 -9.04297 -9.44238 -16.1914 -18.4004 -18.9902c-2.37793 -0.728516 -4.84863 -1.10254 -7.33496 -1.1084 c-6.88184 0.109375 -13.4678 2.83105 -18.4189 7.61035l-146.593 139.609l-95.1221 -88.4375c-3.72852 -4.63086 -9.30664 -7.38672 -15.249 -7.53516c-9.27832 -0.0908203 -17.6777 5.47754 -21.209 14.0586c-3.46777 8.33105 0.375 19.9385 6.58398 26.5527 l79.9766 98.2344l-28.6631 27.3008c-19.292 19.2861 -18.4004 47.1162 2.33984 67.8516l24.6191 23.0391s-111.243 133.583 -122.178 149.671c-7.46582 10.6934 -9.91016 16.4219 -6.50586 24.5918c3.57715 8.33398 11.8613 13.6562 20.9277 13.4473zM338.319 388.78 v-0.0214844c-5.18945 -0.473633 -10.0342 -2.79199 -13.6592 -6.53516l-100.681 -91.3047l40.8809 -39.2197l86.8916 102.64c8.05957 10.4746 8.75195 14.9609 6.50488 20.4824c-3.83691 6.77344 -10.2119 11.7451 -17.7188 13.8105 c-0.735352 0.0976562 -1.47754 0.145508 -2.21875 0.148438zM175.076 246.873l-24.623 -23.041c-16.8564 -16.8564 -19.4756 -39.8701 -2.15918 -57.1865l220.151 -209.691c3.5752 -3.45898 8.32031 -5.44336 13.293 -5.56152 c1.75293 0.00292969 3.49512 0.266602 5.1709 0.78418c6.58887 2.0752 11.6631 7.36914 13.4629 14.0381c1.83984 6.0957 -0.860352 11.5049 -5.18066 16.9141z"/></g><metadata>Academicons by James Walsh and contributors
+https://github.com/jpswalsh/academicons
+The arXiv glyph is licensed under the SIL Open Font License, Version 1.1.
+License text source: https://openfontlicense.org/documents/OFL.txt
+
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+DEFINITIONS
+&quot;Font Software&quot; refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+&quot;Reserved Font Name&quot; refers to any names specified as such after the
+copyright statement(s).
+
+&quot;Original Version&quot; refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+&quot;Modified Version&quot; refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+&quot;Author&quot; refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+PERMISSION &amp; CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
+      </a>
+      <a class="publication-link" data-publication="code" href="https://github.com/SituRec/SituRecBench" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
+        <span class="publication-icon" data-icon="code" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span><span>Code</span>
+      </a>
+      <a class="publication-link" data-publication="data" role="link" aria-disabled="true" tabindex="0" title="Data link coming soon">
+        <span class="publication-icon" data-icon="data" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License). Source: https://github.com/FortAwesome/Font-Awesome/blob/5.15.4/svgs/regular/images.svg --><path d="M480 416v16c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V176c0-26.51 21.49-48 48-48h16v48H54a6 6 0 0 0-6 6v244a6 6 0 0 0 6 6h372a6 6 0 0 0 6-6v-10h48zm42-336H150a6 6 0 0 0-6 6v244a6 6 0 0 0 6 6h372a6 6 0 0 0 6-6V86a6 6 0 0 0-6-6zm6-48c26.51 0 48 21.49 48 48v256c0 26.51-21.49 48-48 48H144c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h384zM264 144c0 22.091-17.909 40-40 40s-40-17.909-40-40 17.909-40 40-40 40 17.909 40 40zm-72 96l39.515-39.515c4.686-4.686 12.284-4.686 16.971 0L288 240l103.515-103.515c4.686-4.686 12.284-4.686 16.971 0L480 208v80H192v-48z"/></svg></span><span>Data</span>
+      </a>
+      <a class="publication-link" href="details.html">
+        <span class="publication-icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Zm0 0v6h6M8 13h8M8 17h8"/></svg></span><span>Docs</span>
+      </a>
+    </div>
+    <div class="demo-main">
+      <div class="video missing-video">
+        <div class="play">&#9658;</div>
+        <div class="video-status"><strong>Main demo pending</strong><span>Full closed-loop episode video will be added here.</span></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>200</strong><span>hidden shopping goals</span></div>
+      <div class="stat"><strong>479</strong><span>catalog products</span></div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="section action-section" id="actions">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>From Movement to Purchase</h2></div>
+      </div>
+      <div class="action-showcase">
+        <div class="action-wheel-column">
+          <!-- Action icons: Tabler Icons (MIT), adapted; source and full license: assets/ui-icons/action-icons-attribution.json -->
+          <div class="action-wheel" role="group" aria-label="Customer actions" aria-describedby="action-wheel-help">
+            <button class="action-sector" type="button" data-action="walk" data-title="Free Move" data-description="Move forward, backward, or sideways while keeping the final facing direction." data-video-src="" aria-pressed="true" aria-controls="action-preview" style="--sector:polygon(25.651% 6.788%, 27.521% 5.786%, 29.431% 4.866%, 31.379% 4.028%, 33.362% 3.274%, 35.374% 2.605%, 37.414% 2.024%, 39.476% 1.529%, 41.558% 1.124%, 43.655% 0.808%, 45.763% 0.581%, 47.880% 0.445%, 50.000% 0.400%, 52.120% 0.445%, 54.237% 0.581%, 56.345% 0.808%, 58.442% 1.124%, 60.524% 1.529%, 62.586% 2.024%, 64.626% 2.605%, 66.638% 3.274%, 68.621% 4.028%, 70.569% 4.866%, 72.479% 5.786%, 74.349% 6.788%, 59.327% 33.447%, 58.247% 32.883%, 57.133% 32.390%, 55.990% 31.969%, 54.822% 31.622%, 53.634% 31.351%, 52.431% 31.156%, 51.218% 31.039%, 50.000% 31.000%, 48.782% 31.039%, 47.569% 31.156%, 46.366% 31.351%, 45.178% 31.622%, 44.010% 31.969%, 42.867% 32.390%, 41.753% 32.883%, 40.673% 33.447%);--label-x:50.000%;--label-y:15.500%">
+              <span class="action-label"><span>Free Move</span><svg class="action-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g class="action-person" transform="translate(10 0)"><circle cx="6" cy="6" r="2.3"/><path d="M6 11v9"/><path d="M6 12 2 16m4-4 5 3 3-1M6 20l-3 8m3-8 5 8"/></g></svg></span>
+            </button>
+            <button class="action-sector" type="button" data-action="look" data-title="Adjust View" data-description="Turn left or right, or tilt the view up or down." data-video-src="" aria-pressed="false" aria-controls="action-preview" style="--sector:polygon(75.248% 7.307%, 77.050% 8.426%, 78.803% 9.620%, 80.503% 10.888%, 82.147% 12.228%, 83.732% 13.636%, 85.256% 15.112%, 86.715% 16.651%, 88.107% 18.251%, 89.429% 19.909%, 90.680% 21.622%, 91.855% 23.386%, 92.955% 25.200%, 93.976% 27.059%, 94.916% 28.960%, 95.775% 30.899%, 96.549% 32.873%, 97.239% 34.879%, 97.842% 36.912%, 98.358% 38.969%, 98.785% 41.046%, 99.123% 43.140%, 99.372% 45.246%, 99.530% 47.361%, 99.597% 49.481%, 68.999% 49.801%, 68.947% 48.584%, 68.818% 47.372%, 68.611% 46.171%, 68.327% 44.987%, 67.967% 43.822%, 67.535% 42.683%, 67.029% 41.574%, 66.454% 40.500%, 65.812% 39.465%, 65.104% 38.473%, 64.334% 37.529%, 63.505% 36.635%, 62.621% 35.798%, 61.685% 35.017%, 60.700% 34.300%, 59.672% 33.646%);--label-x:79.878%;--label-y:32.750%">
+              <span class="action-label"><span>Adjust View</span><svg class="action-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g class="action-person" transform="translate(8 0)"><circle cx="6" cy="6" r="2.3"/><path d="M6 11v9"/><path d="M6 12 1 18M6 12l7-2-2-6H7M6 20l-3 8m3-8 5 8"/></g></svg></span>
+            </button>
+            <button class="action-sector" type="button" data-action="visit-store" data-title="Visit Store" data-description="Move to a waypoint just inside or outside a visible store entrance." data-video-src="" aria-pressed="false" aria-controls="action-preview" style="--sector:polygon(99.597% 50.519%, 99.530% 52.639%, 99.372% 54.754%, 99.123% 56.860%, 98.785% 58.954%, 98.358% 61.031%, 97.842% 63.088%, 97.239% 65.121%, 96.549% 67.127%, 95.775% 69.101%, 94.916% 71.040%, 93.976% 72.941%, 92.955% 74.800%, 91.855% 76.614%, 90.680% 78.378%, 89.429% 80.091%, 88.107% 81.749%, 86.715% 83.349%, 85.256% 84.888%, 83.732% 86.364%, 82.147% 87.772%, 80.503% 89.112%, 78.803% 90.380%, 77.050% 91.574%, 75.248% 92.693%, 59.672% 66.354%, 60.700% 65.700%, 61.685% 64.983%, 62.621% 64.202%, 63.505% 63.365%, 64.334% 62.471%, 65.104% 61.527%, 65.812% 60.535%, 66.454% 59.500%, 67.029% 58.426%, 67.535% 57.317%, 67.967% 56.178%, 68.327% 55.013%, 68.611% 53.829%, 68.818% 52.628%, 68.947% 51.416%, 68.999% 50.199%);--label-x:79.878%;--label-y:67.250%">
+              <span class="action-label"><span>Visit Store</span><svg class="action-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 28V5h12v23M18 5l7-3v24l-7 2M22 15v1M16 28h15"/><g class="action-person" transform="translate(1 0)"><circle cx="6" cy="6" r="2.3"/><path d="M6 11v9"/><path d="M6 12l6 2 3-4M6 20l-3 8m3-8 5 8"/></g></svg></span>
+            </button>
+            <button class="action-sector" type="button" data-action="enter-area" data-title="Enter Area" data-description="Move to a fixed point inside a currently visible furniture display area." data-video-src="" aria-pressed="false" aria-controls="action-preview" style="--sector:polygon(74.349% 93.212%, 72.479% 94.214%, 70.569% 95.134%, 68.621% 95.972%, 66.638% 96.726%, 64.626% 97.395%, 62.586% 97.976%, 60.524% 98.471%, 58.442% 98.876%, 56.345% 99.192%, 54.237% 99.419%, 52.120% 99.555%, 50.000% 99.600%, 47.880% 99.555%, 45.763% 99.419%, 43.655% 99.192%, 41.558% 98.876%, 39.476% 98.471%, 37.414% 97.976%, 35.374% 97.395%, 33.362% 96.726%, 31.379% 95.972%, 29.431% 95.134%, 27.521% 94.214%, 25.651% 93.212%, 40.673% 66.553%, 41.753% 67.117%, 42.867% 67.610%, 44.010% 68.031%, 45.178% 68.378%, 46.366% 68.649%, 47.569% 68.844%, 48.782% 68.961%, 50.000% 69.000%, 51.218% 68.961%, 52.431% 68.844%, 53.634% 68.649%, 54.822% 68.378%, 55.990% 68.031%, 57.133% 67.610%, 58.247% 67.117%, 59.327% 66.553%);--label-x:50.000%;--label-y:84.500%">
+              <span class="action-label"><span>Enter Area</span><svg class="action-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g transform="translate(-1 0)"><rect x="2" y="4" width="7" height="19" rx="1"/><path d="M2 14h7M6 9v1m0 8v1M3 23v2m5-2v2"/></g><g transform="translate(1 -4)"><path d="M22 7h8m-7 0v8m6-8v8M23 22v-2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M22 22v5h8v-5M22 24h8M23 27v2m6-2v2"/></g><g class="action-person" transform="translate(10 0)"><circle cx="6" cy="6" r="2.3"/><path d="M6 11v9"/><path d="M2 17l4-5 4 5M6 20l-3 8m3-8 5 8"/></g></svg></span>
+            </button>
+            <button class="action-sector" type="button" data-action="approach-fixture" data-title="Approach Fixture" data-description="Move closer to a currently visible shelf, cooler, or display." data-video-src="" aria-pressed="false" aria-controls="action-preview" style="--sector:polygon(24.752% 92.693%, 22.950% 91.574%, 21.197% 90.380%, 19.497% 89.112%, 17.853% 87.772%, 16.268% 86.364%, 14.744% 84.888%, 13.285% 83.349%, 11.893% 81.749%, 10.571% 80.091%, 9.320% 78.378%, 8.145% 76.614%, 7.045% 74.800%, 6.024% 72.941%, 5.084% 71.040%, 4.225% 69.101%, 3.451% 67.127%, 2.761% 65.121%, 2.158% 63.088%, 1.642% 61.031%, 1.215% 58.954%, 0.877% 56.860%, 0.628% 54.754%, 0.470% 52.639%, 0.403% 50.519%, 31.001% 50.199%, 31.053% 51.416%, 31.182% 52.628%, 31.389% 53.829%, 31.673% 55.013%, 32.033% 56.178%, 32.465% 57.317%, 32.971% 58.426%, 33.546% 59.500%, 34.188% 60.535%, 34.896% 61.527%, 35.666% 62.471%, 36.495% 63.365%, 37.379% 64.202%, 38.315% 64.983%, 39.300% 65.700%, 40.328% 66.354%);--label-x:20.122%;--label-y:67.250%">
+              <span class="action-label"><span>Approach Fixture</span><svg class="action-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g class="action-person" transform="translate(1 0)"><circle cx="6" cy="6" r="2.3"/><path d="M6 11v9"/><path d="M6 12l6 4 3-1M6 12l-4 4M6 20l-3 8m3-8 5 8"/></g><path d="M19 4v24m10-24v24m-10-16h10m-10 8h10m-10 8h10M21 12V6h5v6m-5 8v-5h3v5m2 0v-3h2v3"/></svg></span>
+            </button>
+            <button class="action-sector" type="button" data-action="pick-up" data-title="Pick Up / Inspect" data-description="Pick up a visible product in the supermarket, or inspect a furniture item in place, to view its details." data-video-src="" aria-pressed="false" aria-controls="action-preview" style="--sector:polygon(0.403% 49.481%, 0.470% 47.361%, 0.628% 45.246%, 0.877% 43.140%, 1.215% 41.046%, 1.642% 38.969%, 2.158% 36.912%, 2.761% 34.879%, 3.451% 32.873%, 4.225% 30.899%, 5.084% 28.960%, 6.024% 27.059%, 7.045% 25.200%, 8.145% 23.386%, 9.320% 21.622%, 10.571% 19.909%, 11.893% 18.251%, 13.285% 16.651%, 14.744% 15.112%, 16.268% 13.636%, 17.853% 12.228%, 19.497% 10.888%, 21.197% 9.620%, 22.950% 8.426%, 24.752% 7.307%, 40.328% 33.646%, 39.300% 34.300%, 38.315% 35.017%, 37.379% 35.798%, 36.495% 36.635%, 35.666% 37.529%, 34.896% 38.473%, 34.188% 39.465%, 33.546% 40.500%, 32.971% 41.574%, 32.465% 42.683%, 32.033% 43.822%, 31.673% 44.987%, 31.389% 46.171%, 31.182% 47.372%, 31.053% 48.584%, 31.001% 49.801%);--label-x:20.122%;--label-y:32.750%">
+              <span class="action-label"><span>Pick Up / Inspect</span><svg class="action-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g class="action-person" transform="translate(0 0)"><circle cx="6" cy="6" r="2.3"/><path d="M6 11v9"/><path d="M6 12l6 2 5-4M6 20l-3 8m3-8 5 8"/></g><rect x="17" y="5" width="5" height="5" rx=".8"/><path d="M12 14h3l2 10h10l2-8H16m3-4v2"/><circle cx="18" cy="28" r="1"/><circle cx="26" cy="28" r="1"/></svg></span>
+            </button>
+            <div class="action-hub" aria-hidden="true"><strong>Customer<br>actions</strong></div>
+          </div>
+          <p class="action-wheel-note" id="action-wheel-help">6 representative actions. Use Tab or arrow keys to explore.<br><a href="details_pages/actions.html">View the full action list &rarr;</a></p>
+        </div>
+        <article class="action-preview" id="action-preview" aria-labelledby="action-title">
+          <div class="action-screen">
+            <video id="action-video" controls muted playsinline loop preload="none" aria-label="Free Move demonstration" hidden></video>
+            <div class="action-empty" id="action-empty">
+              <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="5" y="10" width="38" height="28" rx="7" stroke="currentColor" stroke-width="1.3"/><path d="M21 18L30 24L21 30Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+              <strong id="action-video-status">Demo coming soon</strong>
+              <span id="action-video-hint">Action videos will appear here when available.</span>
+            </div>
+          </div>
+          <div class="action-preview-copy" aria-live="polite" aria-atomic="true">
+            <h3 id="action-title">Free Move</h3>
+            <p id="action-description">Move forward, backward, or sideways while keeping the final facing direction.</p>
+          </div>
+        </article>
+      </div>
+      <noscript><p class="note">Enable JavaScript to switch action previews, or open the full action list above.</p></noscript>
+    </div>
+  </section>
+
+  <section class="section benchmark-section" id="benchmark">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Related Benchmarks</h2></div>
+      </div>
+      <div class="benchmark-figure" aria-label="Benchmark comparison matrix">
+        <!-- Lucide check/x icons (Feather-derived). Paths unchanged; display size/stroke adjusted. Copyright and ISC/MIT notices: assets/ui-icons/lucide-attribution.json. -->
+        
+        <table>
+          <thead><tr><th scope="col">Benchmark<br>Name</th><th scope="col">3D<br>Env.</th><th scope="col">Ego.<br>View</th><th scope="col">VLM<br>Supp.</th><th scope="col">Inter.<br>Dialog</th><th scope="col">Phys.<br>Action</th><th scope="col">Human<br>Loop</th><th scope="col">Pref.<br>Align.</th><th scope="col">Scenario<br>Domain</th></tr></thead>
+          <tbody>
+            <tr><td data-cite="wang2025muse">MUSE</td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td>Retail Intelligence</td></tr>
+            <tr><td data-cite="hu2025marketgen">MarketGen</td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td>Retail Robotics</td></tr>
+            <tr><td data-cite="wu2023simmc">SIMMC-VR</td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td>Retail Intelligence</td></tr>
+            <tr><td data-cite="lin2024screen">SCREEN</td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td>Retail Intelligence</td></tr>
+            <tr><td data-cite="zhuang2026simworld">SimWorld-Robotics</td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td>Urban Robotics</td></tr>
+            <tr><td data-cite="sun2025s">S<sup>3</sup>IT</td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td>Social Intelligence</td></tr>
+            <tr><td data-cite="gao2023alexa">Alexa Arena</td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td>Gamified Robotics</td></tr>
+            <tr class="siturec-row"><td><strong>SituRecBench</strong></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td>Retail Intelligence</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="construction">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Benchmark Construction</h2></div>
+      </div>
+      <figure class="construction-figure">
+        <a href="assets/Fig.benchmark.pdf" target="_blank" rel="noopener" aria-label="Open the benchmark construction figure as a PDF in a new tab">
+          <img src="assets/benchmark-construction.png" width="2160" height="1215" loading="lazy" alt="SituRecBench framework: situated 3D environment construction, user simulation, and interactive evaluation with role-specific observations and actions.">
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="leaderboard">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Leaderboard</h2></div>
+      </div>
+      <div class="model-strip" aria-label="Evaluated model families">
+        <div class="model-card" data-family="Gemini" title="Gemini"><span class="model-logo gemini" aria-label="Gemini logo"><img src="assets/model-icons/gemini.svg" width="22" height="22" alt="Gemini"></span><div><strong>Gemini</strong></div></div>
+        <div class="model-card" data-family="GPT" title="GPT"><span class="model-logo openai" aria-label="OpenAI logo"><img src="assets/model-icons/openai.svg" width="22" height="22" alt="OpenAI"></span><div><strong>GPT</strong></div></div>
+        <div class="model-card" data-family="Claude" title="Claude"><span class="model-logo claude" aria-label="Claude logo"><img src="assets/model-icons/claude.svg" width="22" height="22" alt="Claude"></span><div><strong>Claude</strong></div></div>
+        <div class="model-card" data-family="Qwen" title="Qwen"><span class="model-logo qwen" aria-label="Qwen logo"><img src="assets/model-icons/qwen.svg" width="22" height="22" alt="Qwen"></span><div><strong>Qwen</strong></div></div>
+        <div class="model-card" data-family="Gemma" title="Gemma"><span class="model-logo gemma" aria-label="Gemma logo"><img src="assets/model-icons/gemma.svg" width="22" height="22" alt="Gemma"></span><div><strong>Gemma</strong></div></div>
+      </div>
+      <div class="tabs" aria-label="Leaderboard filters">
+        <span class="active" role="button" tabindex="0" data-scene="all" aria-pressed="true">All shopping goals</span>
+        <span role="button" tabindex="0" data-scene="supermarket" aria-pressed="false">Supermarket</span>
+        <span role="button" tabindex="0" data-scene="furnishings" aria-pressed="false">Home Furnishings</span>
+      </div>
+      <div data-environment="all">
+        <h3>All shopping goals · 200 tasks</h3>
+        <div class="card table-wrap">
+          <table>
+            <thead><tr><th>Rank</th><th>Assistant</th><th title="Success rate of adding a product to the cart within 20 turns." tabindex="0" aria-label="SR: Success rate of adding a product to the cart within 20 turns.">SR ↑</th><th title="Overall satisfaction scored by the LLM judge on a 1–5 scale." tabindex="0" aria-label="Overall: Overall satisfaction scored by the LLM judge on a 1–5 scale.">Overall ↑</th><th title="Agreement between the assistant’s expected action type and the user’s actual action." tabindex="0" aria-label="AFR: Agreement between the assistant’s expected action type and the user’s actual action.">AFR ↑</th><th title="Agreement on navigation action type and direction or target." tabindex="0" aria-label="LNSR: Agreement on navigation action type and direction or target.">LNSR ↑</th><th title="Share of final-cart products found in the top 5 recommendations." tabindex="0" aria-label="R@5: Share of final-cart products found in the top 5 recommendations.">R@5 ↑</th><th title="Ranking quality of final-cart products among the top 10 recommendations." tabindex="0" aria-label="NDCG@10: Ranking quality of final-cart products among the top 10 recommendations.">NDCG@10 ↑</th></tr></thead>
+            <tbody>
+              <tr data-family="Gemini"><td><span class="rank">1</span></td><td><div class="model-cell"><span class="model-logo gemini" aria-label="Gemini logo"><img src="assets/model-icons/gemini.svg" width="22" height="22" alt="Gemini"></span><span class="model-name"><strong>Gemini 3.1 Pro Preview</strong></span></div></td><td data-mean="73.0" data-sd="6.2"><strong>73.0</strong><sub>±6.2</sub></td><td data-mean="3.53" data-sd="0.14" data-metric="judge.overall_satisfaction"><strong>3.53</strong><sub>±0.14</sub></td><td data-mean="80.9" data-sd="1.1">80.9<sub>±1.1</sub></td><td data-mean="64.4" data-sd="3.9">64.4<sub>±3.9</sub></td><td data-mean="57.1" data-sd="3.6"><strong>57.1</strong><sub>±3.6</sub></td><td data-mean="49.9" data-sd="4.2"><strong>49.9</strong><sub>±4.2</sub></td></tr>
+              <tr data-family="GPT"><td><span class="rank">2</span></td><td><div class="model-cell"><span class="model-logo openai" aria-label="OpenAI logo"><img src="assets/model-icons/openai.svg" width="22" height="22" alt="OpenAI"></span><span class="model-name"><strong>GPT-5.6 Sol</strong></span></div></td><td data-mean="67.0" data-sd="12.9">67.0<sub>±12.9</sub></td><td data-mean="3.41" data-sd="0.27" data-metric="judge.overall_satisfaction">3.41<sub>±0.27</sub></td><td data-mean="85.6" data-sd="1.4"><strong>85.6</strong><sub>±1.4</sub></td><td data-mean="70.8" data-sd="3.0"><strong>70.8</strong><sub>±3.0</sub></td><td data-mean="52.2" data-sd="10.2">52.2<sub>±10.2</sub></td><td data-mean="45.6" data-sd="8.5">45.6<sub>±8.5</sub></td></tr>
+              <tr data-family="Qwen"><td><span class="rank">3</span></td><td><div class="model-cell"><span class="model-logo qwen" aria-label="Qwen logo"><img src="assets/model-icons/qwen.svg" width="22" height="22" alt="Qwen"></span><span class="model-name"><strong>Qwen3.6-Plus</strong></span></div></td><td data-mean="59.5" data-sd="6.6">59.5<sub>±6.6</sub></td><td data-mean="2.82" data-sd="0.18" data-metric="judge.overall_satisfaction">2.82<sub>±0.18</sub></td><td data-mean="68.8" data-sd="3.0">68.8<sub>±3.0</sub></td><td data-mean="48.4" data-sd="3.3">48.4<sub>±3.3</sub></td><td data-mean="44.5" data-sd="5.5">44.5<sub>±5.5</sub></td><td data-mean="39.0" data-sd="5.4">39.0<sub>±5.4</sub></td></tr>
+              <tr data-family="Claude"><td><span class="rank">4</span></td><td><div class="model-cell"><span class="model-logo claude" aria-label="Claude logo"><img src="assets/model-icons/claude.svg" width="22" height="22" alt="Claude"></span><span class="model-name"><strong>Claude Opus 5</strong></span></div></td><td data-mean="58.0" data-sd="3.7">58.0<sub>±3.7</sub></td><td data-mean="2.90" data-sd="0.11" data-metric="judge.overall_satisfaction">2.90<sub>±0.11</sub></td><td data-mean="75.0" data-sd="3.1">75.0<sub>±3.1</sub></td><td data-mean="54.2" data-sd="4.2">54.2<sub>±4.2</sub></td><td data-mean="43.4" data-sd="3.0">43.4<sub>±3.0</sub></td><td data-mean="38.6" data-sd="2.3">38.6<sub>±2.3</sub></td></tr>
+              <tr data-family="GPT"><td><span class="rank">5</span></td><td><div class="model-cell"><span class="model-logo openai" aria-label="OpenAI logo"><img src="assets/model-icons/openai.svg" width="22" height="22" alt="OpenAI"></span><span class="model-name"><strong>GPT-4o</strong></span></div></td><td data-mean="40.0" data-sd="8.3">40.0<sub>±8.3</sub></td><td data-mean="2.40" data-sd="0.10" data-metric="judge.overall_satisfaction">2.40<sub>±0.10</sub></td><td data-mean="59.6" data-sd="1.9">59.6<sub>±1.9</sub></td><td data-mean="34.3" data-sd="3.5">34.3<sub>±3.5</sub></td><td data-mean="27.3" data-sd="4.6">27.3<sub>±4.6</sub></td><td data-mean="23.4" data-sd="3.7">23.4<sub>±3.7</sub></td></tr>
+              <tr data-family="Qwen"><td><span class="rank">6</span></td><td><div class="model-cell"><span class="model-logo qwen" aria-label="Qwen logo"><img src="assets/model-icons/qwen.svg" width="22" height="22" alt="Qwen"></span><span class="model-name"><strong>Qwen3-VL-8B-Instruct</strong></span></div></td><td data-mean="31.5" data-sd="6.4">31.5<sub>±6.4</sub></td><td data-mean="1.95" data-sd="0.09" data-metric="judge.overall_satisfaction">1.95<sub>±0.09</sub></td><td data-mean="40.8" data-sd="4.7">40.8<sub>±4.7</sub></td><td data-mean="17.7" data-sd="5.7">17.7<sub>±5.7</sub></td><td data-mean="17.8" data-sd="3.5">17.8<sub>±3.5</sub></td><td data-mean="15.7" data-sd="3.7">15.7<sub>±3.7</sub></td></tr>
+              <tr data-family="Gemma"><td><span class="rank">7</span></td><td><div class="model-cell"><span class="model-logo gemma" aria-label="Gemma logo"><img src="assets/model-icons/gemma.svg" width="22" height="22" alt="Gemma"></span><span class="model-name"><strong>Gemma 4 E4B (IT)</strong></span></div></td><td data-mean="29.5" data-sd="6.8">29.5<sub>±6.8</sub></td><td data-mean="2.15" data-sd="0.23" data-metric="judge.overall_satisfaction">2.15<sub>±0.23</sub></td><td data-mean="44.6" data-sd="2.3">44.6<sub>±2.3</sub></td><td data-mean="18.7" data-sd="2.8">18.7<sub>±2.8</sub></td><td data-mean="17.3" data-sd="4.1">17.3<sub>±4.1</sub></td><td data-mean="15.7" data-sd="4.6">15.7<sub>±4.6</sub></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div data-environment="supermarket" hidden>
+        <h3>Supermarket</h3>
+        <div class="card table-wrap">
+          <table>
+            <thead><tr><th>Rank</th><th>Assistant</th><th title="Success rate of adding a product to the cart within 20 turns." tabindex="0" aria-label="SR: Success rate of adding a product to the cart within 20 turns.">SR ↑</th><th title="Overall satisfaction scored by the LLM judge on a 1–5 scale." tabindex="0" aria-label="Overall: Overall satisfaction scored by the LLM judge on a 1–5 scale.">Overall ↑</th><th title="Agreement between the assistant’s expected action type and the user’s actual action." tabindex="0" aria-label="AFR: Agreement between the assistant’s expected action type and the user’s actual action.">AFR ↑</th><th title="Agreement on navigation action type and direction or target." tabindex="0" aria-label="LNSR: Agreement on navigation action type and direction or target.">LNSR ↑</th><th title="Share of final-cart products found in the top 5 recommendations." tabindex="0" aria-label="R@5: Share of final-cart products found in the top 5 recommendations.">R@5 ↑</th><th title="Ranking quality of final-cart products among the top 10 recommendations." tabindex="0" aria-label="NDCG@10: Ranking quality of final-cart products among the top 10 recommendations.">NDCG@10 ↑</th></tr></thead>
+            <tbody>
+              <tr data-family="Gemini"><td><span class="rank">1</span></td><td><div class="model-cell"><span class="model-logo gemini" aria-label="Gemini logo"><img src="assets/model-icons/gemini.svg" width="22" height="22" alt="Gemini"></span><span class="model-name"><strong>Gemini 3.1 Pro Preview</strong></span></div></td><td data-mean="80.0" data-sd="5.7"><strong>80.0</strong><sub>±5.7</sub></td><td data-mean="3.61" data-sd="0.17" data-metric="judge.overall_satisfaction"><strong>3.61</strong><sub>±0.17</sub></td><td data-mean="80.1" data-sd="1.8">80.1<sub>±1.8</sub></td><td data-mean="48.4" data-sd="6.4">48.4<sub>±6.4</sub></td><td data-mean="64.4" data-sd="2.1"><strong>64.4</strong><sub>±2.1</sub></td><td data-mean="56.0" data-sd="1.1"><strong>56.0</strong><sub>±1.1</sub></td></tr>
+              <tr data-family="GPT"><td><span class="rank">2</span></td><td><div class="model-cell"><span class="model-logo openai" aria-label="OpenAI logo"><img src="assets/model-icons/openai.svg" width="22" height="22" alt="OpenAI"></span><span class="model-name"><strong>GPT-5.6 Sol</strong></span></div></td><td data-mean="69.0" data-sd="20.8">69.0<sub>±20.8</sub></td><td data-mean="3.36" data-sd="0.45" data-metric="judge.overall_satisfaction">3.36<sub>±0.45</sub></td><td data-mean="89.0" data-sd="1.2"><strong>89.0</strong><sub>±1.2</sub></td><td data-mean="53.5" data-sd="3.9"><strong>53.5</strong><sub>±3.9</sub></td><td data-mean="56.3" data-sd="16.0">56.3<sub>±16.0</sub></td><td data-mean="48.2" data-sd="13.2">48.2<sub>±13.2</sub></td></tr>
+              <tr data-family="Claude"><td><span class="rank">3</span></td><td><div class="model-cell"><span class="model-logo claude" aria-label="Claude logo"><img src="assets/model-icons/claude.svg" width="22" height="22" alt="Claude"></span><span class="model-name"><strong>Claude Opus 5</strong></span></div></td><td data-mean="66.0" data-sd="10.1">66.0<sub>±10.1</sub></td><td data-mean="3.00" data-sd="0.35" data-metric="judge.overall_satisfaction">3.00<sub>±0.35</sub></td><td data-mean="78.6" data-sd="5.5">78.6<sub>±5.5</sub></td><td data-mean="41.0" data-sd="5.0">41.0<sub>±5.0</sub></td><td data-mean="49.8" data-sd="10.7">49.8<sub>±10.7</sub></td><td data-mean="43.5" data-sd="9.4">43.5<sub>±9.4</sub></td></tr>
+              <tr data-family="Qwen"><td><span class="rank">4</span></td><td><div class="model-cell"><span class="model-logo qwen" aria-label="Qwen logo"><img src="assets/model-icons/qwen.svg" width="22" height="22" alt="Qwen"></span><span class="model-name"><strong>Qwen3.6-Plus</strong></span></div></td><td data-mean="65.0" data-sd="11.9">65.0<sub>±11.9</sub></td><td data-mean="2.78" data-sd="0.29" data-metric="judge.overall_satisfaction">2.78<sub>±0.29</sub></td><td data-mean="65.9" data-sd="4.3">65.9<sub>±4.3</sub></td><td data-mean="28.5" data-sd="5.6">28.5<sub>±5.6</sub></td><td data-mean="49.6" data-sd="10.2">49.6<sub>±10.2</sub></td><td data-mean="42.4" data-sd="9.1">42.4<sub>±9.1</sub></td></tr>
+              <tr data-family="GPT"><td><span class="rank">5</span></td><td><div class="model-cell"><span class="model-logo openai" aria-label="OpenAI logo"><img src="assets/model-icons/openai.svg" width="22" height="22" alt="OpenAI"></span><span class="model-name"><strong>GPT-4o</strong></span></div></td><td data-mean="45.0" data-sd="6.8">45.0<sub>±6.8</sub></td><td data-mean="2.33" data-sd="0.05" data-metric="judge.overall_satisfaction">2.33<sub>±0.05</sub></td><td data-mean="62.3" data-sd="2.1">62.3<sub>±2.1</sub></td><td data-mean="15.1" data-sd="3.2">15.1<sub>±3.2</sub></td><td data-mean="31.6" data-sd="2.3">31.6<sub>±2.3</sub></td><td data-mean="26.6" data-sd="1.5">26.6<sub>±1.5</sub></td></tr>
+              <tr data-family="Qwen"><td><span class="rank">6</span></td><td><div class="model-cell"><span class="model-logo qwen" aria-label="Qwen logo"><img src="assets/model-icons/qwen.svg" width="22" height="22" alt="Qwen"></span><span class="model-name"><strong>Qwen3-VL-8B-Instruct</strong></span></div></td><td data-mean="34.0" data-sd="9.5">34.0<sub>±9.5</sub></td><td data-mean="1.76" data-sd="0.19" data-metric="judge.overall_satisfaction">1.76<sub>±0.19</sub></td><td data-mean="34.5" data-sd="3.6">34.5<sub>±3.6</sub></td><td data-mean="8.8" data-sd="3.0">8.8<sub>±3.0</sub></td><td data-mean="20.3" data-sd="4.6">20.3<sub>±4.6</sub></td><td data-mean="17.7" data-sd="5.0">17.7<sub>±5.0</sub></td></tr>
+              <tr data-family="Gemma"><td><span class="rank">7</span></td><td><div class="model-cell"><span class="model-logo gemma" aria-label="Gemma logo"><img src="assets/model-icons/gemma.svg" width="22" height="22" alt="Gemma"></span><span class="model-name"><strong>Gemma 4 E4B (IT)</strong></span></div></td><td data-mean="28.0" data-sd="5.7">28.0<sub>±5.7</sub></td><td data-mean="1.94" data-sd="0.16" data-metric="judge.overall_satisfaction">1.94<sub>±0.16</sub></td><td data-mean="49.2" data-sd="2.0">49.2<sub>±2.0</sub></td><td data-mean="10.0" data-sd="3.7">10.0<sub>±3.7</sub></td><td data-mean="17.3" data-sd="4.5">17.3<sub>±4.5</sub></td><td data-mean="15.0" data-sd="4.4">15.0<sub>±4.4</sub></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div data-environment="furnishings" hidden>
+        <h3>Furnishings</h3>
+        <div class="card table-wrap">
+          <table>
+            <thead><tr><th>Rank</th><th>Assistant</th><th title="Success rate of adding a product to the cart within 20 turns." tabindex="0" aria-label="SR: Success rate of adding a product to the cart within 20 turns.">SR ↑</th><th title="Overall satisfaction scored by the LLM judge on a 1–5 scale." tabindex="0" aria-label="Overall: Overall satisfaction scored by the LLM judge on a 1–5 scale.">Overall ↑</th><th title="Agreement between the assistant’s expected action type and the user’s actual action." tabindex="0" aria-label="AFR: Agreement between the assistant’s expected action type and the user’s actual action.">AFR ↑</th><th title="Agreement on navigation action type and direction or target." tabindex="0" aria-label="LNSR: Agreement on navigation action type and direction or target.">LNSR ↑</th><th title="Share of final-cart products found in the top 5 recommendations." tabindex="0" aria-label="R@5: Share of final-cart products found in the top 5 recommendations.">R@5 ↑</th><th title="Ranking quality of final-cart products among the top 10 recommendations." tabindex="0" aria-label="NDCG@10: Ranking quality of final-cart products among the top 10 recommendations.">NDCG@10 ↑</th></tr></thead>
+            <tbody>
+              <tr data-family="Gemini"><td><span class="rank">1</span></td><td><div class="model-cell"><span class="model-logo gemini" aria-label="Gemini logo"><img src="assets/model-icons/gemini.svg" width="22" height="22" alt="Gemini"></span><span class="model-name"><strong>Gemini 3.1 Pro Preview</strong></span></div></td><td data-mean="66.0" data-sd="7.7"><strong>66.0</strong><sub>±7.7</sub></td><td data-mean="3.45" data-sd="0.20" data-metric="judge.overall_satisfaction"><strong>3.45</strong><sub>±0.20</sub></td><td data-mean="81.8" data-sd="1.9">81.8<sub>±1.9</sub></td><td data-mean="83.2" data-sd="4.1">83.2<sub>±4.1</sub></td><td data-mean="49.8" data-sd="7.1"><strong>49.8</strong><sub>±7.1</sub></td><td data-mean="43.7" data-sd="7.5"><strong>43.7</strong><sub>±7.5</sub></td></tr>
+              <tr data-family="GPT"><td><span class="rank">2</span></td><td><div class="model-cell"><span class="model-logo openai" aria-label="OpenAI logo"><img src="assets/model-icons/openai.svg" width="22" height="22" alt="OpenAI"></span><span class="model-name"><strong>GPT-5.6 Sol</strong></span></div></td><td data-mean="65.0" data-sd="8.2">65.0<sub>±8.2</sub></td><td data-mean="3.45" data-sd="0.18" data-metric="judge.overall_satisfaction"><strong>3.45</strong><sub>±0.18</sub></td><td data-mean="82.2" data-sd="3.5"><strong>82.2</strong><sub>±3.5</sub></td><td data-mean="88.8" data-sd="2.4"><strong>88.8</strong><sub>±2.4</sub></td><td data-mean="48.1" data-sd="6.5">48.1<sub>±6.5</sub></td><td data-mean="43.0" data-sd="6.2">43.0<sub>±6.2</sub></td></tr>
+              <tr data-family="Qwen"><td><span class="rank">3</span></td><td><div class="model-cell"><span class="model-logo qwen" aria-label="Qwen logo"><img src="assets/model-icons/qwen.svg" width="22" height="22" alt="Qwen"></span><span class="model-name"><strong>Qwen3.6-Plus</strong></span></div></td><td data-mean="54.0" data-sd="9.5">54.0<sub>±9.5</sub></td><td data-mean="2.86" data-sd="0.14" data-metric="judge.overall_satisfaction">2.86<sub>±0.14</sub></td><td data-mean="71.6" data-sd="4.8">71.6<sub>±4.8</sub></td><td data-mean="70.9" data-sd="3.9">70.9<sub>±3.9</sub></td><td data-mean="39.4" data-sd="5.3">39.4<sub>±5.3</sub></td><td data-mean="35.5" data-sd="4.7">35.5<sub>±4.7</sub></td></tr>
+              <tr data-family="Claude"><td><span class="rank">4</span></td><td><div class="model-cell"><span class="model-logo claude" aria-label="Claude logo"><img src="assets/model-icons/claude.svg" width="22" height="22" alt="Claude"></span><span class="model-name"><strong>Claude Opus 5</strong></span></div></td><td data-mean="50.0" data-sd="9.5">50.0<sub>±9.5</sub></td><td data-mean="2.81" data-sd="0.25" data-metric="judge.overall_satisfaction">2.81<sub>±0.25</sub></td><td data-mean="71.4" data-sd="2.2">71.4<sub>±2.2</sub></td><td data-mean="68.1" data-sd="3.9">68.1<sub>±3.9</sub></td><td data-mean="37.0" data-sd="6.0">37.0<sub>±6.0</sub></td><td data-mean="33.8" data-sd="6.3">33.8<sub>±6.3</sub></td></tr>
+              <tr data-family="GPT"><td><span class="rank">5</span></td><td><div class="model-cell"><span class="model-logo openai" aria-label="OpenAI logo"><img src="assets/model-icons/openai.svg" width="22" height="22" alt="OpenAI"></span><span class="model-name"><strong>GPT-4o</strong></span></div></td><td data-mean="35.0" data-sd="10.0">35.0<sub>±10.0</sub></td><td data-mean="2.46" data-sd="0.24" data-metric="judge.overall_satisfaction">2.46<sub>±0.24</sub></td><td data-mean="56.9" data-sd="4.1">56.9<sub>±4.1</sub></td><td data-mean="53.0" data-sd="5.8">53.0<sub>±5.8</sub></td><td data-mean="23.0" data-sd="8.7">23.0<sub>±8.7</sub></td><td data-mean="20.2" data-sd="6.9">20.2<sub>±6.9</sub></td></tr>
+              <tr data-family="Gemma"><td><span class="rank">6</span></td><td><div class="model-cell"><span class="model-logo gemma" aria-label="Gemma logo"><img src="assets/model-icons/gemma.svg" width="22" height="22" alt="Gemma"></span><span class="model-name"><strong>Gemma 4 E4B (IT)</strong></span></div></td><td data-mean="31.0" data-sd="8.2">31.0<sub>±8.2</sub></td><td data-mean="2.36" data-sd="0.33" data-metric="judge.overall_satisfaction">2.36<sub>±0.33</sub></td><td data-mean="40.0" data-sd="5.8">40.0<sub>±5.8</sub></td><td data-mean="29.0" data-sd="2.9">29.0<sub>±2.9</sub></td><td data-mean="17.3" data-sd="4.9">17.3<sub>±4.9</sub></td><td data-mean="16.4" data-sd="5.5">16.4<sub>±5.5</sub></td></tr>
+              <tr data-family="Qwen"><td><span class="rank">7</span></td><td><div class="model-cell"><span class="model-logo qwen" aria-label="Qwen logo"><img src="assets/model-icons/qwen.svg" width="22" height="22" alt="Qwen"></span><span class="model-name"><strong>Qwen3-VL-8B-Instruct</strong></span></div></td><td data-mean="29.0" data-sd="8.9">29.0<sub>±8.9</sub></td><td data-mean="2.14" data-sd="0.21" data-metric="judge.overall_satisfaction">2.14<sub>±0.21</sub></td><td data-mean="47.0" data-sd="6.1">47.0<sub>±6.1</sub></td><td data-mean="26.3" data-sd="8.6">26.3<sub>±8.6</sub></td><td data-mean="15.3" data-sd="5.4">15.3<sub>±5.4</sub></td><td data-mean="13.7" data-sd="5.3">13.7<sub>±5.3</sub></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p><small>GPT-5.6 Sol users · 200 tasks in All, 100 per environment. Mean ± sample SD across four profile-stratified subsets; All combines the corresponding subsets from both environments (50 tasks each). Overall is the Judge’s overall satisfaction score (1–5); other scores are percentages; bold marks the best mean. Rank is based on SR.</small></p>
+    </div>
+  </section>
+
+  <section class="section" id="citation">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Citation</h2></div>
+      </div>
+      <div class="citation">
+        <div class="citation-card">
+          <div class="citation-toolbar">
+            <h3>BibTeX</h3>
+            <button class="citation-copy-button" id="citation-copy-button" type="button" aria-controls="citation-bibtex" hidden>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M10.5 3.5V3A1.5 1.5 0 009 1.5H3A1.5 1.5 0 001.5 3v6A1.5 1.5 0 003 10.5h.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <span id="citation-copy-label">Copy BibTeX</span>
+            </button>
+          </div>
+          <pre id="citation-bibtex" tabindex="0" aria-label="BibTeX citation">@inproceedings{siturecbench2026,
+  author       = {Yang, Jingtong and Lin, Dongding and Wang, Jian and Li, Wenjie},
+  title        = {SituRecBench: Evaluating Frontier Models as Situated Recommendation Assistants in 3D Environments},
+  booktitle    = {NeurIPS 2026 Evaluations and Datasets Track},
+  year         = {2026}
+}</pre>
+          <p class="citation-note" id="citation-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<nav class="jump-rail" aria-label="Quick section jump">
+  <a href="#top" data-target="top"><span>Home</span></a>
+  <a href="#actions" data-target="actions" title="From Movement to Purchase"><span>Action Demos</span></a>
+  <a href="#benchmark" data-target="benchmark"><span>Related Benchmarks</span></a>
+  <a href="#construction" data-target="construction" title="Benchmark Construction"><span>Construction</span></a>
+  <a href="#leaderboard" data-target="leaderboard"><span>Leaderboard</span></a>
+  <a href="#citation" data-target="citation"><span>Citation</span></a>
+</nav>
+<footer class="footer">SituRecBench · NeurIPS 2026 Evaluations &amp; Datasets Track</footer>
+<script id="citation-copy-script">
+(() => {
+  const button = document.getElementById("citation-copy-button");
+  const label = document.getElementById("citation-copy-label");
+  const code = document.getElementById("citation-bibtex");
+  const status = document.getElementById("citation-status");
+  if (!button || !label || !code || !status) return;
+  button.hidden = false;
+  let resetTimer;
+
+  button.addEventListener("click", async () => {
+    window.clearTimeout(resetTimer);
+    button.disabled = true;
+    status.textContent = "";
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+      await navigator.clipboard.writeText(code.textContent.trim());
+      label.textContent = "Copied";
+      status.textContent = "Citation copied.";
+      resetTimer = window.setTimeout(() => {
+        label.textContent = "Copy BibTeX";
+        status.textContent = "";
+      }, 2500);
+    } catch {
+      label.textContent = "Copy BibTeX";
+      status.textContent = "Select the citation text to copy it.";
+      const selection = window.getSelection();
+      if (selection) {
+        code.focus({ preventScroll: true });
+        const range = document.createRange();
+        range.selectNodeContents(code);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        status.textContent = "Press Ctrl+C or ⌘C to copy the selected citation.";
+      }
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
+</script>
+<script id="action-wheel-script">
+(() => {
+  const wheel = document.querySelector(".action-wheel");
+  if (!wheel) return;
+  const buttons = Array.from(wheel.querySelectorAll(".action-sector"));
+  const video = document.getElementById("action-video");
+  const empty = document.getElementById("action-empty");
+  const title = document.getElementById("action-title");
+  const description = document.getElementById("action-description");
+  const status = document.getElementById("action-video-status");
+  const hint = document.getElementById("action-video-hint");
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let selected = null;
+  let previewVisible = true;
+
+  function playDemo() {
+    if (motion.matches || document.hidden || !previewVisible || video.hidden || !video.getAttribute("src")) return;
+    // Muted playback can still be blocked; native controls remain available.
+    const playback = video.play();
+    if (playback) playback.catch(() => {});
+  }
+
+  function selectAction(button, play = true) {
+    if (selected === button) {
+      if (play) playDemo();
+      return;
+    }
+    selected = button;
+    buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+    title.textContent = button.dataset.title;
+    description.textContent = button.dataset.description;
+    video.setAttribute("aria-label", `${button.dataset.title} demonstration`);
+    video.pause();
+    const source = (button.dataset.videoSrc || "").trim();
+    if (source) {
+      empty.hidden = true;
+      video.hidden = false;
+      video.src = source;
+      video.load();
+      if (play) playDemo();
+    } else {
+      video.hidden = true;
+      if (video.hasAttribute("src")) {
+        video.removeAttribute("src");
+        video.load();
+      }
+      empty.hidden = false;
+      status.textContent = "Demo coming soon";
+      hint.textContent = "Action videos will appear here when available.";
+    }
+  }
+
+  buttons.forEach((button, index) => {
+    button.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "touch") selectAction(button);
+    });
+    button.addEventListener("focus", () => selectAction(button, false));
+    button.addEventListener("click", () => selectAction(button));
+    button.addEventListener("keydown", (event) => {
+      let next;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % buttons.length;
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (index - 1 + buttons.length) % buttons.length;
+      else if (event.key === "Home") next = 0;
+      else if (event.key === "End") next = buttons.length - 1;
+      else return;
+      event.preventDefault();
+      buttons[next].focus();
+    });
+  });
+
+  video.addEventListener("error", () => {
+    if (!video.error || !video.getAttribute("src")) return;
+    video.pause();
+    video.hidden = true;
+    empty.hidden = false;
+    status.textContent = "Demo unavailable";
+    hint.textContent = "This clip could not be loaded. Please explore another action.";
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) video.pause();
+  });
+  motion.addEventListener?.("change", () => {
+    if (motion.matches) video.pause();
+  });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      previewVisible = entries[0].isIntersecting;
+      if (!previewVisible) video.pause();
+    }).observe(document.getElementById("action-preview"));
+  }
+  selectAction(buttons[0], false);
+})();
+</script>
+<script>
+const jumpLinks = Array.from(document.querySelectorAll(".jump-rail a"));
+const navMenus = Array.from(document.querySelectorAll(".nav-group"));
+const wideNavigation = window.matchMedia("(min-width: 1400px)");
+wideNavigation.addEventListener("change", () => {
+  for (const menu of navMenus) {
+    if (wideNavigation.matches && menu.contains(document.activeElement)) {
+      document.querySelector(".nav-details")?.focus();
+    }
+    menu.open = false;
+  }
+});
+for (const menu of navMenus) {
+  menu.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !menu.open) return;
+    event.preventDefault();
+    menu.open = false;
+    menu.querySelector("summary")?.focus();
+  });
+}
+const sections = jumpLinks
+  .map((link) => document.getElementById(link.dataset.target))
+  .filter(Boolean);
+const internalLinks = Array.from(document.querySelectorAll('a[href^="#"]:not([href="#"])'));
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const revealTargets = Array.from(document.querySelectorAll(
+  ".hero .eyebrow, .hero h1, .hero .authors, .hero .actions, " +
+  ".demo-main, .stats, .stat, .section-head, .tabs, .model-card, .table-wrap, " +
+  ".chart, .action-showcase, .benchmark-figure, .env .card, .env-link, .demo-tile, " +
+  ".abstract, .method, .scene-img, .citation-card"
+));
+
+for (const target of revealTargets) {
+  target.classList.add("reveal");
+}
+
+if (reducedMotion) {
+  for (const target of revealTargets) target.classList.add("is-visible");
+} else {
+  const revealObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    }
+  }, { rootMargin: "0px", threshold: 0 });
+  for (const target of revealTargets) revealObserver.observe(target);
+}
+
+for (const image of document.querySelectorAll("img")) {
+  image.addEventListener("error", () => {
+    const card = image.closest(".scene-img");
+    if (!card) return;
+    card.classList.add("missing-image");
+    const caption = card.querySelector("div");
+    if (caption) caption.textContent = image.alt || "Image asset will be added here.";
+    image.remove();
+  }, { once: true });
+}
+
+function updateJumpRail() {
+  let activeId = sections[0]?.id || "";
+  for (const section of sections) {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 150) activeId = section.id;
+  }
+  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+  if (sections.length && maxScroll > 0 && window.scrollY >= maxScroll - 2) {
+    activeId = sections[sections.length - 1].id;
+  }
+  for (const link of jumpLinks) {
+    const active = link.dataset.target === activeId;
+    link.classList.toggle("active", active);
+    if (active) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  }
+}
+
+function easeInOutCubic(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
+function focusSection(target) {
+  target.classList.remove("anchor-focus");
+  void target.offsetWidth;
+  target.classList.add("anchor-focus");
+}
+
+let sectionScrollFrame = 0;
+
+function scrollToSection(target) {
+  cancelAnimationFrame(sectionScrollFrame);
+  sectionScrollFrame = 0;
+  for (const item of target.querySelectorAll(".reveal")) {
+    item.style.transition = "none";
+    item.classList.add("is-visible");
+  }
+  const start = window.scrollY;
+  const nav = document.querySelector(".nav");
+  const offset = nav ? nav.offsetHeight + (parseFloat(getComputedStyle(nav).top) || 0) + 12 : 0;
+  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+  const destination = target.getBoundingClientRect().top + start - offset;
+  const end = Math.min(maxScroll, Math.max(0, destination));
+  const distance = end - start;
+  const duration = 100;
+  const startedAt = performance.now();
+
+  if (reducedMotion || Math.abs(distance) < 4) {
+    window.scrollTo(0, end);
+    history.pushState(null, "", "#" + target.id);
+    focusSection(target);
+    updateJumpRail();
+    return;
+  }
+
+  function step(now) {
+    const progress = Math.min(1, (now - startedAt) / duration);
+    window.scrollTo(0, start + distance * easeInOutCubic(progress));
+    if (progress < 1) {
+      sectionScrollFrame = requestAnimationFrame(step);
+    } else {
+      sectionScrollFrame = 0;
+      history.pushState(null, "", "#" + target.id);
+      focusSection(target);
+      updateJumpRail();
+    }
+  }
+
+  sectionScrollFrame = requestAnimationFrame(step);
+}
+
+for (const link of internalLinks) {
+  link.addEventListener("click", (event) => {
+    const target = document.getElementById(link.getAttribute("href").slice(1));
+    if (!target) return;
+    event.preventDefault();
+    for (const menu of navMenus) menu.removeAttribute("open");
+    scrollToSection(target);
+  });
+}
+
+document.addEventListener("click", (event) => {
+  for (const menu of navMenus) {
+    if (!menu.contains(event.target)) menu.removeAttribute("open");
+  }
+});
+
+window.addEventListener("scroll", updateJumpRail, { passive: true });
+window.addEventListener("load", updateJumpRail);
+window.addEventListener("resize", updateJumpRail, { passive: true });
+updateJumpRail();
+</script>
+
+
+<script id="leaderboard-filter-script">
+(() => {
+  const root = document.getElementById('leaderboard');
+  const buttons = root.querySelectorAll('[data-scene]');
+  buttons.forEach(button => {
+    const select = () => {
+      buttons.forEach(item => {
+        const active = item === button;
+        item.classList.toggle('active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+      root.querySelectorAll('[data-environment]').forEach(panel => {
+        panel.hidden = panel.dataset.environment !== button.dataset.scene;
+      });
+    };
+    button.addEventListener('click', select);
+    button.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); select(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

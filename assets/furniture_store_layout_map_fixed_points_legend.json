@@ -1,0 +1,685 @@
+{
+  "generated_by": "scripts/build_fixed_point_map_images.py",
+  "scene_name": "furniture",
+  "base_map": "project_page/assets/furniture_store_layout_map_current.png",
+  "base_map_label_role": "assistant",
+  "points_map": "project_page/assets/furniture_store_layout_map_fixed_points.png",
+  "start_pose": {
+    "location": [
+      16310.0,
+      5480.0,
+      110.0
+    ],
+    "rotation": [
+      0.0,
+      -90.0,
+      0.0
+    ]
+  },
+  "point_count": 38,
+  "counts_by_source": {
+    "fixed_points.json": 24,
+    "store_region_map_only": 14
+  },
+  "note": "Doorway display markers are map-only points derived from the current furniture store renderer; fixed_points.json is not changed.",
+  "points": [
+    {
+      "point_id": "Atelier_Prime_area1_default",
+      "target_type": "area",
+      "target_id": "Atelier_Prime/area1",
+      "role": "default",
+      "item_count": 18,
+      "location": [
+        14810.0,
+        1210.0,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 1
+    },
+    {
+      "point_id": "Atelier_Prime_area2_default",
+      "target_type": "area",
+      "target_id": "Atelier_Prime/area2",
+      "role": "default",
+      "item_count": 18,
+      "location": [
+        14670.0,
+        520.0,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 2
+    },
+    {
+      "point_id": "Atelier_Prime_area3_default",
+      "target_type": "area",
+      "target_id": "Atelier_Prime/area3",
+      "role": "default",
+      "item_count": 16,
+      "location": [
+        15290.0,
+        440.0,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 3
+    },
+    {
+      "point_id": "Atelier_Prime_area4_default",
+      "target_type": "area",
+      "target_id": "Atelier_Prime/area4",
+      "role": "default",
+      "item_count": 17,
+      "location": [
+        15230.0,
+        1320.0,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 4
+    },
+    {
+      "point_id": "Leather_and_Ink_area1_default",
+      "target_type": "area",
+      "target_id": "Leather_and_Ink/area1",
+      "role": "default",
+      "item_count": 13,
+      "location": [
+        15294.823,
+        -482.944,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 5
+    },
+    {
+      "point_id": "Leather_and_Ink_area2_default",
+      "target_type": "area",
+      "target_id": "Leather_and_Ink/area2",
+      "role": "default",
+      "item_count": 9,
+      "location": [
+        15084.823,
+        -1002.944,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 6
+    },
+    {
+      "point_id": "Leather_and_Ink_area3_default",
+      "target_type": "area",
+      "target_id": "Leather_and_Ink/area3",
+      "role": "default",
+      "item_count": 8,
+      "location": [
+        15274.823,
+        -1462.944,
+        185.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 7
+    },
+    {
+      "point_id": "Light_Logic_area1_default",
+      "target_type": "area",
+      "target_id": "Light_Logic/area1",
+      "role": "default",
+      "item_count": 8,
+      "location": [
+        17502.349,
+        4217.89,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 8
+    },
+    {
+      "point_id": "Light_Logic_area2_default",
+      "target_type": "area",
+      "target_id": "Light_Logic/area2",
+      "role": "default",
+      "item_count": 11,
+      "location": [
+        17476.782,
+        3286.046,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 9
+    },
+    {
+      "point_id": "Light_Logic_area3_default",
+      "target_type": "area",
+      "target_id": "Light_Logic/area3",
+      "role": "default",
+      "item_count": 3,
+      "location": [
+        17406.782,
+        2796.046,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 10
+    },
+    {
+      "point_id": "Nordic_Nest_area1_default",
+      "target_type": "area",
+      "target_id": "Nordic_Nest/area1",
+      "role": "default",
+      "item_count": 14,
+      "location": [
+        15318.26,
+        3786.127,
+        185.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 11
+    },
+    {
+      "point_id": "Nordic_Nest_area2_default",
+      "target_type": "area",
+      "target_id": "Nordic_Nest/area2",
+      "role": "default",
+      "item_count": 6,
+      "location": [
+        14768.26,
+        3606.127,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 12
+    },
+    {
+      "point_id": "Nordic_Nest_area3_default",
+      "target_type": "area",
+      "target_id": "Nordic_Nest/area3",
+      "role": "default",
+      "item_count": 19,
+      "location": [
+        14508.26,
+        4426.127,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 13
+    },
+    {
+      "point_id": "Nordic_Nest_area4_default",
+      "target_type": "area",
+      "target_id": "Nordic_Nest/area4",
+      "role": "default",
+      "item_count": 7,
+      "location": [
+        15368.26,
+        4616.127,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 14
+    },
+    {
+      "point_id": "Play-cation_area1_default",
+      "target_type": "area",
+      "target_id": "Play-cation/area1",
+      "role": "default",
+      "item_count": 6,
+      "location": [
+        17451.924,
+        2107.19,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 15
+    },
+    {
+      "point_id": "Play-cation_area2_default",
+      "target_type": "area",
+      "target_id": "Play-cation/area2",
+      "role": "default",
+      "item_count": 5,
+      "location": [
+        17641.924,
+        1547.19,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 16
+    },
+    {
+      "point_id": "Play-cation_area3_default",
+      "target_type": "area",
+      "target_id": "Play-cation/area3",
+      "role": "default",
+      "item_count": 5,
+      "location": [
+        17381.924,
+        1247.19,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 17
+    },
+    {
+      "point_id": "The_Plant_area1_default",
+      "target_type": "area",
+      "target_id": "The_Plant/area1",
+      "role": "default",
+      "item_count": 11,
+      "location": [
+        17426.778,
+        175.969,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 18
+    },
+    {
+      "point_id": "The_Plant_area2_default",
+      "target_type": "area",
+      "target_id": "The_Plant/area2",
+      "role": "default",
+      "item_count": 8,
+      "location": [
+        17466.778,
+        715.969,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 19
+    },
+    {
+      "point_id": "Vicotian_Cuio_Cllection_area1_default",
+      "target_type": "area",
+      "target_id": "Vicotian_Cuio_Cllection/area1",
+      "role": "default",
+      "item_count": 17,
+      "location": [
+        14908.26,
+        2606.127,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 20
+    },
+    {
+      "point_id": "Vicotian_Cuio_Cllection_area2_default",
+      "target_type": "area",
+      "target_id": "Vicotian_Cuio_Cllection/area2",
+      "role": "default",
+      "item_count": 10,
+      "location": [
+        14469.372,
+        2833.92,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 21
+    },
+    {
+      "point_id": "Vicotian_Cuio_Cllection_area3_default",
+      "target_type": "area",
+      "target_id": "Vicotian_Cuio_Cllection/area3",
+      "role": "default",
+      "item_count": 7,
+      "location": [
+        15278.26,
+        2936.127,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 22
+    },
+    {
+      "point_id": "Vicotian_Cuio_Cllection_area4_default",
+      "target_type": "area",
+      "target_id": "Vicotian_Cuio_Cllection/area4",
+      "role": "default",
+      "item_count": 7,
+      "location": [
+        14908.26,
+        2186.127,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 23
+    },
+    {
+      "point_id": "Vicotian_Cuio_Cllection_area5_default",
+      "target_type": "area",
+      "target_id": "Vicotian_Cuio_Cllection/area5",
+      "role": "default",
+      "item_count": 4,
+      "location": [
+        14178.221,
+        2244.269,
+        110.0
+      ],
+      "source": "fixed_points.json",
+      "idx": 24
+    },
+    {
+      "point_id": "Nordic_Nest_inside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Nordic_Nest/inside_doorway",
+      "role": "inside_doorway",
+      "location": [
+        15550.0,
+        4290.0,
+        111.0
+      ],
+      "display_location": [
+        15550.0,
+        4290.0,
+        111.0
+      ],
+      "source_location": [
+        15550.0,
+        4290.0,
+        111.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 25
+    },
+    {
+      "point_id": "Nordic_Nest_outside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Nordic_Nest/outside_doorway",
+      "role": "outside_doorway",
+      "location": [
+        15780.0,
+        4290.0,
+        111.0
+      ],
+      "display_location": [
+        15780.0,
+        4290.0,
+        111.0
+      ],
+      "source_location": [
+        15780.0,
+        4290.0,
+        111.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 26
+    },
+    {
+      "point_id": "Light_Logic_inside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Light_Logic/inside_doorway",
+      "role": "inside_doorway",
+      "location": [
+        17200.0,
+        3786.745043,
+        111.0
+      ],
+      "display_location": [
+        17200.0,
+        3786.745043,
+        111.0
+      ],
+      "source_location": [
+        17200.0,
+        3786.745043,
+        111.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 27
+    },
+    {
+      "point_id": "Light_Logic_outside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Light_Logic/outside_doorway",
+      "role": "outside_doorway",
+      "location": [
+        16980.0,
+        3786.745043,
+        111.0
+      ],
+      "display_location": [
+        16980.0,
+        3786.745043,
+        111.0
+      ],
+      "source_location": [
+        16980.0,
+        3786.745043,
+        111.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 28
+    },
+    {
+      "point_id": "Vicotian_Cuio_Cllection_inside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Vicotian_Cuio_Cllection/inside_doorway",
+      "role": "inside_doorway",
+      "location": [
+        15550.0,
+        2560.0,
+        110.0
+      ],
+      "display_location": [
+        15550.0,
+        2560.0,
+        110.0
+      ],
+      "source_location": [
+        15550.0,
+        2560.0,
+        110.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 29
+    },
+    {
+      "point_id": "Vicotian_Cuio_Cllection_outside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Vicotian_Cuio_Cllection/outside_doorway",
+      "role": "outside_doorway",
+      "location": [
+        15780.0,
+        2560.0,
+        110.0
+      ],
+      "display_location": [
+        15780.0,
+        2560.0,
+        110.0
+      ],
+      "source_location": [
+        15780.0,
+        2560.0,
+        110.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 30
+    },
+    {
+      "point_id": "Play-cation_inside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Play-cation/inside_doorway",
+      "role": "inside_doorway",
+      "location": [
+        17200.0,
+        1650.0,
+        110.0
+      ],
+      "display_location": [
+        17200.0,
+        1650.0,
+        110.0
+      ],
+      "source_location": [
+        17200.0,
+        1650.0,
+        110.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 31
+    },
+    {
+      "point_id": "Play-cation_outside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Play-cation/outside_doorway",
+      "role": "outside_doorway",
+      "location": [
+        16980.0,
+        1650.0,
+        110.0
+      ],
+      "display_location": [
+        16980.0,
+        1650.0,
+        110.0
+      ],
+      "source_location": [
+        16980.0,
+        1650.0,
+        110.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 32
+    },
+    {
+      "point_id": "Atelier_Prime_inside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Atelier_Prime/inside_doorway",
+      "role": "inside_doorway",
+      "location": [
+        15550.0,
+        900.0,
+        111.0
+      ],
+      "display_location": [
+        15550.0,
+        900.0,
+        111.0
+      ],
+      "source_location": [
+        15550.0,
+        900.0,
+        111.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 33
+    },
+    {
+      "point_id": "Atelier_Prime_outside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Atelier_Prime/outside_doorway",
+      "role": "outside_doorway",
+      "location": [
+        15780.0,
+        900.0,
+        111.0
+      ],
+      "display_location": [
+        15780.0,
+        900.0,
+        111.0
+      ],
+      "source_location": [
+        15780.0,
+        900.0,
+        111.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 34
+    },
+    {
+      "point_id": "The_Plant_inside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "The_Plant/inside_doorway",
+      "role": "inside_doorway",
+      "location": [
+        17200.0,
+        406.745043,
+        111.0
+      ],
+      "display_location": [
+        17200.0,
+        406.745043,
+        111.0
+      ],
+      "source_location": [
+        17200.0,
+        406.745043,
+        111.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 35
+    },
+    {
+      "point_id": "The_Plant_outside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "The_Plant/outside_doorway",
+      "role": "outside_doorway",
+      "location": [
+        16980.0,
+        406.745043,
+        111.0
+      ],
+      "display_location": [
+        16980.0,
+        406.745043,
+        111.0
+      ],
+      "source_location": [
+        16980.0,
+        406.745043,
+        111.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 36
+    },
+    {
+      "point_id": "Leather_and_Ink_inside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Leather_and_Ink/inside_doorway",
+      "role": "inside_doorway",
+      "location": [
+        15550.0,
+        -950.0,
+        111.0
+      ],
+      "display_location": [
+        15550.0,
+        -950.0,
+        111.0
+      ],
+      "source_location": [
+        15550.0,
+        -950.0,
+        111.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 37
+    },
+    {
+      "point_id": "Leather_and_Ink_outside_doorway_map_marker",
+      "target_type": "store_door",
+      "target_id": "Leather_and_Ink/outside_doorway",
+      "role": "outside_doorway",
+      "location": [
+        15780.0,
+        -950.0,
+        111.0
+      ],
+      "display_location": [
+        15780.0,
+        -950.0,
+        111.0
+      ],
+      "source_location": [
+        15780.0,
+        -950.0,
+        111.0
+      ],
+      "source": "store_region_map_only",
+      "idx": 38
+    }
+  ]
+}

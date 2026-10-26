@@ -1,0 +1,32 @@
+{
+  "library": "Tabler Icons",
+  "version": "3.48.0",
+  "source": "https://github.com/tabler/tabler-icons",
+  "sources": {
+    "walk": {
+      "source": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.48.0/icons/outline/walk.svg",
+      "sha256": "f2c5bd771519e3be6096467b682460b41aff8090d1105ead9be9cc367316b59b",
+      "original_svg": "<!--\ntags: [ambulation, dislocating, movement, motion, destination, walk, athletic, fitness, exercise, game]\ncategory: Sport\nversion: \"1.14\"\nunicode: \"ec87\"\n-->\n<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  width=\"24\"\n  height=\"24\"\n  viewBox=\"0 0 24 24\"\n  fill=\"none\"\n  stroke=\"currentColor\"\n  stroke-width=\"2\"\n  stroke-linecap=\"round\"\n  stroke-linejoin=\"round\"\n>\n  <path d=\"M12 4a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" />\n  <path d=\"M7 21l3 -4\" />\n  <path d=\"M16 21l-2 -4l-3 -3l1 -6\" />\n  <path d=\"M6 12l2 -3l4 -1l3 3l3 1\" />\n</svg>\n"
+    },
+    "door-enter": {
+      "source": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.48.0/icons/outline/door-enter.svg",
+      "sha256": "b531f2fc60052437a5fd953b1e42e7837d2dc9915ba7a0da221b08b7c92ece15",
+      "original_svg": "<!--\ncategory: System\ntags: [entrance, open, in, entry, door, enter]\nversion: \"1.43\"\nunicode: \"ef4c\"\n-->\n<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  width=\"24\"\n  height=\"24\"\n  viewBox=\"0 0 24 24\"\n  fill=\"none\"\n  stroke=\"currentColor\"\n  stroke-width=\"2\"\n  stroke-linecap=\"round\"\n  stroke-linejoin=\"round\"\n>\n  <path d=\"M13 12v.01\" />\n  <path d=\"M3 21h18\" />\n  <path d=\"M5 21v-16a2 2 0 0 1 2 -2h6m4 10.5v7.5\" />\n  <path d=\"M21 7h-7m3 -3l-3 3l3 3\" />\n</svg>\n"
+    },
+    "shopping-cart": {
+      "source": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.48.0/icons/outline/shopping-cart.svg",
+      "sha256": "49da38fec9378e6c6df85c0937d4d93d1f85a89fb2d51a38b7370402ae5c8da6",
+      "original_svg": "<!--\ntags: [shop, store, buy, purchase, product, bag, trolley, supermarket, grocery, shopping]\ncategory: E-commerce\nversion: \"1.1\"\nunicode: \"eb25\"\n-->\n<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  width=\"24\"\n  height=\"24\"\n  viewBox=\"0 0 24 24\"\n  fill=\"none\"\n  stroke=\"currentColor\"\n  stroke-width=\"2\"\n  stroke-linecap=\"round\"\n  stroke-linejoin=\"round\"\n>\n  <path d=\"M4 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\" />\n  <path d=\"M15 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\" />\n  <path d=\"M17 17h-11v-14h-2\" />\n  <path d=\"M6 5l14 1l-1 7h-13\" />\n</svg>\n"
+    }
+  },
+  "modifications": {
+    "free-move": "Custom walking pose matching the Pick Up figure proportions, inspired by the walk motif.",
+    "adjust-view": "Custom matching line drawing of a person shading their eyes with one hand.",
+    "visit-store": "Open door adaptation with a matching person stepping toward the doorway.",
+    "enter-area": "Custom person standing among a cabinet, a table, and a sofa, matching the shared line style. Cabinet shifted 1 viewBox unit left and table/sofa 1 unit right for extra clearance around the person. Table and sofa translated upward 4 units as whole objects, preserving their original proportions.",
+    "approach-fixture": "Custom matching walking figure combined with shelves and products.",
+    "pick-up": "Custom person holding a product above a cart, using the shopping-cart motif."
+  },
+  "rendering": "Inline SVG in project_page/index.html; 32-unit viewBox, 1.7-unit strokes, round caps/joins, currentColor. All six people use the Pick Up proportions: head radius 2.3 centered at y=6, torso from y=11 to y=20, feet at y=28; horizontal translation and arm pose vary by action.",
+  "license_text": "MIT License\n\nCopyright (c) 2020-2026 Paweł Kuna\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "SituRecBench rounded benchmark marks",
+  "source": "Original project-native SVG geometry, authored for the benchmark comparison table.",
+  "style": "18px; 24-unit viewBox; 2.6-unit stroke; rounded caps and joins; gentle curved check and cross; no background.",
+  "paths": {
+    "check": "<path d=\"M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8\"/>",
+    "cross": "<path d=\"M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5\"/>"
+  },
+  "usage": "Inline in project_page/index.html; 56 capability cells. Replaces the previously used Lucide check/x geometry; existing Lucide attribution is retained for provenance."
+}

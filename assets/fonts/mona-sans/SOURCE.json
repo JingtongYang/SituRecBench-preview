@@ -1,0 +1,32 @@
+{
+  "family": "Mona Sans",
+  "repository": "https://github.com/github/mona-sans",
+  "commit": "0f7dc66ddd766605eb0e75c3f47bf9d1dd38ceca",
+  "license": "SIL Open Font License 1.1",
+  "files": {
+    "MonaSansVF.woff2": {
+      "url": "https://raw.githubusercontent.com/github/mona-sans/0f7dc66ddd766605eb0e75c3f47bf9d1dd38ceca/fonts/webfonts/variable/MonaSansVF%5Bopsz%2Cwght%5D.woff2",
+      "upstream_path": "fonts/webfonts/variable/MonaSansVF[opsz,wght].woff2",
+      "bytes": 137252,
+      "sha256": "62e40f6e14e5bbb97132b4513a4d97319ab6aaa46996cf46c7a9f357edadb662",
+      "git_blob_sha1": "34cff306d285e8d85a2fb2a822fd95fe0c0efd9c",
+      "modified": false
+    },
+    "MonaSansVF-Italic.woff2": {
+      "url": "https://raw.githubusercontent.com/github/mona-sans/0f7dc66ddd766605eb0e75c3f47bf9d1dd38ceca/fonts/webfonts/variable/MonaSansVF-Italic%5Bopsz%2Cwght%5D.woff2",
+      "upstream_path": "fonts/webfonts/variable/MonaSansVF-Italic[opsz,wght].woff2",
+      "bytes": 125004,
+      "sha256": "6dd9d760c5fc0c9a7e70b462eeb6b59172ac59ce3514793c930f2c623c785be4",
+      "git_blob_sha1": "076770eb0d140524909c32b3935b533526581146",
+      "modified": false
+    },
+    "OFL.txt": {
+      "url": "https://raw.githubusercontent.com/github/mona-sans/0f7dc66ddd766605eb0e75c3f47bf9d1dd38ceca/OFL.txt",
+      "upstream_path": "OFL.txt",
+      "bytes": 4419,
+      "sha256": "9261dcb61fb5e3c587d50d7a9fdae12bc7422d8822d7ac06b8f34550479575de",
+      "git_blob_sha1": "ccc02aabb5b4e7bacc17eaac508ac45220c4518c",
+      "modified": false
+    }
+  }
+}
