@@ -457,7 +457,7 @@ summary:focus-visible {
 }
 .stats {
   display:grid;
-  grid-template-columns:repeat(2, minmax(0, 1fr));
+  grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:18px;
   max-width:var(--media-width);
   margin:32px auto 0;
@@ -484,6 +484,7 @@ summary:focus-visible {
   margin-top:7px;
   color:var(--muted);
   font-size:14px;
+  overflow-wrap:anywhere;
 }
 .section {
   min-height:auto;
@@ -823,8 +824,6 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   pointer-events:none;
 }
 .action-hub strong { font-size:var(--fs-lg); font-weight:600; line-height:1.2; }
-.action-wheel-note { margin:14px 0 0; text-align:center; color:var(--muted); font-size:14px; line-height:1.65; }
-.action-wheel-note a { display:inline-block; margin-top:6px; color:var(--line); font-weight:700; text-decoration:underline; text-underline-offset:4px; }
 .action-preview {
   min-width:0;
   overflow:hidden;
@@ -1367,7 +1366,6 @@ pre {
   .section { min-height:auto; padding:64px 0; }
   .section + .section { margin-top:0; }
   h1 { font-size:var(--fs-h1-md); }
-  .stats { grid-template-columns:repeat(2, minmax(0, 1fr)); }
   .section-head { text-align:center; }
   .charts, .env, .overview, .model-strip { grid-template-columns:1fr; }
   .method-grid { grid-template-columns:1fr; }
@@ -1539,8 +1537,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><strong>200</strong><span>hidden shopping goals</span></div>
+      <div class="stat"><strong>2</strong><span>realistic 3D shopping environments</span></div>
       <div class="stat"><strong>479</strong><span>catalog products</span></div>
+      <div class="stat"><strong>200</strong><span>hidden shopping goals</span></div>
     </div>
   </div>
 </section>
@@ -1554,7 +1553,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
       <div class="action-showcase">
         <div class="action-wheel-column">
           <!-- Action icons: Tabler Icons (MIT), adapted; source and full license: assets/ui-icons/action-icons-attribution.json -->
-          <div class="action-wheel" role="group" aria-label="Customer actions" aria-describedby="action-wheel-help">
+          <div class="action-wheel" role="group" aria-label="Customer actions">
             <button class="action-sector" type="button" data-action="walk" data-title="Free Move" data-description="Move forward, backward, or sideways while keeping the final facing direction." data-video-src="" aria-pressed="true" aria-controls="action-preview" style="--sector:polygon(25.651% 6.788%, 27.521% 5.786%, 29.431% 4.866%, 31.379% 4.028%, 33.362% 3.274%, 35.374% 2.605%, 37.414% 2.024%, 39.476% 1.529%, 41.558% 1.124%, 43.655% 0.808%, 45.763% 0.581%, 47.880% 0.445%, 50.000% 0.400%, 52.120% 0.445%, 54.237% 0.581%, 56.345% 0.808%, 58.442% 1.124%, 60.524% 1.529%, 62.586% 2.024%, 64.626% 2.605%, 66.638% 3.274%, 68.621% 4.028%, 70.569% 4.866%, 72.479% 5.786%, 74.349% 6.788%, 59.327% 33.447%, 58.247% 32.883%, 57.133% 32.390%, 55.990% 31.969%, 54.822% 31.622%, 53.634% 31.351%, 52.431% 31.156%, 51.218% 31.039%, 50.000% 31.000%, 48.782% 31.039%, 47.569% 31.156%, 46.366% 31.351%, 45.178% 31.622%, 44.010% 31.969%, 42.867% 32.390%, 41.753% 32.883%, 40.673% 33.447%);--label-x:50.000%;--label-y:15.500%">
               <span class="action-label"><span>Free Move</span><svg class="action-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g class="action-person" transform="translate(10 0)"><circle cx="6" cy="6" r="2.3"/><path d="M6 11v9"/><path d="M6 12 2 16m4-4 5 3 3-1M6 20l-3 8m3-8 5 8"/></g></svg></span>
             </button>
@@ -1575,7 +1574,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
             </button>
             <div class="action-hub" aria-hidden="true"><strong>Customer<br>actions</strong></div>
           </div>
-          <p class="action-wheel-note" id="action-wheel-help">6 representative actions. Use Tab or arrow keys to explore.<br><a href="details_pages/actions.html">View the full action list &rarr;</a></p>
         </div>
         <article class="action-preview" id="action-preview" aria-labelledby="action-title">
           <div class="action-screen">
@@ -1592,7 +1590,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
           </div>
         </article>
       </div>
-      <noscript><p class="note">Enable JavaScript to switch action previews, or open the full action list above.</p></noscript>
+      <noscript><p class="note">Enable JavaScript to switch action previews.</p></noscript>
     </div>
   </section>
 
@@ -1647,7 +1645,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
         <div class="model-card" data-family="Gemma" title="Gemma"><span class="model-logo gemma" aria-label="Gemma logo"><img src="assets/model-icons/gemma.svg" width="22" height="22" alt="Gemma"></span><div><strong>Gemma</strong></div></div>
       </div>
       <div class="tabs" aria-label="Leaderboard filters">
-        <span class="active" role="button" tabindex="0" data-scene="all" aria-pressed="true">All shopping goals</span>
+        <span class="active" role="button" tabindex="0" data-scene="all" aria-pressed="true">All Environments</span>
         <span role="button" tabindex="0" data-scene="supermarket" aria-pressed="false">Supermarket</span>
         <span role="button" tabindex="0" data-scene="furnishings" aria-pressed="false">Home Furnishings</span>
       </div>
