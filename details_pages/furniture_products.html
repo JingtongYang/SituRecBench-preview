@@ -114,9 +114,9 @@
   --shadow-soft:none;
   --fs-body:15px;
   --fs-sm:14px;
-  --docs-nav-size:14px;
+  --docs-nav-size:13px;
   --docs-nav-line:20px;
-  --docs-brand-size:18px;
+  --docs-brand-size:17px;
   --docs-nav-row-padding:5px;
   --docs-nav-item-gap:2px;
   --docs-nav-group-gap:10px;
@@ -152,14 +152,14 @@ a { color:inherit; text-decoration:none; }
 .docs-group { margin:0; }
 .docs-scene { margin:0; }
 .docs-scene + .docs-scene { margin-top:var(--docs-nav-group-gap); }
-.docs-scene > .docs-scene-label { display:flex; align-items:center; justify-content:flex-start; gap:0; margin:0; padding:var(--docs-nav-row-padding) 8px; color:var(--ink); font-size:inherit; font-weight:500; line-height:inherit; letter-spacing:normal; }
-.docs-scene ul { padding:var(--docs-nav-item-gap) 0 0 24px; }
+.docs-scene > .docs-scene-label { display:flex; align-items:center; justify-content:flex-start; gap:0; margin:0; padding:var(--docs-nav-row-padding) 8px; color:#525b64; font-size:12px; font-weight:650; line-height:inherit; letter-spacing:.025em; }
+.docs-scene ul { padding:var(--docs-nav-item-gap) 0 0 16px; }
 .docs-tree li + li { margin-top:0; }
 .docs-scene li + li { margin-top:var(--docs-nav-item-gap); }
-.docs-page-link { display:block; padding:var(--docs-nav-row-padding) 8px; border-radius:0; color:var(--muted); font-size:inherit; font-weight:400; line-height:inherit; overflow-wrap:anywhere; transition:color 80ms ease; }
-.docs-page-link:hover { color:var(--ink); background:transparent; text-decoration:underline; text-underline-offset:4px; text-decoration-color:#aaa; }
-.docs-page-link[aria-current="page"] { color:var(--ink); background:transparent; font-weight:500; }
-.docs-home { display:flex; align-items:center; gap:7px; width:fit-content; margin:0 0 var(--docs-home-gap); color:var(--ink); font-size:14px; font-weight:500; line-height:var(--docs-home-line); }
+.docs-page-link { display:block; padding:var(--docs-nav-row-padding) 8px; border-radius:5px; color:#525a63; font-size:inherit; font-weight:400; line-height:inherit; overflow-wrap:anywhere; transition:color 80ms ease, background 80ms ease; }
+.docs-page-link:hover { color:var(--ink); background:#eff1f3; text-decoration:none; }
+.docs-page-link[aria-current="page"] { color:var(--ink); background:#e9ecef; font-weight:600; }
+.docs-home { display:flex; align-items:center; gap:7px; width:fit-content; margin:0 0 var(--docs-home-gap); color:var(--ink); font-size:13px; font-weight:500; line-height:var(--docs-home-line); }
 .docs-home:hover { color:var(--ink); }
 .docs-sidebar a:focus-visible { outline-offset:-2px; }
 @media (min-width:901px) and (max-height:680px) {
@@ -201,7 +201,7 @@ a { color:inherit; text-decoration:none; }
 .overview-directory > section { display:grid; gap:12px; min-width:0; }
 .overview-directory h2 { margin:0; }
 .overview-links { display:flex; flex-wrap:wrap; gap:12px; margin-left:var(--docs-content-indent); }
-.overview-directory .overview-button { display:inline-flex; align-items:center; justify-content:center; justify-self:start; min-height:42px; min-width:136px; max-width:100%; padding:10px 16px; border:0; border-radius:6px; background:var(--paper); color:var(--ink); font-size:14px; font-weight:500; line-height:1.6; text-decoration:none; transition:background 80ms ease; }
+.overview-directory .overview-button { display:inline-flex; align-items:center; justify-content:center; justify-self:start; min-height:38px; min-width:136px; max-width:100%; padding:8px 16px; border:0; border-radius:6px; background:var(--paper); color:var(--ink); font-size:13px; font-weight:500; line-height:1.6; text-decoration:none; transition:background 80ms ease; }
 .overview-directory .overview-button:hover { background:#ebebeb; }
 .overview-directory .overview-button:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 .overview-human-link .overview-button { margin-left:var(--docs-content-indent); }
@@ -459,8 +459,8 @@ details > summary::-webkit-details-marker { display:none; }
 /* Shared Details typography and spacing. Keep this after page-specific styles. */
 body.details-document {
   --fs-body:14px;
-  --docs-title-size:30px;
-  --docs-section-size:20px;
+  --docs-title-size:28px;
+  --docs-section-size:18px;
   --docs-section-gap:28px;
   --docs-title-gap:72px;
   --docs-content-indent:16px;
@@ -528,7 +528,7 @@ body.details-document main.page-wrap h1 {
 body.details-document main.page-wrap h2 {
   font-size:var(--docs-section-size); font-weight:600; line-height:1.4; letter-spacing:-.015em;
 }
-body.details-document main.page-wrap h3 { font-size:16px; line-height:1.5; }
+body.details-document main.page-wrap h3 { font-size:15px; line-height:1.5; }
 body.details-document main.page-wrap :is(.human-page, .human-developer-credit, .api-group-note, .shopping_goal-text, .reference-description, .catalog-location) { font-size:14px; line-height:1.65; }
 body.details-document main.page-wrap .reference-name { font-size:15px; line-height:1.5; }
 body.details-document main.page-wrap :is(.reference-section, .actions-section, .stack) { gap:16px; }
@@ -557,7 +557,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
   body.details-document:not(.overview-document) main.page-wrap h1 { padding-right:76px; }
 }
 @media (max-width:900px) {
-  body.details-document { --docs-top-space:24.7px; --docs-title-size:28px; --docs-title-gap:64px; --docs-section-gap:24px; --docs-table-row-height:141px; }
+  body.details-document { --docs-top-space:24.7px; --docs-title-size:26px; --docs-title-gap:64px; --docs-section-gap:24px; --docs-table-row-height:141px; }
 }
 @media (max-width:700px) {
   body.details-document main.page-wrap .catalog-map { grid-template-columns:minmax(0,1fr); gap:16px; }
