@@ -149,7 +149,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .profile-shopping-goals { display:grid; min-width:0; gap:16px; padding:20px; border:0; border-radius:var(--radius); background:var(--paper); box-shadow:none; }
 .profile-json > summary, .shopping_goal-json > summary { display:grid; grid-template-columns:minmax(0, 1fr); align-items:start; gap:6px; padding:0; color:var(--ink); font-weight:400; list-style:none; }
 .profile-json > summary::-webkit-details-marker, .shopping_goal-json > summary::-webkit-details-marker { display:none; }
-.profile-json > summary:hover .profile-name, .shopping_goal-json > summary:hover .shopping_goal-number { text-decoration:underline; text-underline-offset:3px; }
 .profile-json h3 { display:flex; align-items:baseline; gap:10px; margin:0; font-weight:400; }
 .profile-number, .shopping_goal-number { flex-shrink:0; color:var(--muted); font-size:12px; font-weight:400; line-height:1.65; font-variant-numeric:tabular-nums; }
 .profile-number { text-transform:uppercase; }
@@ -183,7 +182,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .action-entry .action-call { margin-top:4px; }
 .action-call > summary { width:fit-content; padding:0; color:var(--muted); font-size:13px; font-weight:400; line-height:1.5; list-style:none; }
 .action-call > summary::-webkit-details-marker { display:none; }
-.action-call > summary:hover { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
 .action-call-body { display:grid; gap:12px; padding-top:14px; }
 .action-call-body p { margin:0; color:var(--muted); font-size:13px; }
 .action-call-body pre { padding:16px; background:var(--paper); font:13px/1.65 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
@@ -200,7 +198,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .reference-fold > summary::-webkit-details-marker { display:none; }
 .reference-name { color:var(--ink); font-size:15px; font-weight:600; line-height:1.7; }
 .reference-description { color:var(--muted); font-size:14px; font-weight:400; line-height:1.7; }
-.reference-fold > summary:hover .reference-name { text-decoration:underline; text-underline-offset:3px; }
 .reference-fold-body { display:grid; gap:16px; padding:0 0 24px; }
 .reference-fold-body pre { font-size:13px; }
 .reference-table { width:100%; table-layout:fixed; border-collapse:collapse; text-align:left; }
@@ -223,7 +220,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .prompt-message > summary, .prompt-long-content > summary { padding:6px 0; color:var(--ink); font-size:13px; cursor:pointer; list-style:none; }
 .prompt-message > summary { padding:10px var(--prompt-indent); }
 .prompt-role-heading { margin:0; padding:0; color:var(--ink); font-size:16px; font-weight:600; line-height:1.5; }
-.prompt-message > summary:hover, .prompt-long-content > summary:hover { text-decoration:underline; text-underline-offset:3px; }
 .prompt-long-body { position:relative; min-width:0; padding:8px var(--prompt-indent); background:#f4f4f4; }
 .prompt-message pre { background:transparent; border:0; border-radius:0; }
 .prompt-long-body > pre { padding:0; }
@@ -232,7 +228,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .prompt-text[data-content-format="json"] > .prompt-fragment > pre, .prompt-text[data-content-format="text"] > .prompt-fragment > pre { padding:0; background:transparent; border:0; border-radius:0; }
 .prompt-text > details[data-template-token] > summary { color:var(--ink); font-weight:400; text-decoration:none; }
 .prompt-text > details[data-template-token] > summary > code { padding:2px 5px; border-radius:3px; background:#ededed; font:12px/1.7 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; overflow-wrap:anywhere; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
-.prompt-text > details[data-template-token] > summary:hover > code, .prompt-text > details[data-template-token] > summary:focus-visible > code { background:#e5e5e5; }
 .prompt-image-sample { display:block; width:auto; max-width:100%; height:auto; margin:0 0 12px; }
 .prompt-markdown { min-width:0; font-size:14px; line-height:1.7; overflow-wrap:anywhere; }
 .prompt-markdown p { margin:0 0 12px; }
@@ -457,7 +452,8 @@ body.details-document main.page-wrap :is(.reference-section, .actions-section, .
 body.details-document main.page-wrap .catalog-section { margin-top:0; }
 body.details-document main.page-wrap .catalog-section > h2 { margin-bottom:16px; padding-bottom:0; border-bottom:0; }
 body.details-document main.page-wrap .profile-group:first-child { padding-top:0; }
-body.details-document main.page-wrap .catalog-map { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); align-items:center; gap:24px; padding:0; }
+body.details-document main.page-wrap .catalog-map { display:grid; grid-template-columns:max-content minmax(0,1fr); align-items:start; gap:24px; padding:0; }
+body.details-document main.page-wrap .catalog-map-image { width:auto; max-width:100%; justify-self:start; object-position:left top; }
 body.details-document main.page-wrap .catalog-map-image-supermarket { height:220px; }
 body.details-document main.page-wrap .catalog-card .catalog-name { font-size:15px; line-height:1.5; }
 body.details-document main.page-wrap :is(.catalog-badge, .catalog-price, .catalog-map-title, .catalog-map-note, .profile-number, .shopping_goal-number) { font-size:13px; }
@@ -566,10 +562,12 @@ body.details-document main.page-wrap .disclosure-toggle {
 body.details-document main.page-wrap .disclosure-toggle:is(:hover,:focus-visible) { color:var(--ink); text-decoration:underline; }
 body.details-document main.page-wrap .disclosure-hint {
   display:inline-block; margin-left:10px; color:#707070;
-  font-size:12px; font-weight:400; line-height:1.6;
+  appearance:none; border:0; padding:0; background:transparent; cursor:pointer;
+  font-family:inherit; font-size:12px; font-weight:400; line-height:1.6;
   text-decoration:none; text-underline-offset:3px; white-space:nowrap;
 }
-body.details-document main.page-wrap summary:is(:hover,:focus-visible) > .disclosure-hint { color:var(--ink); text-decoration:underline; }
+body.details-document main.page-wrap .disclosure-hint:is(:hover,:focus-visible) { color:var(--ink); text-decoration:underline; }
+body.details-document main.page-wrap .page-content summary:not(.disclosure-toggle) { cursor:default; text-decoration:none; }
 body.details-document main.page-wrap :is(.reference-fold, .api-card) > summary { position:relative; padding-right:50px; }
 body.details-document main.page-wrap :is(.reference-fold, .api-card) > summary > .disclosure-hint { position:absolute; top:var(--docs-row-space); right:0; margin:0; }
 body.details-document main.page-wrap .reference-section > div > .reference-fold:first-child > summary > .disclosure-hint,
@@ -621,7 +619,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 <section class="actions-section"><header class="actions-section-heading"><h2 id="assistant-action-types">Assistant Actions</h2></header>
 <div class="action-table-frame"><table class="action-table" aria-label="Assistant Actions"><colgroup><col class="action-name-column"><col></colgroup><tbody><tr class="action-entry"><th scope="row"><h3 id="assistant-greet">Greet</h3></th><td><p class="action-description">A stand-alone greeting, welcome, offer to help, thanks, apology, farewell, or another social courtesy.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-ask-preference">Ask Preference</h3></th><td><p class="action-description">Ask about a preference the customer has not yet expressed.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-clarify-need">Clarify Need</h3></th><td><p class="action-description">Clarify a need the customer has expressed ambiguously, inconsistently, or with an unclear reference.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-navigate">Navigate</h3></th><td><p class="action-description">Guide the customer to move, turn, look around, or go to a location.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-recommend">Recommend</h3></th><td><p class="action-description">Explicitly recommend a specific furniture item.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-explain">Explain</h3></th><td><p class="action-description">Proactively explain product information, features, uses, or recommendation rationale.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-answer-question">Answer Question</h3></th><td><p class="action-description">Directly answer an explicit customer question.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-compare">Compare</h3></th><td><p class="action-description">Compare two or more specific products.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-handle-rejection">Handle Rejection</h3></th><td><p class="action-description">Respond to a customer rejection and adjust based on the reason.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-confirm-purchase">Confirm Purchase</h3></th><td><p class="action-description">After the customer expresses acceptance, confirm the product or guide purchase completion.</p></td></tr></tbody></table></div></section>
 <section class="actions-section"><header class="actions-section-heading"><h2 id="customer-tool-methods">User Actions</h2></header>
-<div class="action-table-frame"><table class="action-table" aria-label="User Actions"><colgroup><col class="action-name-column"><col></colgroup><tbody><tr class="action-entry"><th scope="row"><h3 id="move-forward">Move Forward</h3></th><td><p class="action-description">walk forward along the current facing direction, usually to approach the area in front.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-move-forward">{
+<div class="action-table-frame"><table class="action-table" aria-label="User Actions"><colgroup><col class="action-name-column"><col></colgroup><tbody><tr class="action-entry"><th scope="row"><h3 id="move-forward">Move Forward</h3></th><td><p class="action-description">walk forward along the current facing direction, usually to approach the area in front.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-move-forward">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -632,7 +630,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-move-forward" aria-label="Copy Move Forward call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-backward">Move Backward</h3></th><td><p class="action-description">step backward without changing the final facing direction; useful to back away, avoid occlusion, adjust the view, or bring a doorway back into view.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-move-backward">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-move-forward" aria-label="Copy Move Forward call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-backward">Move Backward</h3></th><td><p class="action-description">step backward without changing the final facing direction; useful to back away, avoid occlusion, adjust the view, or bring a doorway back into view.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-move-backward">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -643,7 +641,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-move-backward" aria-label="Copy Move Backward call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="turn-and-move">Turn And Move</h3></th><td><p class="action-description">turn left or right by an angle, then walk forward briefly; useful for exploring the left-front or right-front area.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-turn-and-move">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-move-backward" aria-label="Copy Move Backward call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="turn-and-move">Turn And Move</h3></th><td><p class="action-description">turn left or right by an angle, then walk forward briefly; useful for exploring the left-front or right-front area.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-turn-and-move">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -656,7 +654,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-turn-and-move" aria-label="Copy Turn And Move call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: right / left. degree: a positive number (degrees). duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-and-turn">Move And Turn</h3></th><td><p class="action-description">walk forward along the current facing direction, then turn left or right by an angle; useful for passing through the space ahead before observing the area after the turn.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-move-and-turn">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-turn-and-move" aria-label="Copy Turn And Move call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: right / left. degree: a positive number (degrees). duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-and-turn">Move And Turn</h3></th><td><p class="action-description">walk forward along the current facing direction, then turn left or right by an angle; useful for passing through the space ahead before observing the area after the turn.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-move-and-turn">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -669,7 +667,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-move-and-turn" aria-label="Copy Move And Turn call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: right / left. degree: a positive number (degrees). duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="side-step">Side Step</h3></th><td><p class="action-description">step left or right without changing facing direction; useful to avoid occlusion, adjust the viewing angle, or bring a doorway into view.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-side-step">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-move-and-turn" aria-label="Copy Move And Turn call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: right / left. degree: a positive number (degrees). duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="side-step">Side Step</h3></th><td><p class="action-description">step left or right without changing facing direction; useful to avoid occlusion, adjust the viewing angle, or bring a doorway into view.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-side-step">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -681,7 +679,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-side-step" aria-label="Copy Side Step call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: left / right. duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="turn">Turn</h3></th><td><p class="action-description">turn in place to the left or right; changes facing direction only.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-turn">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-side-step" aria-label="Copy Side Step call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: left / right. duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="turn">Turn</h3></th><td><p class="action-description">turn in place to the left or right; changes facing direction only.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-turn">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -693,7 +691,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-turn" aria-label="Copy Turn call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: right / left. degree: a positive number (degrees).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="look-up-down">Look Up Down</h3></th><td><p class="action-description">adjust pitch up or down only.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-look-up-down">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-turn" aria-label="Copy Turn call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: right / left. degree: a positive number (degrees).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="look-up-down">Look Up Down</h3></th><td><p class="action-description">adjust pitch up or down only.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-look-up-down">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -705,7 +703,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-look-up-down" aria-label="Copy Look Up Down call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: up / down. degree: a positive number (degrees).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-to-store">Move To Store</h3></th><td><p class="action-description">move to a storefront or doorway currently visible in the overlay. It requires `store_id` and `approach`, where `approach` must be `outside_doorway` or `inside_doorway`.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-move-to-store">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-look-up-down" aria-label="Copy Look Up Down call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: up / down. degree: a positive number (degrees).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-to-store">Move To Store</h3></th><td><p class="action-description">move to a storefront or doorway currently visible in the overlay. It requires `store_id` and `approach`, where `approach` must be `outside_doorway` or `inside_doorway`.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-move-to-store">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -717,7 +715,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-move-to-store" aria-label="Copy Move To Store call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace store_id with a key from current_obs_for_customer.visible_stores. approach: inside_doorway / outside_doorway.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-to-area">Move To Area</h3></th><td><p class="action-description">move to the fixed point inside a currently visible area box. An area box covers a furniture display area, not a shelf. After moving, use the next observation to decide facing and position; further turning, forward movement, side-stepping, or looking may be needed.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-move-to-area">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-move-to-store" aria-label="Copy Move To Store call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace store_id with a key from current_obs_for_customer.visible_stores. approach: inside_doorway / outside_doorway.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-to-area">Move To Area</h3></th><td><p class="action-description">move to the fixed point inside a currently visible area box. An area box covers a furniture display area, not a shelf. After moving, use the next observation to decide facing and position; further turning, forward movement, side-stepping, or looking may be needed.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-move-to-area">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -728,7 +726,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-move-to-area" aria-label="Copy Move To Area call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace area_id with a key from current_obs_for_customer.visible_areas.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="check-item">Check Item</h3></th><td><p class="action-description">inspect and confirm details for a currently visible furniture item.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-check-item">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-move-to-area" aria-label="Copy Move To Area call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace area_id with a key from current_obs_for_customer.visible_areas.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="check-item">Check Item</h3></th><td><p class="action-description">inspect and confirm details for a currently visible furniture item.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-check-item">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -739,7 +737,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-check-item" aria-label="Copy Check Item call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace item_id with a key from current_obs_for_customer.visible_items.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="add-to-cart">Add To Cart</h3></th><td><p class="action-description">decide to buy the furniture currently being checked.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-add-to-cart">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-check-item" aria-label="Copy Check Item call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace item_id with a key from current_obs_for_customer.visible_items.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="add-to-cart">Add To Cart</h3></th><td><p class="action-description">decide to buy the furniture currently being checked.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-add-to-cart">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -750,7 +748,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-add-to-cart" aria-label="Copy Add To Cart call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace item_id with the ID of the furniture currently being checked.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="do-not-add-to-cart">Do Not Add To Cart</h3></th><td><p class="action-description">decide not to buy the furniture currently being checked and exit that confirmation state.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-do-not-add-to-cart">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-add-to-cart" aria-label="Copy Add To Cart call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace item_id with the ID of the furniture currently being checked.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="do-not-add-to-cart">Do Not Add To Cart</h3></th><td><p class="action-description">decide not to buy the furniture currently being checked and exit that confirmation state.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-do-not-add-to-cart">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -759,7 +757,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-do-not-add-to-cart" aria-label="Copy Do Not Add To Cart call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="idle">Idle</h3></th><td><p class="action-description">do not move, inspect, or buy; only talk naturally or wait.</p><details class="action-call"><summary>How to call<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><div class="action-call-body"><pre id="call-idle">{
+}</pre><button class="action-copy" type="button" data-copy-action="call-do-not-add-to-cart" aria-label="Copy Do Not Add To Cart call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="idle">Idle</h3></th><td><p class="action-description">do not move, inspect, or buy; only talk naturally or wait.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-idle">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -921,6 +919,32 @@ document.querySelectorAll('[data-copy-action]').forEach((button) => {
   };
   revealHash();
   window.addEventListener('hashchange', () => revealHash());
+})();
+</script>
+
+
+<script data-disclosure-controls>
+(() => {
+  document.querySelectorAll('.page-content details > summary').forEach((summary) => {
+    const button = Array.from(summary.children).find((node) => node.classList.contains('disclosure-hint'));
+    if (!button) return;
+    const details = summary.parentElement;
+    const label = Array.from(summary.childNodes).filter((node) => node !== button)
+      .map((node) => node.textContent).join(' ').replace(/\s+/g, ' ').trim();
+    const sync = () => {
+      button.setAttribute('aria-expanded', String(details.open));
+      button.setAttribute('aria-label', `${details.open ? 'Hide' : 'View'} ${label}`);
+    };
+    summary.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
+      event.preventDefault();
+      if (!button.contains(event.target)) return;
+      details.open = !details.open;
+      sync();
+    });
+    details.addEventListener('toggle', sync);
+    sync();
+  });
 })();
 </script>
 

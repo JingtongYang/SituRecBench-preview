@@ -232,7 +232,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .profile-shopping-goals { display:grid; min-width:0; gap:16px; padding:20px; border:0; border-radius:var(--radius); background:var(--paper); box-shadow:none; }
 .profile-json > summary, .shopping_goal-json > summary { display:grid; grid-template-columns:minmax(0, 1fr); align-items:start; gap:6px; padding:0; color:var(--ink); font-weight:400; list-style:none; }
 .profile-json > summary::-webkit-details-marker, .shopping_goal-json > summary::-webkit-details-marker { display:none; }
-.profile-json > summary:hover .profile-name, .shopping_goal-json > summary:hover .shopping_goal-number { text-decoration:underline; text-underline-offset:3px; }
 .profile-json h3 { display:flex; align-items:baseline; gap:10px; margin:0; font-weight:400; }
 .profile-number, .shopping_goal-number { flex-shrink:0; color:var(--muted); font-size:12px; font-weight:400; line-height:1.65; font-variant-numeric:tabular-nums; }
 .profile-number { text-transform:uppercase; }
@@ -266,7 +265,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .action-entry .action-call { margin-top:4px; }
 .action-call > summary { width:fit-content; padding:0; color:var(--muted); font-size:13px; font-weight:400; line-height:1.5; list-style:none; }
 .action-call > summary::-webkit-details-marker { display:none; }
-.action-call > summary:hover { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
 .action-call-body { display:grid; gap:12px; padding-top:14px; }
 .action-call-body p { margin:0; color:var(--muted); font-size:13px; }
 .action-call-body pre { padding:16px; background:var(--paper); font:13px/1.65 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
@@ -283,7 +281,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .reference-fold > summary::-webkit-details-marker { display:none; }
 .reference-name { color:var(--ink); font-size:15px; font-weight:600; line-height:1.7; }
 .reference-description { color:var(--muted); font-size:14px; font-weight:400; line-height:1.7; }
-.reference-fold > summary:hover .reference-name { text-decoration:underline; text-underline-offset:3px; }
 .reference-fold-body { display:grid; gap:16px; padding:0 0 24px; }
 .reference-fold-body pre { font-size:13px; }
 .reference-table { width:100%; table-layout:fixed; border-collapse:collapse; text-align:left; }
@@ -306,7 +303,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .prompt-message > summary, .prompt-long-content > summary { padding:6px 0; color:var(--ink); font-size:13px; cursor:pointer; list-style:none; }
 .prompt-message > summary { padding:10px var(--prompt-indent); }
 .prompt-role-heading { margin:0; padding:0; color:var(--ink); font-size:16px; font-weight:600; line-height:1.5; }
-.prompt-message > summary:hover, .prompt-long-content > summary:hover { text-decoration:underline; text-underline-offset:3px; }
 .prompt-long-body { position:relative; min-width:0; padding:8px var(--prompt-indent); background:#f4f4f4; }
 .prompt-message pre { background:transparent; border:0; border-radius:0; }
 .prompt-long-body > pre { padding:0; }
@@ -315,7 +311,6 @@ details[open] > pre { max-height:none; overflow:auto; }
 .prompt-text[data-content-format="json"] > .prompt-fragment > pre, .prompt-text[data-content-format="text"] > .prompt-fragment > pre { padding:0; background:transparent; border:0; border-radius:0; }
 .prompt-text > details[data-template-token] > summary { color:var(--ink); font-weight:400; text-decoration:none; }
 .prompt-text > details[data-template-token] > summary > code { padding:2px 5px; border-radius:3px; background:#ededed; font:12px/1.7 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; overflow-wrap:anywhere; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
-.prompt-text > details[data-template-token] > summary:hover > code, .prompt-text > details[data-template-token] > summary:focus-visible > code { background:#e5e5e5; }
 .prompt-image-sample { display:block; width:auto; max-width:100%; height:auto; margin:0 0 12px; }
 .prompt-markdown { min-width:0; font-size:14px; line-height:1.7; overflow-wrap:anywhere; }
 .prompt-markdown p { margin:0 0 12px; }
@@ -540,7 +535,8 @@ body.details-document main.page-wrap :is(.reference-section, .actions-section, .
 body.details-document main.page-wrap .catalog-section { margin-top:0; }
 body.details-document main.page-wrap .catalog-section > h2 { margin-bottom:16px; padding-bottom:0; border-bottom:0; }
 body.details-document main.page-wrap .profile-group:first-child { padding-top:0; }
-body.details-document main.page-wrap .catalog-map { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); align-items:center; gap:24px; padding:0; }
+body.details-document main.page-wrap .catalog-map { display:grid; grid-template-columns:max-content minmax(0,1fr); align-items:start; gap:24px; padding:0; }
+body.details-document main.page-wrap .catalog-map-image { width:auto; max-width:100%; justify-self:start; object-position:left top; }
 body.details-document main.page-wrap .catalog-map-image-supermarket { height:220px; }
 body.details-document main.page-wrap .catalog-card .catalog-name { font-size:15px; line-height:1.5; }
 body.details-document main.page-wrap :is(.catalog-badge, .catalog-price, .catalog-map-title, .catalog-map-note, .profile-number, .shopping_goal-number) { font-size:13px; }
@@ -649,10 +645,12 @@ body.details-document main.page-wrap .disclosure-toggle {
 body.details-document main.page-wrap .disclosure-toggle:is(:hover,:focus-visible) { color:var(--ink); text-decoration:underline; }
 body.details-document main.page-wrap .disclosure-hint {
   display:inline-block; margin-left:10px; color:#707070;
-  font-size:12px; font-weight:400; line-height:1.6;
+  appearance:none; border:0; padding:0; background:transparent; cursor:pointer;
+  font-family:inherit; font-size:12px; font-weight:400; line-height:1.6;
   text-decoration:none; text-underline-offset:3px; white-space:nowrap;
 }
-body.details-document main.page-wrap summary:is(:hover,:focus-visible) > .disclosure-hint { color:var(--ink); text-decoration:underline; }
+body.details-document main.page-wrap .disclosure-hint:is(:hover,:focus-visible) { color:var(--ink); text-decoration:underline; }
+body.details-document main.page-wrap .page-content summary:not(.disclosure-toggle) { cursor:default; text-decoration:none; }
 body.details-document main.page-wrap :is(.reference-fold, .api-card) > summary { position:relative; padding-right:50px; }
 body.details-document main.page-wrap :is(.reference-fold, .api-card) > summary > .disclosure-hint { position:absolute; top:var(--docs-row-space); right:0; margin:0; }
 body.details-document main.page-wrap .reference-section > div > .reference-fold:first-child > summary > .disclosure-hint,
@@ -703,7 +701,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 <h1>Supermarket products</h1>
 
 </header><div class="catalog-map"><img class="catalog-map-image catalog-map-image-supermarket" src="../assets/supermarket_store_layout_map_current.png" alt="Supermarket layout with Assistant location labels corresponding to the map key"><nav class="catalog-map-key" aria-label="Map locations"><p class="catalog-map-title">Explore the map</p><a href="#group-shelf"><span>Shelves:</span> <code>10, 11, 12, 13, 14, 15, 22, 23, 24, 25, 26, 27</code></a><a href="#group-uprightFreezer"><span>Upright Freezers:</span> <code>1, 2, 4, 8, 16, 28, 29, 30</code></a><a href="#group-openCooler"><span>Open Coolers:</span> <code>18, 19, 20, 21</code></a><a href="#group-chestFreezer"><span>Chest Freezers:</span> <code>6, 9, 17</code></a><a href="#group-woodStand"><span>Produce Wood Stands:</span> <code>5, 7</code></a><p class="catalog-map-note">Checkout counter: <code>3</code></p></nav></div>
-<div class="catalog-tools"><div class="catalog-aux"><details class="location-index-panel" id="product-location-index"><summary>Product location index · assistant input<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><pre class="location-index">{
+<div class="catalog-tools"><div class="catalog-aux"><details class="location-index-panel" id="product-location-index"><summary tabindex="-1">Product location index · assistant input<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><pre class="location-index">{
   &quot;1&quot;: [
     &quot;Andouille Sausage Chub&quot;,
     &quot;Buff Cola Fizzy Drink Large&quot;,
@@ -1532,6 +1530,32 @@ body.details-document main.page-wrap .shopping_goal-attribute {
   };
   revealHash();
   window.addEventListener('hashchange', () => revealHash());
+})();
+</script>
+
+
+<script data-disclosure-controls>
+(() => {
+  document.querySelectorAll('.page-content details > summary').forEach((summary) => {
+    const button = Array.from(summary.children).find((node) => node.classList.contains('disclosure-hint'));
+    if (!button) return;
+    const details = summary.parentElement;
+    const label = Array.from(summary.childNodes).filter((node) => node !== button)
+      .map((node) => node.textContent).join(' ').replace(/\s+/g, ' ').trim();
+    const sync = () => {
+      button.setAttribute('aria-expanded', String(details.open));
+      button.setAttribute('aria-label', `${details.open ? 'Hide' : 'View'} ${label}`);
+    };
+    summary.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
+      event.preventDefault();
+      if (!button.contains(event.target)) return;
+      details.open = !details.open;
+      sync();
+    });
+    details.addEventListener('toggle', sync);
+    sync();
+  });
 })();
 </script>
 
