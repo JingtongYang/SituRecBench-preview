@@ -1950,11 +1950,20 @@ for (const image of document.querySelectorAll("img")) {
   }, { once: true });
 }
 
+function sectionAnchor(target) {
+  return target.querySelector(".section-head h2") || target;
+}
+
+function sectionTopOffset() {
+  const nav = document.querySelector(".nav");
+  return nav ? nav.offsetHeight + (parseFloat(getComputedStyle(nav).top) || 0) + 24 : 24;
+}
+
 function updateJumpRail() {
   let activeId = sections[0]?.id || "";
   for (const section of sections) {
-    const rect = section.getBoundingClientRect();
-    if (rect.top <= 150) activeId = section.id;
+    const rect = sectionAnchor(section).getBoundingClientRect();
+    if (rect.top <= sectionTopOffset() + 2) activeId = section.id;
   }
   const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
   if (sections.length && maxScroll > 0 && window.scrollY >= maxScroll - 2) {
@@ -1980,7 +1989,7 @@ function focusSection(target) {
 
 let sectionScrollFrame = 0;
 
-function scrollToSection(target) {
+function scrollToSection(target, { animate = true, updateHistory = true } = {}) {
   cancelAnimationFrame(sectionScrollFrame);
   sectionScrollFrame = 0;
   for (const item of target.querySelectorAll(".reveal")) {
@@ -1988,18 +1997,17 @@ function scrollToSection(target) {
     item.classList.add("is-visible");
   }
   const start = window.scrollY;
-  const nav = document.querySelector(".nav");
-  const offset = nav ? nav.offsetHeight + (parseFloat(getComputedStyle(nav).top) || 0) + 12 : 0;
+  const offset = sectionTopOffset();
   const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-  const destination = target.getBoundingClientRect().top + start - offset;
+  const destination = target.id === "top" ? 0 : sectionAnchor(target).getBoundingClientRect().top + start - offset;
   const end = Math.min(maxScroll, Math.max(0, destination));
   const distance = end - start;
   const duration = 100;
   const startedAt = performance.now();
 
-  if (reducedMotion || Math.abs(distance) < 4) {
+  if (!animate || reducedMotion || Math.abs(distance) < 4) {
     window.scrollTo(0, end);
-    history.pushState(null, "", "#" + target.id);
+    if (updateHistory) history.pushState(null, "", "#" + target.id);
     focusSection(target);
     updateJumpRail();
     return;
@@ -2012,7 +2020,7 @@ function scrollToSection(target) {
       sectionScrollFrame = requestAnimationFrame(step);
     } else {
       sectionScrollFrame = 0;
-      history.pushState(null, "", "#" + target.id);
+      if (updateHistory) history.pushState(null, "", "#" + target.id);
       focusSection(target);
       updateJumpRail();
     }
@@ -2037,9 +2045,21 @@ document.addEventListener("click", (event) => {
   }
 });
 
+function alignCurrentHash() {
+  let id;
+  try { id = decodeURIComponent(window.location.hash.slice(1)); }
+  catch (_) { return; }
+  const target = document.getElementById(id);
+  if (target && sections.includes(target)) {
+    scrollToSection(target, { animate: false, updateHistory: false });
+  }
+}
+
 window.addEventListener("scroll", updateJumpRail, { passive: true });
-window.addEventListener("load", updateJumpRail);
+window.addEventListener("load", () => { alignCurrentHash(); updateJumpRail(); });
+window.addEventListener("hashchange", () => requestAnimationFrame(alignCurrentHash));
 window.addEventListener("resize", updateJumpRail, { passive: true });
+document.fonts.ready.then(alignCurrentHash);
 updateJumpRail();
 </script>
 
