@@ -115,29 +115,11 @@ a { color:inherit; text-decoration:none; }
 .overview-document .page-content { gap:28px; }
 .overview-document .section-heading { margin-top:0; }
 .overview-document .stack { gap:8px; }
-.overview-stats { display:flex; flex-wrap:wrap; gap:20px 48px; margin:0; }
-.overview-stats div { display:grid; gap:2px; }
-.overview-stats dt { color:var(--muted); font-size:13px; }
-.overview-stats dd { order:-1; margin:0; font-size:24px; font-weight:600; line-height:1.3; }
-.overview-comparison { width:100%; border-collapse:collapse; table-layout:fixed; font-size:14px; line-height:1.6; }
-.overview-comparison col:first-child { width:20%; }
-.overview-comparison th, .overview-comparison td { padding:12px 16px; border-bottom:var(--divider); text-align:left; vertical-align:top; overflow-wrap:anywhere; }
-.overview-comparison tr > :first-child { padding-left:0; }
-.overview-comparison tr > :last-child { padding-right:0; }
-.overview-comparison thead th { font-size:16px; font-weight:600; }
-.overview-comparison tbody th { color:var(--muted); font-size:13px; font-weight:400; }
-.overview-comparison tr:last-child > * { border-bottom:0; }
-.overview-links { display:flex; flex-wrap:wrap; gap:6px 16px; }
-.overview-links a, .overview-human a { text-decoration:underline; text-underline-offset:3px; }
-.overview-human { display:grid; gap:8px; }
-.overview-human h2 { margin:0; font-size:18px; }
-.overview-human p { margin:0; color:var(--muted); font-size:14px; }
-@media (max-width:600px) {
-  .overview-comparison th, .overview-comparison td { padding:10px 8px; }
-  .overview-comparison thead th { font-size:14px; }
-  .overview-comparison col:first-child { width:23%; }
-  .overview-stats { gap:16px 28px; }
-}
+.overview-directory { display:grid; gap:var(--docs-section-gap); }
+.overview-directory > section { display:grid; gap:12px; min-width:0; }
+.overview-directory h2 { margin:0; }
+.overview-links { display:flex; flex-wrap:wrap; gap:8px 24px; }
+.overview-directory a { text-decoration:underline; text-underline-offset:3px; }
 .hero p, .muted { margin:0; color:var(--muted); }
 .hero > p { max-width:68ch; }
 .hero > p:first-child { color:var(--accent); font-size:14px; font-weight:600; }
@@ -683,7 +665,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 
 <main class="page-wrap" id="main-content" tabindex="-1">
   
-  <div class="page-content"><section class="hero docs-page-heading"><h1>Benchmark Details</h1></section><dl class="overview-stats"><div><dt>Environments</dt><dd>2</dd></div><div><dt>Unique products</dt><dd>455</dd></div><div><dt>Shopping goals</dt><dd>200</dd></div></dl><table class="overview-comparison" aria-label="Shopping environments"><colgroup><col><col><col></colgroup><thead><tr><th scope="col">Environment</th><th scope="col">Supermarket</th><th scope="col">Home Furnishings</th></tr></thead><tbody><tr><th scope="row">Products</th><td>233</td><td>222</td></tr><tr><th scope="row">Profiles</th><td>25</td><td>25</td></tr><tr><th scope="row">Shopping goals</th><td>100</td><td>100</td></tr><tr><th scope="row">Navigation</th><td>Shelves, coolers and displays</td><td>Stores and display areas</td></tr><tr><th scope="row">Interaction</th><td>Pick up products, inspect them, then add to cart or put back.</td><td>Inspect furniture in place, then decide whether to buy.</td></tr><tr><th scope="row">Explore</th><td><nav class="overview-links" aria-label="Supermarket resources"><a href="details_pages/supermarket_products.html">Products</a><a href="details_pages/supermarket_shopping_goals.html">Shopping Goals</a><a href="details_pages/supermarket_actions.html">Actions</a><a href="details_pages/supermarket_prompt.html">Prompts</a><a href="details_pages/supermarket_evaluation.html">Evaluation</a></nav></td><td><nav class="overview-links" aria-label="Home Furnishings Store resources"><a href="details_pages/furniture_products.html">Products</a><a href="details_pages/furniture_shopping_goals.html">Shopping Goals</a><a href="details_pages/furniture_actions.html">Actions</a><a href="details_pages/furniture_prompt.html">Prompts</a><a href="details_pages/furniture_evaluation.html">Evaluation</a></nav></td></tr></tbody></table><section class="overview-human"><h2>Human Interaction</h2><a href="details_pages/human_interaction.html">Explore the interface</a></section></div>
+  <div class="page-content"><section class="hero docs-page-heading"><h1>Benchmark Details</h1></section><div class="overview-directory"><section class="reference-section"><h2>Supermarket</h2><nav class="overview-links" aria-label="Supermarket resources"><a href="details_pages/supermarket_products.html">Products</a><a href="details_pages/supermarket_shopping_goals.html">Shopping Goals</a><a href="details_pages/supermarket_actions.html">Actions</a><a href="details_pages/supermarket_prompt.html">Prompts</a><a href="details_pages/supermarket_evaluation.html">Evaluation</a></nav></section><section class="reference-section"><h2>Home Furnishings</h2><nav class="overview-links" aria-label="Home Furnishings resources"><a href="details_pages/furniture_products.html">Products</a><a href="details_pages/furniture_shopping_goals.html">Shopping Goals</a><a href="details_pages/furniture_actions.html">Actions</a><a href="details_pages/furniture_prompt.html">Prompts</a><a href="details_pages/furniture_evaluation.html">Evaluation</a></nav></section><section><h2><a href="details_pages/human_interaction.html">Human Interaction</a></h2></section></div></div>
 </main>
 
 <script>
