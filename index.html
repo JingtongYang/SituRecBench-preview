@@ -558,6 +558,19 @@ h2 {
 .table-wrap tr:last-child td {
   border-bottom:0;
 }
+.table-wrap table,
+.benchmark-figure table {
+  border-collapse:separate;
+  border-spacing:0;
+}
+.table-wrap thead th:first-child,
+.benchmark-figure thead th:first-child {
+  border-radius:10px 0 0 10px;
+}
+.table-wrap thead th:last-child,
+.benchmark-figure thead th:last-child {
+  border-radius:0 10px 10px 0;
+}
 table {
   width:100%;
   min-width:820px;
@@ -877,9 +890,13 @@ tr:last-child td { border-bottom:var(--strong-frame); }
 }
 .benchmark-figure table {
   min-width:980px;
+  table-layout:fixed;
   font-family:inherit;
   font-size:13px;
 }
+.benchmark-figure .benchmark-name-column { width:20%; }
+.benchmark-figure .benchmark-indicator-columns { width:8%; }
+.benchmark-figure .benchmark-domain-column { width:24%; }
 .benchmark-figure caption {
   padding:0 0 18px;
   color:var(--muted);
@@ -1116,6 +1133,7 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   margin:0 auto;
 }
 .citation-card {
+  position:relative;
   min-width:0;
   overflow:hidden;
   border:0;
@@ -1124,11 +1142,15 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   box-shadow:none;
 }
 .citation-toolbar {
+  position:absolute;
+  top:8px;
+  left:0;
+  right:0;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  padding:14px 22px;
+  padding:0 22px;
   border-bottom:0;
   background:transparent;
 }
@@ -1144,8 +1166,8 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   justify-content:center;
   gap:7px;
   min-width:122px;
-  min-height:34px;
-  padding:7px 11px;
+  min-height:28px;
+  padding:3px 11px;
   border:var(--frame);
   border-radius:var(--radius-sm);
   background:var(--panel);
@@ -1153,6 +1175,7 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   font:inherit;
   font-size:var(--fs-sm);
   font-weight:600;
+  line-height:20px;
   cursor:pointer;
   transition:background 80ms ease, border-color 80ms ease;
 }
@@ -1190,7 +1213,7 @@ pre {
 }
 .citation-card pre {
   min-width:0;
-  padding:8px 24px 20px;
+  padding:56px 24px;
   border:0;
   border-radius:0;
   background:transparent;
@@ -1379,8 +1402,8 @@ pre {
   .demo-row { grid-template-columns:1fr; }
   .view-grid { grid-template-columns:1fr; }
   .benchmark-figure table { font-size:13px; }
-  .citation-toolbar { padding:12px 16px; }
-  .citation-card pre { padding:18px 16px; }
+  .citation-toolbar { padding:0 16px; }
+  .citation-card pre { padding:56px 16px; }
   .citation-note { padding:12px 16px; }
 }
 
@@ -1533,13 +1556,13 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
     <div class="demo-main">
       <div class="video missing-video">
         <div class="play">&#9658;</div>
-        <div class="video-status"><strong>Main demo pending</strong><span>Full closed-loop episode video will be added here.</span></div>
+        <div class="video-status"><strong>Main Demo Pending</strong><span>Full closed-loop episode video will be added here.</span></div>
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><strong>2</strong><span>realistic 3D shopping environments</span></div>
-      <div class="stat"><strong>479</strong><span>catalog products</span></div>
-      <div class="stat"><strong>200</strong><span>hidden shopping goals</span></div>
+      <div class="stat"><strong>2</strong><span>Realistic 3D Shopping Environments</span></div>
+      <div class="stat"><strong>479</strong><span>Catalog Products</span></div>
+      <div class="stat"><strong>200</strong><span>Hidden Shopping Goals</span></div>
     </div>
   </div>
 </section>
@@ -1553,7 +1576,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
       <div class="action-showcase">
         <div class="action-wheel-column">
           <!-- Action icons: Tabler Icons (MIT), adapted; source and full license: assets/ui-icons/action-icons-attribution.json -->
-          <div class="action-wheel" role="group" aria-label="Customer actions">
+          <div class="action-wheel" role="group" aria-label="Customer Actions">
             <button class="action-sector" type="button" data-action="walk" data-title="Free Move" data-description="Move forward, backward, or sideways while keeping the final facing direction." data-video-src="" aria-pressed="true" aria-controls="action-preview" style="--sector:polygon(25.651% 6.788%, 27.521% 5.786%, 29.431% 4.866%, 31.379% 4.028%, 33.362% 3.274%, 35.374% 2.605%, 37.414% 2.024%, 39.476% 1.529%, 41.558% 1.124%, 43.655% 0.808%, 45.763% 0.581%, 47.880% 0.445%, 50.000% 0.400%, 52.120% 0.445%, 54.237% 0.581%, 56.345% 0.808%, 58.442% 1.124%, 60.524% 1.529%, 62.586% 2.024%, 64.626% 2.605%, 66.638% 3.274%, 68.621% 4.028%, 70.569% 4.866%, 72.479% 5.786%, 74.349% 6.788%, 59.327% 33.447%, 58.247% 32.883%, 57.133% 32.390%, 55.990% 31.969%, 54.822% 31.622%, 53.634% 31.351%, 52.431% 31.156%, 51.218% 31.039%, 50.000% 31.000%, 48.782% 31.039%, 47.569% 31.156%, 46.366% 31.351%, 45.178% 31.622%, 44.010% 31.969%, 42.867% 32.390%, 41.753% 32.883%, 40.673% 33.447%);--label-x:50.000%;--label-y:15.500%">
               <span class="action-label"><span>Free Move</span><svg class="action-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g class="action-person" transform="translate(10 0)"><circle cx="6" cy="6" r="2.3"/><path d="M6 11v9"/><path d="M6 12 2 16m4-4 5 3 3-1M6 20l-3 8m3-8 5 8"/></g></svg></span>
             </button>
@@ -1572,7 +1595,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
             <button class="action-sector" type="button" data-action="pick-up" data-title="Pick Up / Inspect" data-description="Pick up a visible product in the supermarket, or inspect a furniture item in place, to view its details." data-video-src="" aria-pressed="false" aria-controls="action-preview" style="--sector:polygon(0.403% 49.481%, 0.470% 47.361%, 0.628% 45.246%, 0.877% 43.140%, 1.215% 41.046%, 1.642% 38.969%, 2.158% 36.912%, 2.761% 34.879%, 3.451% 32.873%, 4.225% 30.899%, 5.084% 28.960%, 6.024% 27.059%, 7.045% 25.200%, 8.145% 23.386%, 9.320% 21.622%, 10.571% 19.909%, 11.893% 18.251%, 13.285% 16.651%, 14.744% 15.112%, 16.268% 13.636%, 17.853% 12.228%, 19.497% 10.888%, 21.197% 9.620%, 22.950% 8.426%, 24.752% 7.307%, 40.328% 33.646%, 39.300% 34.300%, 38.315% 35.017%, 37.379% 35.798%, 36.495% 36.635%, 35.666% 37.529%, 34.896% 38.473%, 34.188% 39.465%, 33.546% 40.500%, 32.971% 41.574%, 32.465% 42.683%, 32.033% 43.822%, 31.673% 44.987%, 31.389% 46.171%, 31.182% 47.372%, 31.053% 48.584%, 31.001% 49.801%);--label-x:20.122%;--label-y:32.750%">
               <span class="action-label"><span>Pick Up / Inspect</span><svg class="action-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g class="action-person" transform="translate(0 0)"><circle cx="6" cy="6" r="2.3"/><path d="M6 11v9"/><path d="M6 12l6 2 5-4M6 20l-3 8m3-8 5 8"/></g><rect x="17" y="5" width="5" height="5" rx=".8"/><path d="M12 14h3l2 10h10l2-8H16m3-4v2"/><circle cx="18" cy="28" r="1"/><circle cx="26" cy="28" r="1"/></svg></span>
             </button>
-            <div class="action-hub" aria-hidden="true"><strong>Customer<br>actions</strong></div>
+            <div class="action-hub" aria-hidden="true"><strong>Customer<br>Actions</strong></div>
           </div>
         </div>
         <article class="action-preview" id="action-preview" aria-labelledby="action-title">
@@ -1580,7 +1603,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
             <video id="action-video" controls muted playsinline loop preload="none" aria-label="Free Move demonstration" hidden></video>
             <div class="action-empty" id="action-empty">
               <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="5" y="10" width="38" height="28" rx="7" stroke="currentColor" stroke-width="1.3"/><path d="M21 18L30 24L21 30Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-              <strong id="action-video-status">Demo coming soon</strong>
+              <strong id="action-video-status">Demo Coming Soon</strong>
               <span id="action-video-hint">Action videos will appear here when available.</span>
             </div>
           </div>
@@ -1603,6 +1626,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
         <!-- Lucide check/x icons (Feather-derived). Paths unchanged; display size/stroke adjusted. Copyright and ISC/MIT notices: assets/ui-icons/lucide-attribution.json. -->
         
         <table>
+          <colgroup><col class="benchmark-name-column"><col class="benchmark-indicator-columns" span="7"><col class="benchmark-domain-column"></colgroup>
           <thead><tr><th scope="col">Benchmark<br>Name</th><th scope="col" title="Simulated 3D Environment: Whether evaluation is conducted in a simulated 3D environment with explicit spatial structure." tabindex="0" aria-label="Simulated 3D Environment: Whether evaluation is conducted in a simulated 3D environment with explicit spatial structure.">3D<br>Env.</th><th scope="col" title="Egocentric View: Whether the evaluated agent receives first-person visual observations from its own or the user’s perspective." tabindex="0" aria-label="Egocentric View: Whether the evaluated agent receives first-person visual observations from its own or the user’s perspective.">Ego.<br>View</th><th scope="col" title="Vision-Language Model Support: Whether the benchmark supports a Vision-Language Model (VLM) as the assistant for jointly processing visual and language inputs." tabindex="0" aria-label="Vision-Language Model Support: Whether the benchmark supports a Vision-Language Model (VLM) as the assistant for jointly processing visual and language inputs.">VLM<br>Supp.</th><th scope="col" title="Interactive Dialogue: Whether the benchmark includes multi-turn language communication between the evaluated agent and another participant, such that the agent’s utterances can influence the participant’s subsequent responses." tabindex="0" aria-label="Interactive Dialogue: Whether the benchmark includes multi-turn language communication between the evaluated agent and another participant, such that the agent’s utterances can influence the participant’s subsequent responses.">Inter.<br>Dialog</th><th scope="col" title="Physical Action: Whether the user or assistant can perform actions in the environment, such as navigation, movement, grasping, placing, or object manipulation." tabindex="0" aria-label="Physical Action: Whether the user or assistant can perform actions in the environment, such as navigation, movement, grasping, placing, or object manipulation.">Phys.<br>Action</th><th scope="col" title="Human in the Loop: Whether the benchmark includes an evaluation setting in which a real human directly interacts with the assistant online." tabindex="0" aria-label="Human in the Loop: Whether the benchmark includes an evaluation setting in which a real human directly interacts with the assistant online.">Human<br>Loop</th><th scope="col" title="Preference Alignment: Whether successful task completion requires the assistant to account for user-specific preferences and adapt its dialogue, recommendations, decisions, or actions accordingly." tabindex="0" aria-label="Preference Alignment: Whether successful task completion requires the assistant to account for user-specific preferences and adapt its dialogue, recommendations, decisions, or actions accordingly.">Pref.<br>Align.</th><th scope="col" title="Scenario Domain: The benchmark&#x27;s primary application setting or research focus. Retail Intelligence covers customer preferences and recommendations; Retail Robotics, in-store robot operations; Urban Robotics, urban navigation and robot collaboration; Social Intelligence, social preferences and relationships; and Gamified Robotics, dialogue-guided robot tasks in game-like environments." tabindex="0" aria-label="Scenario Domain: The benchmark&#x27;s primary application setting or research focus. Retail Intelligence covers customer preferences and recommendations; Retail Robotics, in-store robot operations; Urban Robotics, urban navigation and robot collaboration; Social Intelligence, social preferences and relationships; and Gamified Robotics, dialogue-guided robot tasks in game-like environments.">Scenario<br>Domain</th></tr></thead>
           <tbody>
             <tr><td data-cite="wang2025muse">MUSE</td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="cross"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 6.3C9.7 9.2 14.1 14.8 17.5 17.7M17.7 6.5C14.4 9.6 9.7 14.6 6.3 17.5"/></svg><span class="benchmark-sr-only">Not included</span></td><td class="check"><svg class="benchmark-mark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.3Q7 14.3 9.2 17.2C12 13.2 15.9 8.6 19.8 5.8"/></svg><span class="benchmark-sr-only">Included</span></td><td>Retail Intelligence</td></tr>
@@ -1825,7 +1849,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
         video.load();
       }
       empty.hidden = false;
-      status.textContent = "Demo coming soon";
+      status.textContent = "Demo Coming Soon";
       hint.textContent = "Action videos will appear here when available.";
     }
   }
@@ -1853,7 +1877,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
     video.pause();
     video.hidden = true;
     empty.hidden = false;
-    status.textContent = "Demo unavailable";
+    status.textContent = "Demo Unavailable";
     hint.textContent = "This clip could not be loaded. Please explore another action.";
   });
   document.addEventListener("visibilitychange", () => {
