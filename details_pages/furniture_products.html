@@ -621,7 +621,7 @@ body.details-document main.page-wrap .page-content .prompt-long-body { padding-t
 body.details-document main.page-wrap .page-content .prompt-long-content > summary { padding-top:var(--docs-detail-gap); padding-bottom:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .prompt-roles { row-gap:var(--docs-section-gap); }
 body.details-document main.page-wrap .page-content .shopping_goal-row {
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));
+  grid-template-columns:minmax(0,1fr);
   row-gap:var(--docs-section-gap);
 }
 body.details-document main.page-wrap .page-content .shopping_goal-json > summary { row-gap:var(--docs-detail-gap); }
@@ -639,11 +639,31 @@ body.details-document main.page-wrap .shopping_goal-meta {
   grid-column:1 / -1; margin-left:0; width:100%;
   color:var(--muted); font-size:13px; font-weight:400; line-height:1.4;
 }
-body.details-document main.page-wrap .shopping_goal-json > summary {
-  grid-template-columns:max-content minmax(0,1fr); column-gap:8px; align-items:baseline;
+body.details-document main.page-wrap .disclosure-preview { position:relative; min-width:0; }
+body.details-document main.page-wrap .profile-heading,
+body.details-document main.page-wrap .shopping_goal-heading { margin:0; padding-right:100px; }
+body.details-document main.page-wrap .profile-heading { display:flex; align-items:baseline; gap:10px; font-weight:400; }
+body.details-document main.page-wrap .shopping_goal-heading { display:flex; align-items:baseline; gap:8px; }
+body.details-document main.page-wrap .shopping_goal-heading > .shopping_goal-text { min-width:0; }
+body.details-document main.page-wrap .disclosure-preview > .shopping_goal-meta { margin-top:var(--docs-detail-gap); }
+body.details-document main.page-wrap .disclosure-toggle {
+  position:absolute; top:0; right:0; display:block;
+  width:fit-content; padding:0; color:var(--muted); font-size:13px; font-weight:400; line-height:1.75;
+  text-decoration:underline; text-underline-offset:3px;
 }
-body.details-document main.page-wrap .shopping_goal-json > summary > .shopping_goal-number { grid-column:1; grid-row:1; }
-body.details-document main.page-wrap .shopping_goal-json > summary > .shopping_goal-text { grid-column:2; grid-row:1; margin-left:0; width:auto; }
+body.details-document main.page-wrap .disclosure-hint {
+  display:inline-block; margin-left:10px; color:var(--muted);
+  font-size:12px; font-weight:400; line-height:1.6;
+  text-decoration:underline; text-underline-offset:3px; white-space:nowrap;
+}
+body.details-document main.page-wrap :is(.reference-fold, .api-card) > summary { position:relative; padding-right:50px; }
+body.details-document main.page-wrap :is(.reference-fold, .api-card) > summary > .disclosure-hint { position:absolute; top:var(--docs-row-space); right:0; margin:0; }
+body.details-document main.page-wrap .reference-section > div > .reference-fold:first-child > summary > .disclosure-hint,
+body.details-document main.page-wrap .api-compact > .api-card:first-child > summary > .disclosure-hint,
+body.details-document main.page-wrap .reference-fold-body > h3 + .api-card > summary > .disclosure-hint { top:0; }
+details > summary .disclosure-open { display:none; }
+details[open] > summary .disclosure-open { display:inline; }
+details[open] > summary .disclosure-closed { display:none; }
 body.details-document main.page-wrap .shopping_goal-attribute {
   display:inline-block; max-width:100%; padding:2px 6px;
   border-radius:4px; background:var(--paper); overflow-wrap:anywhere;
@@ -759,7 +779,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 <h1>Furniture products</h1>
 
 </header><div class="catalog-map"><img class="catalog-map-image catalog-map-image-furniture" src="../assets/furniture_store_layout_map_current.png" alt="Furniture layout with Assistant location labels corresponding to the map key"><nav class="catalog-map-key" aria-label="Map locations"><p class="catalog-map-title">Explore the map</p><a href="#store-Nordic_Nest"><span>Nordic Nest:</span> <code>1</code></a><a href="#store-Light_Logic"><span>Light Logic:</span> <code>2</code></a><a href="#store-Vicotian_Cuio_Cllection"><span>Vicotian Cuio Cllection:</span> <code>3</code></a><a href="#store-Play-cation"><span>Play-cation:</span> <code>4</code></a><a href="#store-Atelier_Prime"><span>Atelier Prime:</span> <code>5</code></a><a href="#store-The_Plant"><span>The Plant:</span> <code>6</code></a><a href="#store-Leather_and_Ink"><span>Leather and Ink:</span> <code>7</code></a></nav></div>
-<div class="catalog-tools"><div class="catalog-aux"><details class="location-index-panel" id="product-location-index"><summary>Product location index · assistant input</summary><pre class="location-index">{
+<div class="catalog-tools"><div class="catalog-aux"><details class="location-index-panel" id="product-location-index"><summary>Product location index · assistant input<span class="disclosure-hint" aria-hidden="true"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></span></summary><pre class="location-index">{
   &quot;Atelier Prime / 5a&quot;: [
     &quot;Blazer Camel Tufted Modular Corner Sectional&quot;,
     &quot;Blazer Camel Tufted Modular Sofa Section&quot;,
