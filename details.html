@@ -436,6 +436,24 @@ body.details-document main.page-wrap .docs-page-heading ~ :not(script) {
   margin-left:var(--docs-content-indent);
   width:calc(100% - var(--docs-content-indent));
 }
+/* Shared hierarchy: indent children once per semantic level, not per layout wrapper. */
+body.details-document main.page-wrap :is(.reference-section, .stack, .api-group, .overview-human, .human-feature, .catalog-section, .catalog-subgroup, #reference-snapshots) > :is(h2,h3,h4,h5,h6) ~ :not(h2,h3,h4,h5,h6,script,span[id]),
+body.details-document main.page-wrap .actions-section > .actions-section-heading ~ .action-table-frame,
+body.details-document main.page-wrap .reference-fold-body > h3 ~ :is(details, pre, .api-compact),
+body.details-document main.page-wrap details:not(.prompt-message):not(.prompt-long-content) > :not(summary,script,style),
+body.details-document main.page-wrap .api-summary-desc,
+body.details-document main.page-wrap .api-card-body > .api-subhead + ul,
+body.details-document main.page-wrap .run-command > strong ~ p,
+body.details-document main.page-wrap .catalog-info > .catalog-product-head ~ :not([hidden]),
+body.details-document main.page-wrap .profile-shopping-goals > .shopping_goal-row,
+body.details-document main.page-wrap .shopping_goal-json > summary > .shopping_goal-text {
+  min-width:0;
+  margin-left:var(--docs-content-indent);
+  width:calc(100% - var(--docs-content-indent));
+}
+/* Prompt message and inline sample containers already express these same levels. */
+.prompt-roles { --prompt-indent:var(--docs-content-indent); }
+/* End shared hierarchy. */
 body.details-document main.page-wrap h1 {
   margin:0; padding:0; max-width:none; color:var(--ink);
   font-size:var(--docs-title-size); font-weight:600; line-height:1.25;
