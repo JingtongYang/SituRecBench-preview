@@ -63,17 +63,13 @@ a { color:inherit; text-decoration:none; }
 .docs-brand { display:inline-block; margin-bottom:var(--docs-brand-gap); color:var(--ink); font-size:var(--docs-brand-size); font-weight:600; line-height:var(--docs-brand-line); letter-spacing:-.02em; white-space:nowrap; }
 .docs-brand span { color:inherit; font-weight:inherit; }
 .docs-navigation { grid-row:2; margin:0; padding:0; border:0; background:transparent; }
-.docs-navigation > summary { display:none; }
 .docs-tree { display:grid; gap:var(--docs-nav-group-gap); font-size:var(--docs-nav-size); line-height:var(--docs-nav-line); }
 .docs-tree ul { margin:0; padding:0; list-style:none; }
 .docs-overview .docs-page-link { font-weight:400; }
 .docs-group { margin:0; }
 .docs-scene { margin:0; }
 .docs-scene + .docs-scene { margin-top:var(--docs-nav-group-gap); }
-.docs-scene > .docs-scene-label { display:flex; align-items:center; justify-content:flex-start; gap:0; margin:0; padding:var(--docs-nav-row-padding) 8px; color:var(--ink); font-size:inherit; font-weight:500; line-height:inherit; list-style:none; border-radius:0; }
-.docs-scene-label::-webkit-details-marker { display:none; }
-.docs-scene-label:hover { color:#505050; background:transparent; }
-.docs-scene-label:focus-visible { outline:2px solid var(--accent); outline-offset:-2px; }
+.docs-scene > .docs-scene-label { display:flex; align-items:center; justify-content:flex-start; gap:0; margin:0; padding:var(--docs-nav-row-padding) 8px; color:var(--ink); font-size:inherit; font-weight:500; line-height:inherit; letter-spacing:normal; }
 .docs-scene ul { padding:var(--docs-nav-item-gap) 0 0 24px; }
 .docs-human .docs-page-link { color:var(--ink); font-size:inherit; font-weight:500; line-height:inherit; }
 .docs-tree li + li { margin-top:0; }
@@ -83,7 +79,7 @@ a { color:inherit; text-decoration:none; }
 .docs-page-link[aria-current="page"] { color:var(--ink); background:transparent; font-weight:500; }
 .docs-home { display:flex; align-items:center; gap:7px; width:fit-content; margin:0 0 var(--docs-home-gap); color:var(--ink); font-size:14px; font-weight:500; line-height:var(--docs-home-line); }
 .docs-home:hover { color:var(--ink); }
-.docs-sidebar a:focus-visible, .docs-navigation > summary:focus-visible { outline-offset:-2px; }
+.docs-sidebar a:focus-visible { outline-offset:-2px; }
 .page-wrap { grid-column:2; grid-row:1; width:100%; min-width:0; max-width:var(--content-width); padding:0; margin:var(--docs-main-top) auto 64px; scroll-margin-top:24px; }
 .overview-document .page-wrap { grid-column:2 / -1; grid-row:1; }
 .page-wrap :where(div, section, article, header, details, pre) { min-width:0; }
@@ -356,8 +352,6 @@ body.details-document main.page-wrap .prompt-markdown > :last-child { margin-bot
   .docs-sidebar { display:block; grid-column:1; grid-row:1; position:static; width:100%; height:auto; min-height:0; max-height:none; margin:var(--docs-top-space) 0 0; padding:0 0 16px; overflow:visible; overscroll-behavior:auto; border-right:0; border-bottom:var(--divider); background:var(--bg); }
   .docs-brand { margin-bottom:0; font-size:var(--docs-brand-size); }
   .docs-navigation { margin-top:16px; padding:0; }
-  .docs-navigation > summary { display:flex; align-items:center; justify-content:flex-start; gap:0; padding:9px 0; color:var(--muted); font-size:14px; font-weight:400; list-style:none; }
-  .docs-navigation > summary::-webkit-details-marker { display:none; }
   .docs-tree { grid-template-columns:minmax(0, 1fr); padding-top:16px; }
   .docs-home { margin:12px 0 0; }
   .page-wrap { grid-column:1; grid-row:2; margin-top:40px; }
@@ -520,10 +514,10 @@ body.details-document main.page-wrap .page-content .prompt-long-body { padding-t
 body.details-document main.page-wrap .page-content .prompt-long-content > summary { padding-top:var(--docs-detail-gap); padding-bottom:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .prompt-roles { row-gap:var(--docs-section-gap); }
 body.details-document main.page-wrap .page-content .shopping_goal-row {
-  grid-template-columns:repeat(2,min(47%,552px));
-  justify-content:space-between;
-  row-gap:var(--docs-section-gap);
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--docs-section-gap);
 }
+body.details-document main.page-wrap .page-content .profile-shopping-goals { width:100%; max-width:1172px; }
 body.details-document main.page-wrap .page-content .shopping_goal-json > summary { row-gap:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content :is(.profile-json, .shopping_goal-json) > pre { margin-top:var(--docs-child-gap); }
 body.details-document main.page-wrap .page-content .catalog-section > h2 { margin-bottom:var(--docs-child-gap); }
@@ -592,76 +586,16 @@ body.details-document main.page-wrap .shopping_goal-attribute {
   <a class="docs-brand" href="index.html">SituRecBench <span>Docs</span></a>
   <a class="docs-home" href="index.html"><span aria-hidden="true">←</span> Home</a>
   </div>
-  <details class="docs-navigation" open>
-    <summary>Browse pages</summary>
+  <div class="docs-navigation">
     <nav class="docs-tree" aria-label="Documentation pages">
       <ul class="docs-overview"><li><a class="docs-page-link" href="details.html" aria-current="page">Overview</a></li></ul>
       <div class="docs-group">
-        <details class="docs-scene" data-docs-scene="supermarket"><summary class="docs-scene-label">Supermarket</summary><ul><li><a class="docs-page-link" href="details_pages/supermarket_products.html">Products</a></li><li><a class="docs-page-link" href="details_pages/supermarket_shopping_goals.html">Shopping Goals</a></li><li><a class="docs-page-link" href="details_pages/supermarket_actions.html">Actions</a></li><li><a class="docs-page-link" href="details_pages/supermarket_prompt.html">Prompts</a></li><li><a class="docs-page-link" href="details_pages/supermarket_evaluation.html">Evaluation</a></li></ul></details><details class="docs-scene" data-docs-scene="furniture"><summary class="docs-scene-label">Home Furnishings</summary><ul><li><a class="docs-page-link" href="details_pages/furniture_products.html">Products</a></li><li><a class="docs-page-link" href="details_pages/furniture_shopping_goals.html">Shopping Goals</a></li><li><a class="docs-page-link" href="details_pages/furniture_actions.html">Actions</a></li><li><a class="docs-page-link" href="details_pages/furniture_prompt.html">Prompts</a></li><li><a class="docs-page-link" href="details_pages/furniture_evaluation.html">Evaluation</a></li></ul></details>
+        <section class="docs-scene" data-docs-scene="supermarket"><h2 class="docs-scene-label">Supermarket</h2><ul><li><a class="docs-page-link" href="details_pages/supermarket_products.html">Products</a></li><li><a class="docs-page-link" href="details_pages/supermarket_shopping_goals.html">Shopping Goals</a></li><li><a class="docs-page-link" href="details_pages/supermarket_actions.html">Actions</a></li><li><a class="docs-page-link" href="details_pages/supermarket_prompt.html">Prompts</a></li><li><a class="docs-page-link" href="details_pages/supermarket_evaluation.html">Evaluation</a></li></ul></section><section class="docs-scene" data-docs-scene="furniture"><h2 class="docs-scene-label">Home Furnishings</h2><ul><li><a class="docs-page-link" href="details_pages/furniture_products.html">Products</a></li><li><a class="docs-page-link" href="details_pages/furniture_shopping_goals.html">Shopping Goals</a></li><li><a class="docs-page-link" href="details_pages/furniture_actions.html">Actions</a></li><li><a class="docs-page-link" href="details_pages/furniture_prompt.html">Prompts</a></li><li><a class="docs-page-link" href="details_pages/furniture_evaluation.html">Evaluation</a></li></ul></section>
       </div>
       <ul class="docs-human"><li><a class="docs-page-link" href="details_pages/human_interaction.html">Human Interaction</a></li></ul>
     </nav>
-  </details>
+  </div>
 </aside>
-
-
-<script>
-(() => {
-  const menu = document.querySelector('.docs-navigation');
-  if (!menu) return;
-  const scenes = Array.from(menu.querySelectorAll('[data-docs-scene]'));
-  const stateKey = 'sitrec.docs.navigation.v1';
-  let saved = null;
-  try {
-    saved = JSON.parse(sessionStorage.getItem(stateKey) || 'null');
-  } catch (_) { /* Navigation remains usable when session storage is unavailable. */ }
-  scenes.forEach((scene) => {
-    const open = saved?.scenes?.[scene.dataset.docsScene];
-    if (typeof open === 'boolean') scene.open = open;
-  });
-  const saveMenu = () => {
-    try {
-      sessionStorage.setItem(stateKey, JSON.stringify({
-        browse:menu.open,
-        scenes:Object.fromEntries(scenes.map((scene) => [scene.dataset.docsScene, scene.open])),
-      }));
-    } catch (_) { /* Storage is optional; native details controls still work. */ }
-  };
-  const summary = menu.querySelector('summary');
-  const desktop = window.matchMedia('(min-width: 901px)');
-  const syncMenu = () => {
-    if (!desktop.matches && menu.contains(document.activeElement) && document.activeElement !== summary) summary.focus();
-    menu.open = desktop.matches;
-    if (desktop.matches && document.activeElement === summary) {
-      const current = menu.querySelector('[aria-current="page"]');
-      if (current) current.focus();
-    }
-  };
-  desktop.addEventListener('change', syncMenu);
-  syncMenu();
-  if (!desktop.matches && typeof saved?.browse === 'boolean') menu.open = saved.browse;
-  scenes.forEach((scene) => scene.addEventListener('toggle', saveMenu));
-  menu.addEventListener('toggle', saveMenu);
-  window.addEventListener('pagehide', saveMenu);
-  window.addEventListener('pageshow', (event) => {
-    if (!event.persisted) return;
-    try {
-      const latest = JSON.parse(sessionStorage.getItem(stateKey) || 'null');
-      scenes.forEach((scene) => {
-        const open = latest?.scenes?.[scene.dataset.docsScene];
-        if (typeof open === 'boolean') scene.open = open;
-      });
-      if (!desktop.matches && typeof latest?.browse === 'boolean') menu.open = latest.browse;
-    } catch (_) { /* Keep the restored page usable without storage. */ }
-  });
-  menu.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape' || event.defaultPrevented || desktop.matches || !menu.open) return;
-    event.preventDefault();
-    menu.open = false;
-    summary.focus();
-  });
-})();
-</script>
 
 
 <main class="page-wrap" id="main-content" tabindex="-1">
@@ -778,8 +712,6 @@ body.details-document main.page-wrap .shopping_goal-attribute {
   document.addEventListener('scroll', queueActive, {passive:true});
   window.addEventListener('resize', queueActive);
   document.addEventListener('catalog:filtered', queueActive);
-  const pageMenu = document.querySelector('.docs-navigation');
-  if (pageMenu) pageMenu.addEventListener('toggle', queueActive);
   document.querySelector('main') && new MutationObserver(queueActive).observe(document.querySelector('main'), {subtree:true, attributes:true, attributeFilter:['hidden']});
   setActive();
 })();
