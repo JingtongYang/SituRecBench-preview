@@ -530,9 +530,14 @@ body.details-document main.page-wrap .page-content .catalog-subgroup { margin-bo
 body.details-document main.page-wrap .page-content .catalog-info { padding-top:var(--docs-child-gap); row-gap:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .catalog-map-note { margin-top:var(--docs-child-gap); }
 body.details-document main.page-wrap .page-content .run-plan-stat { padding-top:0; padding-bottom:0; row-gap:var(--docs-detail-gap); }
-body.details-document main.page-wrap .page-content .prompt-markdown :is(h1,h2,h3,h4,h5,h6) { margin-top:16px; margin-bottom:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .prompt-markdown :is(h1,h2,h3,h4,h5,h6) { margin-top:16px; margin-bottom:12px; }
 body.details-document main.page-wrap .page-content .prompt-markdown > :first-child { margin-top:0; }
 body.details-document main.page-wrap .page-content .prompt-markdown > :last-child { margin-bottom:0; }
+body.details-document main.page-wrap .page-content .prompt-markdown > :is(h1,h2,h3,h4,h5,h6):last-child { margin-bottom:12px; }
+body.details-document main.page-wrap .page-content .prompt-roles > .prompt-role { row-gap:20px; }
+body.details-document main.page-wrap .page-content .prompt-message > summary { padding-bottom:16px; }
+body.details-document main.page-wrap .page-content :is(.prompt-message-body, .prompt-long-body) { padding-top:16px; }
+body.details-document main.page-wrap .page-content .prompt-long-content > summary { padding-bottom:12px; }
 body.details-document main.page-wrap .shopping_goal-meta {
   display:flex; flex-wrap:wrap; gap:5px; min-width:0;
   grid-column:1 / -1; margin-left:0; width:100%;
