@@ -535,7 +535,10 @@ body.details-document main.page-wrap :is(.reference-section, .actions-section, .
 body.details-document main.page-wrap .catalog-section { margin-top:0; }
 body.details-document main.page-wrap .catalog-section > h2 { margin-bottom:16px; padding-bottom:0; border-bottom:0; }
 body.details-document main.page-wrap .profile-group:first-child { padding-top:0; }
-body.details-document main.page-wrap .catalog-map { display:grid; grid-template-columns:max-content minmax(0,1fr); align-items:start; gap:24px; padding:0; }
+body.details-document main.page-wrap .catalog-map { display:grid; grid-template-columns:max-content minmax(0,1fr); align-items:start; gap:32px; padding:0; }
+body.details-document main.page-wrap .catalog-map-key a { text-decoration:underline; text-underline-offset:3px; border-radius:0; background:transparent; }
+body.details-document main.page-wrap .catalog-map-key a:hover { background:transparent; }
+body.details-document main.page-wrap .catalog-map-key a code { color:inherit; }
 body.details-document main.page-wrap .catalog-map-image { width:auto; max-width:100%; justify-self:start; object-position:left top; }
 body.details-document main.page-wrap .catalog-map-image-supermarket { height:220px; }
 body.details-document main.page-wrap .catalog-card .catalog-name { font-size:15px; line-height:1.5; }
@@ -588,7 +591,11 @@ body.details-document main.page-wrap .page-content :is(.api-card, .reference-fol
 body.details-document main.page-wrap .page-content .api-subhead { margin-top:0; margin-bottom:0; }
 body.details-document main.page-wrap .page-content .action-entry .action-call { margin-top:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .action-call-body { padding-top:var(--docs-child-gap); }
-body.details-document main.page-wrap .page-content :is(.prompt-message-body, .profile-shopping-goals, .shopping_goal-card, .run-command) { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
+body.details-document main.page-wrap .page-content :is(.prompt-message-body, .run-command) { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
+body.details-document main.page-wrap .page-content :is(.profile-shopping-goals, .shopping_goal-card) { padding:24px; }
+@media (max-width:700px) {
+  body.details-document main.page-wrap .page-content :is(.profile-shopping-goals, .shopping_goal-card) { padding:20px; }
+}
 body.details-document main.page-wrap .page-content .prompt-long-body { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
 body.details-document main.page-wrap .page-content .prompt-long-content > summary { padding-top:var(--docs-detail-gap); padding-bottom:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .prompt-roles { row-gap:var(--docs-section-gap); }
@@ -701,7 +708,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 <h1>Furniture products</h1>
 
 </header><div class="catalog-map"><img class="catalog-map-image catalog-map-image-furniture" src="../assets/furniture_store_layout_map_current.png" alt="Furniture layout with Assistant location labels corresponding to the map key"><nav class="catalog-map-key" aria-label="Map locations"><p class="catalog-map-title">Explore the map</p><a href="#store-Nordic_Nest"><span>Nordic Nest:</span> <code>1</code></a><a href="#store-Light_Logic"><span>Light Logic:</span> <code>2</code></a><a href="#store-Vicotian_Cuio_Cllection"><span>Vicotian Cuio Cllection:</span> <code>3</code></a><a href="#store-Play-cation"><span>Play-cation:</span> <code>4</code></a><a href="#store-Atelier_Prime"><span>Atelier Prime:</span> <code>5</code></a><a href="#store-The_Plant"><span>The Plant:</span> <code>6</code></a><a href="#store-Leather_and_Ink"><span>Leather and Ink:</span> <code>7</code></a></nav></div>
-<div class="catalog-tools"><div class="catalog-aux"><details class="location-index-panel" id="product-location-index"><summary tabindex="-1">Product location index · assistant input<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><pre class="location-index">{
+<div class="catalog-tools"><div class="catalog-aux"><details class="location-index-panel" id="product-location-index"><summary tabindex="-1">Product Location Index （Assistant Input）<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><pre class="location-index">{
   &quot;Atelier Prime / 5a&quot;: [
     &quot;Blazer Camel Tufted Modular Corner Sectional&quot;,
     &quot;Blazer Camel Tufted Modular Sofa Section&quot;,
