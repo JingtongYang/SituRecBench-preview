@@ -452,9 +452,9 @@ body.details-document main.page-wrap :is(.reference-section, .actions-section, .
 body.details-document main.page-wrap .catalog-section { margin-top:0; }
 body.details-document main.page-wrap .catalog-section > h2 { margin-bottom:16px; padding-bottom:0; border-bottom:0; }
 body.details-document main.page-wrap .profile-group:first-child { padding-top:0; }
-body.details-document main.page-wrap .catalog-map { display:grid; grid-template-columns:max-content minmax(0,1fr); align-items:start; gap:32px; padding:0; }
-body.details-document main.page-wrap .catalog-map-key a { text-decoration:underline; text-underline-offset:3px; border-radius:0; background:transparent; }
-body.details-document main.page-wrap .catalog-map-key a:hover { background:transparent; }
+body.details-document main.page-wrap .catalog-map { display:grid; grid-template-columns:minmax(320px,max-content) minmax(0,1fr); align-items:start; gap:48px; padding:0; }
+body.details-document main.page-wrap .catalog-map-key a { text-decoration:none; text-underline-offset:3px; border-radius:0; background:transparent; }
+body.details-document main.page-wrap .catalog-map-key a:is(:hover,:focus-visible) { text-decoration:underline; background:transparent; }
 body.details-document main.page-wrap .catalog-map-key a code { color:inherit; }
 body.details-document main.page-wrap .catalog-map-image { width:auto; max-width:100%; justify-self:start; object-position:left top; }
 body.details-document main.page-wrap .catalog-map-image-supermarket { height:220px; }
@@ -476,8 +476,10 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
 @media (max-width:900px) {
   body.details-document { --docs-top-space:24.7px; --docs-title-size:28px; --docs-title-gap:64px; --docs-section-gap:24px; --docs-table-row-height:141px; }
 }
-@media (max-width:600px) {
+@media (max-width:700px) {
   body.details-document main.page-wrap .catalog-map { grid-template-columns:minmax(0,1fr); gap:16px; }
+}
+@media (max-width:600px) {
   body.details-document main.page-wrap .catalog-map-image-supermarket { height:190px; }
   body.details-document main.page-wrap table :is(th, td) { padding-left:10px; padding-right:10px; }
   body.details-document main.page-wrap table tr > :first-child { padding-left:0; }
