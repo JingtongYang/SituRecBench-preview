@@ -253,23 +253,18 @@ details[open] > pre { max-height:none; overflow:auto; }
 .actions-section { display:grid; gap:12px; }
 .actions-section-heading h2 { margin:0; font-size:16px; font-weight:600; line-height:1.5; }
 .actions-section-heading p { font-size:13px; line-height:1.5; }
-.action-table-frame { min-width:0; }
-.action-table { width:100%; table-layout:fixed; border-collapse:collapse; text-align:left; }
-.action-name-column { width:204px; }
-.action-table th, .action-table td { padding:8px 16px; vertical-align:top; border-bottom:var(--divider); }
-.action-table th { padding-right:24px; }
-.action-table thead th { padding-top:8px; padding-bottom:8px; color:var(--muted); font-size:13px; font-weight:500; }
-.action-table tbody tr:last-child > :is(th, td) { border-bottom:0; }
-.action-entry h3 { margin:0; font-size:13px; font-weight:600; line-height:1.5; overflow-wrap:anywhere; }
-.action-description { margin:0; color:var(--ink); font-size:13px; font-weight:400; line-height:1.55; overflow-wrap:anywhere; }
-.action-entry .action-call { margin-top:4px; }
-.action-call > summary { width:fit-content; padding:0; color:var(--muted); font-size:13px; font-weight:400; line-height:1.5; list-style:none; }
+.action-list { min-width:0; margin:0; padding:0; list-style:none; }
+.action-entry { min-width:0; padding:12px 0; border-bottom:var(--divider); }
+.action-entry:last-child { border-bottom:0; }
+.action-description { min-width:0; margin:0; color:var(--ink); font-size:14px; font-weight:400; line-height:1.6; overflow-wrap:anywhere; }
+.action-name { font-weight:600; white-space:nowrap; }
+.action-call > summary { display:flex; align-items:baseline; gap:16px; width:100%; padding:0; list-style:none; }
+.action-call > summary > .action-description { flex:1; }
+body.details-document main.page-wrap .action-call > summary > .action-call-toggle { flex:none; margin-left:0; }
 .action-call > summary::-webkit-details-marker { display:none; }
 .action-call-body { display:grid; gap:12px; padding-top:14px; }
-.action-call-body p { margin:0; color:var(--muted); font-size:13px; }
+.action-call-body p { margin:0; color:var(--muted); font-size:14px; }
 .action-call-body pre { padding:16px; background:var(--paper); font:13px/1.65 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
-.action-copy { justify-self:start; padding:5px 10px; border:var(--frame); border-radius:var(--radius-sm); background:var(--bg); color:var(--muted); font-size:13px; cursor:pointer; }
-.action-copy:hover { color:var(--ink); }
 .reference-page { display:grid; gap:40px; }
 .reference-header { display:grid; gap:12px; padding:8px 0 0; }
 .reference-header h1 { margin:0; font-size:30px; line-height:1.2; font-weight:600; letter-spacing:-.6px; }
@@ -330,10 +325,6 @@ body.details-document main.page-wrap .prompt-markdown > :last-child { margin-bot
 }
 @media (max-width:700px) {
   .actions-header h1 { font-size:28px; }
-  .action-name-column { width:34%; }
-  .action-table th { padding-right:16px; }
-  .action-table th, .action-table td { padding:8px 12px; }
-  .action-entry h3 { font-size:13px; }
 }
 @media (min-width:901px) and (max-height:760px) {
   .profile-group { padding:24px 0; row-gap:24px; }
@@ -492,7 +483,7 @@ body.details-document main.page-wrap .docs-page-heading ~ :not(script) {
 }
 /* Shared hierarchy: indent children once per semantic level, not per layout wrapper. */
 body.details-document main.page-wrap :is(.reference-section, .stack, .api-group, .overview-human, .human-feature, .catalog-section, .catalog-subgroup, #reference-snapshots) > :is(h2,h3,h4,h5,h6) ~ :not(h2,h3,h4,h5,h6,script,span[id]),
-body.details-document main.page-wrap .actions-section > .actions-section-heading ~ .action-table-frame,
+body.details-document main.page-wrap .actions-section > .actions-section-heading ~ .action-list,
 body.details-document main.page-wrap .reference-fold-body > h3 ~ :is(details, pre, .api-compact),
 body.details-document main.page-wrap .page-content details:not(.prompt-message):not(.prompt-long-content) > :not(summary,script,style),
 body.details-document main.page-wrap .api-summary-desc,
@@ -549,7 +540,7 @@ body.details-document main.page-wrap table :is(th, td) { padding:12px 16px; font
 body.details-document main.page-wrap table tr > :first-child { padding-left:0; }
 body.details-document main.page-wrap table tr > :last-child { padding-right:0; }
 body.details-document main.page-wrap table thead th { padding-top:0; padding-bottom:12px; font-size:13px; font-weight:500; color:var(--muted); }
-body.details-document main.page-wrap table :is(h3, .action-description, .action-call > summary, .action-call-body p, .action-copy) { font-size:14px; line-height:1.6; }
+body.details-document main.page-wrap table h3 { font-size:14px; line-height:1.6; }
 body.details-document main.page-wrap :is(.reference-fold-body pre, .action-call-body pre, .catalog-data pre, .profile-json pre, .shopping_goal-json pre) { font-size:13px; line-height:1.65; }
 body.details-document main.page-wrap > .page-tools,
 body.details-document main.page-wrap .docs-page-heading > .page-tools { position:absolute; top:6px; right:0; margin:0; z-index:10; }
@@ -591,7 +582,6 @@ body.details-document main.page-wrap .page-content .reference-fold-body > h3 + .
 body.details-document main.page-wrap .page-content .prompt-message-list > .prompt-message:first-child > summary { padding-top:0; }
 body.details-document main.page-wrap .page-content :is(.api-card, .reference-fold) > summary { row-gap:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .api-subhead { margin-top:0; margin-bottom:0; }
-body.details-document main.page-wrap .page-content .action-entry .action-call { margin-top:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .action-call-body { padding-top:var(--docs-child-gap); }
 body.details-document main.page-wrap .page-content :is(.prompt-message-body, .run-command) { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
 body.details-document main.page-wrap .page-content :is(.profile-shopping-goals, .shopping_goal-card) { padding:24px; }

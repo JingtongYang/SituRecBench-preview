@@ -170,23 +170,18 @@ details[open] > pre { max-height:none; overflow:auto; }
 .actions-section { display:grid; gap:12px; }
 .actions-section-heading h2 { margin:0; font-size:16px; font-weight:600; line-height:1.5; }
 .actions-section-heading p { font-size:13px; line-height:1.5; }
-.action-table-frame { min-width:0; }
-.action-table { width:100%; table-layout:fixed; border-collapse:collapse; text-align:left; }
-.action-name-column { width:204px; }
-.action-table th, .action-table td { padding:8px 16px; vertical-align:top; border-bottom:var(--divider); }
-.action-table th { padding-right:24px; }
-.action-table thead th { padding-top:8px; padding-bottom:8px; color:var(--muted); font-size:13px; font-weight:500; }
-.action-table tbody tr:last-child > :is(th, td) { border-bottom:0; }
-.action-entry h3 { margin:0; font-size:13px; font-weight:600; line-height:1.5; overflow-wrap:anywhere; }
-.action-description { margin:0; color:var(--ink); font-size:13px; font-weight:400; line-height:1.55; overflow-wrap:anywhere; }
-.action-entry .action-call { margin-top:4px; }
-.action-call > summary { width:fit-content; padding:0; color:var(--muted); font-size:13px; font-weight:400; line-height:1.5; list-style:none; }
+.action-list { min-width:0; margin:0; padding:0; list-style:none; }
+.action-entry { min-width:0; padding:12px 0; border-bottom:var(--divider); }
+.action-entry:last-child { border-bottom:0; }
+.action-description { min-width:0; margin:0; color:var(--ink); font-size:14px; font-weight:400; line-height:1.6; overflow-wrap:anywhere; }
+.action-name { font-weight:600; white-space:nowrap; }
+.action-call > summary { display:flex; align-items:baseline; gap:16px; width:100%; padding:0; list-style:none; }
+.action-call > summary > .action-description { flex:1; }
+body.details-document main.page-wrap .action-call > summary > .action-call-toggle { flex:none; margin-left:0; }
 .action-call > summary::-webkit-details-marker { display:none; }
 .action-call-body { display:grid; gap:12px; padding-top:14px; }
-.action-call-body p { margin:0; color:var(--muted); font-size:13px; }
+.action-call-body p { margin:0; color:var(--muted); font-size:14px; }
 .action-call-body pre { padding:16px; background:var(--paper); font:13px/1.65 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
-.action-copy { justify-self:start; padding:5px 10px; border:var(--frame); border-radius:var(--radius-sm); background:var(--bg); color:var(--muted); font-size:13px; cursor:pointer; }
-.action-copy:hover { color:var(--ink); }
 .reference-page { display:grid; gap:40px; }
 .reference-header { display:grid; gap:12px; padding:8px 0 0; }
 .reference-header h1 { margin:0; font-size:30px; line-height:1.2; font-weight:600; letter-spacing:-.6px; }
@@ -247,10 +242,6 @@ body.details-document main.page-wrap .prompt-markdown > :last-child { margin-bot
 }
 @media (max-width:700px) {
   .actions-header h1 { font-size:28px; }
-  .action-name-column { width:34%; }
-  .action-table th { padding-right:16px; }
-  .action-table th, .action-table td { padding:8px 12px; }
-  .action-entry h3 { font-size:13px; }
 }
 @media (min-width:901px) and (max-height:760px) {
   .profile-group { padding:24px 0; row-gap:24px; }
@@ -409,7 +400,7 @@ body.details-document main.page-wrap .docs-page-heading ~ :not(script) {
 }
 /* Shared hierarchy: indent children once per semantic level, not per layout wrapper. */
 body.details-document main.page-wrap :is(.reference-section, .stack, .api-group, .overview-human, .human-feature, .catalog-section, .catalog-subgroup, #reference-snapshots) > :is(h2,h3,h4,h5,h6) ~ :not(h2,h3,h4,h5,h6,script,span[id]),
-body.details-document main.page-wrap .actions-section > .actions-section-heading ~ .action-table-frame,
+body.details-document main.page-wrap .actions-section > .actions-section-heading ~ .action-list,
 body.details-document main.page-wrap .reference-fold-body > h3 ~ :is(details, pre, .api-compact),
 body.details-document main.page-wrap .page-content details:not(.prompt-message):not(.prompt-long-content) > :not(summary,script,style),
 body.details-document main.page-wrap .api-summary-desc,
@@ -466,7 +457,7 @@ body.details-document main.page-wrap table :is(th, td) { padding:12px 16px; font
 body.details-document main.page-wrap table tr > :first-child { padding-left:0; }
 body.details-document main.page-wrap table tr > :last-child { padding-right:0; }
 body.details-document main.page-wrap table thead th { padding-top:0; padding-bottom:12px; font-size:13px; font-weight:500; color:var(--muted); }
-body.details-document main.page-wrap table :is(h3, .action-description, .action-call > summary, .action-call-body p, .action-copy) { font-size:14px; line-height:1.6; }
+body.details-document main.page-wrap table h3 { font-size:14px; line-height:1.6; }
 body.details-document main.page-wrap :is(.reference-fold-body pre, .action-call-body pre, .catalog-data pre, .profile-json pre, .shopping_goal-json pre) { font-size:13px; line-height:1.65; }
 body.details-document main.page-wrap > .page-tools,
 body.details-document main.page-wrap .docs-page-heading > .page-tools { position:absolute; top:6px; right:0; margin:0; z-index:10; }
@@ -508,7 +499,6 @@ body.details-document main.page-wrap .page-content .reference-fold-body > h3 + .
 body.details-document main.page-wrap .page-content .prompt-message-list > .prompt-message:first-child > summary { padding-top:0; }
 body.details-document main.page-wrap .page-content :is(.api-card, .reference-fold) > summary { row-gap:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .api-subhead { margin-top:0; margin-bottom:0; }
-body.details-document main.page-wrap .page-content .action-entry .action-call { margin-top:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .action-call-body { padding-top:var(--docs-child-gap); }
 body.details-document main.page-wrap .page-content :is(.prompt-message-body, .run-command) { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
 body.details-document main.page-wrap .page-content :is(.profile-shopping-goals, .shopping_goal-card) { padding:24px; }
@@ -626,9 +616,9 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 <div class="actions-page">
 <header class="actions-header docs-page-heading"><h1>Supermarket Actions</h1></header>
 <section class="actions-section"><header class="actions-section-heading"><h2 id="assistant-action-types">Assistant Actions</h2></header>
-<div class="action-table-frame"><table class="action-table" aria-label="Assistant Actions"><colgroup><col class="action-name-column"><col></colgroup><tbody><tr class="action-entry"><th scope="row"><h3 id="assistant-greet">Greet</h3></th><td><p class="action-description">A stand-alone greeting, welcome, offer to help, thanks, apology, farewell, or another social courtesy.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-ask-preference">Ask Preference</h3></th><td><p class="action-description">Ask about a preference the customer has not yet expressed.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-clarify-need">Clarify Need</h3></th><td><p class="action-description">Clarify a need the customer has expressed ambiguously, inconsistently, or with an unclear reference.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-navigate">Navigate</h3></th><td><p class="action-description">Guide the customer to move, turn, look around, or go to a location.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-recommend">Recommend</h3></th><td><p class="action-description">Explicitly recommend a specific product.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-explain">Explain</h3></th><td><p class="action-description">Proactively explain product information, features, uses, or recommendation rationale.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-answer-question">Answer Question</h3></th><td><p class="action-description">Directly answer an explicit customer question.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-compare">Compare</h3></th><td><p class="action-description">Compare two or more specific products.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-handle-rejection">Handle Rejection</h3></th><td><p class="action-description">Respond to a customer rejection and adjust based on the reason.</p></td></tr><tr class="action-entry"><th scope="row"><h3 id="assistant-confirm-purchase">Confirm Purchase</h3></th><td><p class="action-description">After the customer expresses acceptance, confirm the product or guide purchase completion.</p></td></tr></tbody></table></div></section>
+<ul class="action-list" aria-label="Assistant Actions"><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-greet">Greet:</strong> A stand-alone greeting, welcome, offer to help, thanks, apology, farewell, or another social courtesy.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-ask-preference">Ask Preference:</strong> Ask about a preference the customer has not yet expressed.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-clarify-need">Clarify Need:</strong> Clarify a need the customer has expressed ambiguously, inconsistently, or with an unclear reference.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-navigate">Navigate:</strong> Guide the customer to move, turn, look around, or go to a location.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-recommend">Recommend:</strong> Explicitly recommend a specific product.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-explain">Explain:</strong> Proactively explain product information, features, uses, or recommendation rationale.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-answer-question">Answer Question:</strong> Directly answer an explicit customer question.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-compare">Compare:</strong> Compare two or more specific products.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-handle-rejection">Handle Rejection:</strong> Respond to a customer rejection and adjust based on the reason.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-confirm-purchase">Confirm Purchase:</strong> After the customer expresses acceptance, confirm the product or guide purchase completion.</span></p></li></ul></section>
 <section class="actions-section"><header class="actions-section-heading"><h2 id="customer-tool-methods">User Actions</h2></header>
-<div class="action-table-frame"><table class="action-table" aria-label="User Actions"><colgroup><col class="action-name-column"><col></colgroup><tbody><tr class="action-entry"><th scope="row"><h3 id="move-forward">Move Forward</h3></th><td><p class="action-description">walk forward along the current facing direction, usually to approach the area in front.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-move-forward">{
+<ul class="action-list" aria-label="User Actions"><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-forward">Move Forward:</strong> Walk forward along the current facing direction, usually to approach the area in front.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-forward">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -639,7 +629,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-move-forward" aria-label="Copy Move Forward call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-backward">Move Backward</h3></th><td><p class="action-description">step backward without changing the final facing direction; useful to back away, avoid occlusion, or recover the view.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-move-backward">{
+}</pre><p>Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-backward">Move Backward:</strong> Step backward without changing the final facing direction; useful to back away, avoid occlusion, or recover the view.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-backward">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -650,7 +640,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-move-backward" aria-label="Copy Move Backward call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="turn-and-move">Turn And Move</h3></th><td><p class="action-description">turn left or right by an angle, then walk forward briefly; useful for exploring the left-front or right-front area.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-turn-and-move">{
+}</pre><p>Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="turn-and-move">Turn And Move:</strong> Turn left or right by an angle, then walk forward briefly; useful for exploring the left-front or right-front area.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-turn-and-move">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -663,7 +653,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-turn-and-move" aria-label="Copy Turn And Move call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: right / left. degree: a positive number (degrees). duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-and-turn">Move And Turn</h3></th><td><p class="action-description">walk forward along the current facing direction, then turn left or right by an angle; useful for passing through the space ahead before observing the area after the turn.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-move-and-turn">{
+}</pre><p>Direction: right / left. Degree: a positive number (degrees). Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-and-turn">Move And Turn:</strong> Walk forward along the current facing direction, then turn left or right by an angle; useful for passing through the space ahead before observing the area after the turn.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-and-turn">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -676,7 +666,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-move-and-turn" aria-label="Copy Move And Turn call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: right / left. degree: a positive number (degrees). duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="side-step">Side Step</h3></th><td><p class="action-description">step left or right without changing facing direction; useful to avoid occlusion or adjust the viewing angle.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-side-step">{
+}</pre><p>Direction: right / left. Degree: a positive number (degrees). Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="side-step">Side Step:</strong> Step left or right without changing facing direction; useful to avoid occlusion or adjust the viewing angle.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-side-step">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -688,7 +678,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-side-step" aria-label="Copy Side Step call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: left / right. duration: a positive number (seconds).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="turn">Turn</h3></th><td><p class="action-description">turn in place to the left or right; changes facing direction only.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-turn">{
+}</pre><p>Direction: left / right. Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="turn">Turn:</strong> Turn in place to the left or right; changes facing direction only.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-turn">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -700,7 +690,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-turn" aria-label="Copy Turn call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: right / left. degree: a positive number (degrees).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="look-up-down">Look Up Down</h3></th><td><p class="action-description">adjust pitch up or down only.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-look-up-down">{
+}</pre><p>Direction: right / left. Degree: a positive number (degrees).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="look-up-down">Look Up Down:</strong> Adjust pitch up or down only.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-look-up-down">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -712,7 +702,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-look-up-down" aria-label="Copy Look Up Down call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. direction: up / down. degree: a positive number (degrees).</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="move-to-fixture">Move To Fixture</h3></th><td><p class="action-description">move near a currently visible fixture. `nearest` goes to the closest reachable point and does not additionally adjust facing after movement. `front` and `back` move to the fixed point for that fixture side and align the customer to that side for the next observation.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-move-to-fixture">{
+}</pre><p>Direction: up / down. Degree: a positive number (degrees).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-to-fixture">Move To Fixture:</strong> Move near a currently visible fixture. `nearest` goes to the closest reachable point and does not additionally adjust facing after movement. `front` and `back` move to the fixed point for that fixture side and align the customer to that side for the next observation.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-to-fixture">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -724,7 +714,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-move-to-fixture" aria-label="Copy Move To Fixture call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace fixture_id with a key from current_obs_for_customer.visible_fixtures. approach: nearest / front / back.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="pick-up-item">Pick Up Item</h3></th><td><p class="action-description">pick up a currently visible and pickable product, entering the held-item confirmation state.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-pick-up-item">{
+}</pre><p>Replace fixture_id with a key from current_obs_for_customer.visible_fixtures. Approach: nearest / front / back.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="pick-up-item">Pick Up Item:</strong> Pick up a currently visible and pickable product, entering the held-item confirmation state.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-pick-up-item">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -735,7 +725,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-pick-up-item" aria-label="Copy Pick Up Item call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace item_id with a key from current_obs_for_customer.visible_items.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="add-to-cart">Add To Cart</h3></th><td><p class="action-description">add the currently held and confirmed product to the shopping cart.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-add-to-cart">{
+}</pre><p>Replace item_id with a key from current_obs_for_customer.visible_items.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="add-to-cart">Add To Cart:</strong> Add the currently held and confirmed product to the shopping cart.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-add-to-cart">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -746,7 +736,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-add-to-cart" aria-label="Copy Add To Cart call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn. Replace item_id with the ID of the held product.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="drop-item">Drop Item</h3></th><td><p class="action-description">put down the held product and exit the held-item confirmation state.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-drop-item">{
+}</pre><p>Replace item_id with the ID of the held product.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="drop-item">Drop Item:</strong> Put down the held product and exit the held-item confirmation state.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-drop-item">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -755,7 +745,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-drop-item" aria-label="Copy Drop Item call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn.</p></div></details></td></tr><tr class="action-entry"><th scope="row"><h3 id="idle">Idle</h3></th><td><p class="action-description">when not holding an item, do not move, pick up, or add anything; only talk naturally or wait.</p><details class="action-call"><summary tabindex="-1">How to call<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><div class="action-call-body"><pre id="call-idle">{
+}</pre></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="idle">Idle:</strong> When not holding an item, do not move, pick up, or add anything; only talk naturally or wait.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-idle">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -764,26 +754,8 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><button class="action-copy" type="button" data-copy-action="call-idle" aria-label="Copy Idle call">Copy JSON</button><p>Replace content with the customer&#x27;s reply. One action per turn.</p></div></details></td></tr></tbody></table></div></section>
+}</pre></div></details></li></ul></section>
 </div>
-<script>
-document.querySelectorAll('[data-copy-action]').forEach((button) => {
-  button.addEventListener('click', async () => {
-    const code = document.getElementById(button.dataset.copyAction);
-    try {
-      await navigator.clipboard.writeText(code.textContent);
-      button.textContent = 'Copied';
-    } catch (_) {
-      const range = document.createRange();
-      range.selectNodeContents(code);
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-      button.textContent = 'Selected — copy manually';
-    }
-  });
-});
-</script>
 </div>
 </main>
 
