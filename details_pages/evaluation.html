@@ -863,5 +863,63 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
 })();
 </script>
 
+
+<script data-docs-navigation-loading>
+(() => {
+  const menu = document.querySelector('.docs-tree');
+  const connection = navigator.connection;
+  if (!menu || !/^https?:$/.test(location.protocol) || connection?.saveData || /^(slow-)?2g$/.test(connection?.effectiveType || '')) return;
+  const allowed = new Set(Array.from(menu.querySelectorAll('a[href]'))
+    .filter((link) => link.origin === location.origin && link.pathname !== location.pathname && !link.hasAttribute('download'))
+    .map((link) => link.href));
+  const nativePrerender = typeof HTMLScriptElement.supports === 'function' && HTMLScriptElement.supports('speculationrules');
+  const prepared = new Set();
+  let rule = null;
+  let pending = null;
+  let timer = null;
+  const cancel = () => {
+    clearTimeout(timer);
+    timer = null;
+    pending = null;
+  };
+  const prepare = (link) => {
+    if (!allowed.has(link.href)) return;
+    if (nativePrerender) {
+      if (rule?.dataset.target === link.href) return;
+      if (rule) rule.remove();
+      rule = document.createElement('script');
+      rule.type = 'speculationrules';
+      rule.dataset.target = link.href;
+      rule.textContent = JSON.stringify({prerender:[{urls:[link.href], eagerness:'immediate'}]});
+      document.head.appendChild(rule);
+    } else if (!prepared.has(link.href)) {
+      prepared.add(link.href);
+      const hint = document.createElement('link');
+      hint.rel = 'prefetch';
+      hint.href = link.href;
+      hint.as = 'document';
+      document.head.appendChild(hint);
+    }
+  };
+  const target = (event) => event.target.closest('a[href]');
+  menu.addEventListener('pointerover', (event) => {
+    if (event.pointerType === 'touch') return;
+    const link = target(event);
+    if (!link || !allowed.has(link.href) || pending === link) return;
+    cancel();
+    pending = link;
+    timer = setTimeout(() => { prepare(link); cancel(); }, 120);
+  }, {passive:true});
+  menu.addEventListener('pointerout', (event) => {
+    if (pending && !pending.contains(event.relatedTarget)) cancel();
+  }, {passive:true});
+  ['focusin', 'pointerdown'].forEach((name) => menu.addEventListener(name, (event) => {
+    const link = target(event);
+    if (link) { cancel(); prepare(link); }
+  }, {passive:true}));
+  window.addEventListener('pagehide', cancel);
+})();
+</script>
+
 </body>
 </html>
