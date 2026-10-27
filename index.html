@@ -495,6 +495,10 @@ summary:focus-visible {
   padding:clamp(64px, 6.5vw, 96px) 0;
   scroll-margin-top:86px;
 }
+.section:not(#citation) {
+  min-height:100svh;
+  padding:clamp(96px, 14svh, 160px) 0;
+}
 .section + .section {
   margin-top:0;
 }
@@ -759,9 +763,6 @@ tr:last-child td { border-bottom:var(--strong-frame); }
 .action-section,
 .benchmark-section {
   min-height:auto;
-}
-@media (min-width: 901px) {
-  .benchmark-section { min-height:calc(100svh - 86px); align-items:start; }
 }
 .action-showcase {
   display:grid;
@@ -1551,7 +1552,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
     <div class="demo-main">
       <div class="video missing-video">
         <div class="play">&#9658;</div>
-        <div class="video-status"><strong>Main Demo Pending</strong><span>Full closed-loop episode video will be added here.</span></div>
+        <div class="video-status"><strong>Main Demo Pending</strong></div>
       </div>
     </div>
     <div class="stats">
@@ -1599,7 +1600,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
             <div class="action-empty" id="action-empty">
               <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="5" y="10" width="38" height="28" rx="7" stroke="currentColor" stroke-width="1.3"/><path d="M21 18L30 24L21 30Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
               <strong id="action-video-status">Demo Coming Soon</strong>
-              <span id="action-video-hint">Action videos will appear here when available.</span>
+              <span id="action-video-hint" hidden></span>
             </div>
           </div>
           <div class="action-preview-copy" aria-live="polite" aria-atomic="true">
@@ -1845,7 +1846,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
       }
       empty.hidden = false;
       status.textContent = "Demo Coming Soon";
-      hint.textContent = "Action videos will appear here when available.";
+      hint.textContent = "";
+      hint.hidden = true;
     }
   }
 
@@ -1874,6 +1876,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.</metadata></svg></span><span>arXiv</span>
     empty.hidden = false;
     status.textContent = "Demo Unavailable";
     hint.textContent = "This clip could not be loaded. Please explore another action.";
+    hint.hidden = false;
   });
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) video.pause();
@@ -1959,11 +1962,28 @@ function sectionTopOffset() {
   return nav ? nav.offsetHeight + (parseFloat(getComputedStyle(nav).top) || 0) + 64 : 64;
 }
 
+function sectionScrollPosition(target) {
+  if (target.id === "top") return 0;
+  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+  let destination;
+  if (target.id === "citation") {
+    destination = sectionAnchor(target).getBoundingClientRect().top + window.scrollY - sectionTopOffset();
+  } else {
+    const content = target.querySelector(":scope > .wrap") || target;
+    const rect = content.getBoundingClientRect();
+    const nav = document.querySelector(".nav");
+    const navBottom = nav ? nav.offsetHeight + (parseFloat(getComputedStyle(nav).top) || 0) : 0;
+    const availableHeight = window.innerHeight - navBottom;
+    const offset = navBottom + (rect.height <= availableHeight ? (availableHeight - rect.height) / 2 : 24);
+    destination = rect.top + window.scrollY - offset;
+  }
+  return Math.min(maxScroll, Math.max(0, destination));
+}
+
 function updateJumpRail() {
   let activeId = sections[0]?.id || "";
   for (const section of sections) {
-    const rect = sectionAnchor(section).getBoundingClientRect();
-    if (rect.top <= sectionTopOffset() + 2) activeId = section.id;
+    if (window.scrollY >= sectionScrollPosition(section) - 2) activeId = section.id;
   }
   const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
   if (sections.length && maxScroll > 0 && window.scrollY >= maxScroll - 2) {
@@ -1997,10 +2017,7 @@ function scrollToSection(target, { animate = true, updateHistory = true } = {}) 
     item.classList.add("is-visible");
   }
   const start = window.scrollY;
-  const offset = sectionTopOffset();
-  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-  const destination = target.id === "top" ? 0 : sectionAnchor(target).getBoundingClientRect().top + start - offset;
-  const end = Math.min(maxScroll, Math.max(0, destination));
+  const end = sectionScrollPosition(target);
   const distance = end - start;
   const duration = 100;
   const startedAt = performance.now();
