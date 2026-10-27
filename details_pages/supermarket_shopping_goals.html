@@ -37,7 +37,7 @@
   --docs-nav-row-padding:10px;
   --docs-nav-item-gap:4px;
   --docs-nav-group-gap:16px;
-  --docs-top-space:48px;
+  --docs-top-space:29.3px;
   --docs-brand-line:26px;
   --docs-brand-gap:16px;
   --docs-home-line:19.6px;
@@ -352,7 +352,7 @@ body.details-document main.page-wrap .prompt-markdown > :last-child { margin-bot
 }
 @media (max-width: 900px) {
   body.details-document { grid-template-columns:minmax(0, 1fr); column-gap:0; padding:0 20px; }
-  .docs-sidebar { grid-column:1; grid-row:1; position:static; width:100%; height:auto; min-height:0; max-height:none; margin:32px 0 0; padding:0 0 16px; overflow:visible; overscroll-behavior:auto; border-right:0; border-bottom:var(--divider); background:var(--bg); }
+  .docs-sidebar { grid-column:1; grid-row:1; position:static; width:100%; height:auto; min-height:0; max-height:none; margin:var(--docs-top-space) 0 0; padding:0 0 16px; overflow:visible; overscroll-behavior:auto; border-right:0; border-bottom:var(--divider); background:var(--bg); }
   .docs-brand { margin-bottom:0; font-size:var(--docs-brand-size); }
   .docs-navigation { margin-top:16px; padding:0; }
   .docs-navigation > summary { display:flex; align-items:center; justify-content:flex-start; gap:0; padding:9px 0; color:var(--muted); font-size:14px; font-weight:400; list-style:none; }
@@ -481,7 +481,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
   body.details-document:not(.overview-document) main.page-wrap h1 { padding-right:76px; }
 }
 @media (max-width:900px) {
-  body.details-document { --docs-title-size:28px; --docs-title-gap:64px; --docs-section-gap:24px; --docs-table-row-height:141px; }
+  body.details-document { --docs-top-space:24.7px; --docs-title-size:28px; --docs-title-gap:64px; --docs-section-gap:24px; --docs-table-row-height:141px; }
 }
 @media (max-width:600px) {
   body.details-document main.page-wrap .catalog-map { grid-template-columns:minmax(0,1fr); gap:16px; }
@@ -688,7 +688,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 <div class="shopping-goals-page">
 <header class="shopping-goals-header docs-page-heading"><h1>Supermarket Shopping Goals</h1>
 </header>
-<section class="profile-list"><section class="profile-group" id="profile-group-1-4" data-nav-label="1–4"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p01"><span class="profile-number" aria-hidden="true">p01</span><span class="profile-name">Morning routine parent</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p01"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+<section class="profile-list"><section class="profile-group" id="profile-group-1-3" data-nav-label="1–3"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p01"><span class="profile-number" aria-hidden="true">p01</span><span class="profile-name">Morning routine parent</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p01"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;female&quot;,
   &quot;age_band&quot;: &quot;45-54&quot;,
   &quot;employment_status&quot;: &quot;full_time_employee&quot;,
@@ -1009,7 +1009,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></div></section></div></article><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p04"><span class="profile-number" aria-hidden="true">p04</span><span class="profile-name">Weekly family stock-up shopper</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p04"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-4-6" data-nav-label="4–6"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p04"><span class="profile-number" aria-hidden="true">p04</span><span class="profile-name">Weekly family stock-up shopper</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p04"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;male&quot;,
   &quot;age_band&quot;: &quot;65+&quot;,
   &quot;employment_status&quot;: &quot;retired&quot;,
@@ -1116,7 +1116,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;if_uncertain&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-5-8" data-nav-label="5–8"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p05"><span class="profile-number" aria-hidden="true">p05</span><span class="profile-name">Commuter office-desk caffeine restocker</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p05"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p05"><span class="profile-number" aria-hidden="true">p05</span><span class="profile-name">Commuter office-desk caffeine restocker</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p05"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;male&quot;,
   &quot;age_band&quot;: &quot;25-34&quot;,
   &quot;employment_status&quot;: &quot;full_time_employee&quot;,
@@ -1330,7 +1330,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></div></section></div></article><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p07"><span class="profile-number" aria-hidden="true">p07</span><span class="profile-name">Backyard barbecue host</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p07"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-7-9" data-nav-label="7–9"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p07"><span class="profile-number" aria-hidden="true">p07</span><span class="profile-name">Backyard barbecue host</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p07"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;male&quot;,
   &quot;age_band&quot;: &quot;35-44&quot;,
   &quot;employment_status&quot;: &quot;part_time_employee&quot;,
@@ -1544,7 +1544,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-9-12" data-nav-label="9–12"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p09"><span class="profile-number" aria-hidden="true">p09</span><span class="profile-name">Weekend cleaning reset shopper</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p09"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p09"><span class="profile-number" aria-hidden="true">p09</span><span class="profile-name">Weekend cleaning reset shopper</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p09"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;male&quot;,
   &quot;age_band&quot;: &quot;35-44&quot;,
   &quot;employment_status&quot;: &quot;part_time_employee&quot;,
@@ -1651,7 +1651,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></div></section></div></article><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p10"><span class="profile-number" aria-hidden="true">p10</span><span class="profile-name">Baby-care caregiver</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p10"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-10-12" data-nav-label="10–12"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p10"><span class="profile-number" aria-hidden="true">p10</span><span class="profile-name">Baby-care caregiver</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p10"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;female&quot;,
   &quot;age_band&quot;: &quot;45-54&quot;,
   &quot;employment_status&quot;: &quot;self_employed&quot;,
@@ -1972,7 +1972,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-13-16" data-nav-label="13–16"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p13"><span class="profile-number" aria-hidden="true">p13</span><span class="profile-name">Office breakroom restocker</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p13"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-13-15" data-nav-label="13–15"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p13"><span class="profile-number" aria-hidden="true">p13</span><span class="profile-name">Office breakroom restocker</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p13"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;male&quot;,
   &quot;age_band&quot;: &quot;25-34&quot;,
   &quot;employment_status&quot;: &quot;full_time_employee&quot;,
@@ -2293,7 +2293,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></div></section></div></article><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p16"><span class="profile-number" aria-hidden="true">p16</span><span class="profile-name">Organic-leaning vegetarian planner</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p16"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-16-18" data-nav-label="16–18"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p16"><span class="profile-number" aria-hidden="true">p16</span><span class="profile-name">Organic-leaning vegetarian planner</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p16"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;male&quot;,
   &quot;age_band&quot;: &quot;18-24&quot;,
   &quot;employment_status&quot;: &quot;other&quot;,
@@ -2400,7 +2400,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-17-20" data-nav-label="17–20"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p17"><span class="profile-number" aria-hidden="true">p17</span><span class="profile-name">Seafood dinner and light beverage planner</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p17"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p17"><span class="profile-number" aria-hidden="true">p17</span><span class="profile-name">Seafood dinner and light beverage planner</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p17"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;female&quot;,
   &quot;age_band&quot;: &quot;25-34&quot;,
   &quot;employment_status&quot;: &quot;other&quot;,
@@ -2614,7 +2614,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;if_uncertain&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></div></section></div></article><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p19"><span class="profile-number" aria-hidden="true">p19</span><span class="profile-name">Adult-care household helper</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p19"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-19-21" data-nav-label="19–21"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p19"><span class="profile-number" aria-hidden="true">p19</span><span class="profile-name">Adult-care household helper</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p19"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;male&quot;,
   &quot;age_band&quot;: &quot;18-24&quot;,
   &quot;employment_status&quot;: &quot;other&quot;,
@@ -2828,7 +2828,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-21-24" data-nav-label="21–24"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p21"><span class="profile-number" aria-hidden="true">p21</span><span class="profile-name">Dessert-night shopper</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p21"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p21"><span class="profile-number" aria-hidden="true">p21</span><span class="profile-name">Dessert-night shopper</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p21"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;female&quot;,
   &quot;age_band&quot;: &quot;55-64&quot;,
   &quot;employment_status&quot;: &quot;not_currently_employed&quot;,
@@ -2935,7 +2935,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></div></section></div></article><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p22"><span class="profile-number" aria-hidden="true">p22</span><span class="profile-name">Holiday hosting planner</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p22"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
+}</pre></details></div></section></div></article></section><section class="profile-group" id="profile-group-22-24" data-nav-label="22–24"><article class="profile-shopping-goals"><div class="disclosure-preview"><h3 class="profile-heading" id="sm_p22"><span class="profile-number" aria-hidden="true">p22</span><span class="profile-name">Holiday hosting planner</span></h3><details class="profile-json"><summary class="disclosure-toggle" aria-describedby="sm_p22"><span class="disclosure-closed">Full profile</span><span class="disclosure-open">Hide profile</span></summary><pre>{
   &quot;gender&quot;: &quot;male&quot;,
   &quot;age_band&quot;: &quot;45-54&quot;,
   &quot;employment_status&quot;: &quot;part_time_employee&quot;,
