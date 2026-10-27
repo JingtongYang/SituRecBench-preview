@@ -32,11 +32,11 @@
   --fs-body:15px;
   --fs-sm:14px;
   --docs-nav-size:14px;
-  --docs-nav-line:24px;
+  --docs-nav-line:20px;
   --docs-brand-size:18px;
-  --docs-nav-row-padding:8px;
-  --docs-nav-item-gap:4px;
-  --docs-nav-group-gap:12px;
+  --docs-nav-row-padding:5px;
+  --docs-nav-item-gap:2px;
+  --docs-nav-group-gap:10px;
   --docs-top-space:29.3px;
   --docs-brand-line:26px;
   --docs-brand-gap:16px;
@@ -71,7 +71,6 @@ a { color:inherit; text-decoration:none; }
 .docs-scene + .docs-scene { margin-top:var(--docs-nav-group-gap); }
 .docs-scene > .docs-scene-label { display:flex; align-items:center; justify-content:flex-start; gap:0; margin:0; padding:var(--docs-nav-row-padding) 8px; color:var(--ink); font-size:inherit; font-weight:500; line-height:inherit; letter-spacing:normal; }
 .docs-scene ul { padding:var(--docs-nav-item-gap) 0 0 24px; }
-.docs-human .docs-page-link { color:var(--ink); font-size:inherit; font-weight:500; line-height:inherit; }
 .docs-tree li + li { margin-top:0; }
 .docs-scene li + li { margin-top:var(--docs-nav-item-gap); }
 .docs-page-link { display:block; padding:var(--docs-nav-row-padding) 8px; border-radius:0; color:var(--muted); font-size:inherit; font-weight:400; line-height:inherit; overflow-wrap:anywhere; transition:color 80ms ease; }
@@ -80,6 +79,9 @@ a { color:inherit; text-decoration:none; }
 .docs-home { display:flex; align-items:center; gap:7px; width:fit-content; margin:0 0 var(--docs-home-gap); color:var(--ink); font-size:14px; font-weight:500; line-height:var(--docs-home-line); }
 .docs-home:hover { color:var(--ink); }
 .docs-sidebar a:focus-visible { outline-offset:-2px; }
+@media (min-width:901px) and (max-height:680px) {
+  .docs-sidebar { --docs-nav-row-padding:2px; --docs-nav-item-gap:1px; --docs-nav-group-gap:8px; --docs-home-gap:16px; }
+}
 .page-wrap { grid-column:2; grid-row:1; width:100%; min-width:0; max-width:var(--content-width); padding:0; margin:var(--docs-main-top) auto 64px; scroll-margin-top:24px; }
 .overview-document .page-wrap { grid-column:2 / -1; grid-row:1; }
 .page-wrap :where(div, section, article, header, details, pre) { min-width:0; }
@@ -601,9 +603,11 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     <nav class="docs-tree" aria-label="Documentation pages">
       <ul class="docs-overview"><li><a class="docs-page-link" href="../details.html">Overview</a></li></ul>
       <div class="docs-group">
-        <section class="docs-scene" data-docs-scene="supermarket"><h2 class="docs-scene-label">Supermarket</h2><ul><li><a class="docs-page-link" href="supermarket_products.html">Products</a></li><li><a class="docs-page-link" href="supermarket_shopping_goals.html">Shopping Goals</a></li><li><a class="docs-page-link" href="supermarket_actions.html" aria-current="page">Actions</a></li><li><a class="docs-page-link" href="supermarket_prompt.html">Prompts</a></li><li><a class="docs-page-link" href="supermarket_evaluation.html">Evaluation</a></li></ul></section><section class="docs-scene" data-docs-scene="furniture"><h2 class="docs-scene-label">Home Furnishings</h2><ul><li><a class="docs-page-link" href="furniture_products.html">Products</a></li><li><a class="docs-page-link" href="furniture_shopping_goals.html">Shopping Goals</a></li><li><a class="docs-page-link" href="furniture_actions.html">Actions</a></li><li><a class="docs-page-link" href="furniture_prompt.html">Prompts</a></li><li><a class="docs-page-link" href="furniture_evaluation.html">Evaluation</a></li></ul></section>
+        <section class="docs-scene" data-docs-scene="supermarket"><h2 class="docs-scene-label">Supermarket</h2><ul><li><a class="docs-page-link" href="supermarket_products.html">Products</a></li><li><a class="docs-page-link" href="supermarket_shopping_goals.html">Shopping Goals</a></li><li><a class="docs-page-link" href="supermarket_actions.html" aria-current="page">Actions</a></li><li><a class="docs-page-link" href="supermarket_prompt.html">Prompts</a></li><li><a class="docs-page-link" href="supermarket_evaluation.html">Evaluation</a></li><li><a class="docs-page-link" href="supermarket_sample_episodes.html">Sample Episodes</a></li></ul></section><section class="docs-scene" data-docs-scene="furniture"><h2 class="docs-scene-label">Home Furnishings</h2><ul><li><a class="docs-page-link" href="furniture_products.html">Products</a></li><li><a class="docs-page-link" href="furniture_shopping_goals.html">Shopping Goals</a></li><li><a class="docs-page-link" href="furniture_actions.html">Actions</a></li><li><a class="docs-page-link" href="furniture_prompt.html">Prompts</a></li><li><a class="docs-page-link" href="furniture_evaluation.html">Evaluation</a></li><li><a class="docs-page-link" href="furniture_sample_episodes.html">Sample Episodes</a></li></ul></section>
       </div>
-      <ul class="docs-human"><li><a class="docs-page-link" href="human_interaction.html">Human Interaction</a></li></ul>
+      <section class="docs-scene docs-human">
+        <h2 class="docs-scene-label">Human Evaluation</h2><ul><li><a class="docs-page-link" href="human_interaction.html">Evaluation Guide</a></li></ul>
+      </section>
     </nav>
   </div>
 </aside>
