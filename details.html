@@ -41,7 +41,7 @@
   --docs-brand-line:26px;
   --docs-brand-gap:16px;
   --docs-home-line:19.6px;
-  --docs-home-gap:32px;
+  --docs-home-gap:24px;
   --docs-main-top:calc(var(--docs-top-space) + var(--docs-brand-line) + var(--docs-brand-gap));
 }
 * { box-sizing:border-box; scrollbar-width:none; }
@@ -58,10 +58,11 @@ main :is(h1,h2,h3)[id], main section[id] { scroll-margin-top:var(--anchor-offset
 a { color:inherit; text-decoration:none; }
 .skip-link { position:fixed; top:12px; left:24px; z-index:100; padding:10px 14px; border-radius:var(--radius-sm); background:var(--ink); color:var(--panel); transform:translateY(-200%); }
 .skip-link:focus { transform:none; }
-.docs-sidebar { grid-column:1; grid-row:1 / span 2; position:sticky; top:0; z-index:30; width:calc(100% + 24px); min-width:0; height:100dvh; min-height:0; margin-left:-24px; padding:var(--docs-top-space) 16px 32px 24px; overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; border-right:var(--divider); background:#f8f9fa; font-family:var(--font-family); font-size:var(--docs-nav-size); line-height:var(--docs-nav-line); }
+.docs-sidebar { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(max-content,1fr) max-content minmax(0,1fr); grid-column:1; grid-row:1 / span 2; position:sticky; top:0; z-index:30; width:calc(100% + 24px); min-width:0; height:100dvh; min-height:0; margin-left:-24px; padding:var(--docs-top-space) 16px var(--docs-top-space) 24px; overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; border-right:var(--divider); background:#f8f9fa; font-family:var(--font-family); font-size:var(--docs-nav-size); line-height:var(--docs-nav-line); }
+.docs-sidebar-header { align-self:start; min-width:0; }
 .docs-brand { display:inline-block; margin-bottom:var(--docs-brand-gap); color:var(--ink); font-size:var(--docs-brand-size); font-weight:600; line-height:var(--docs-brand-line); letter-spacing:-.02em; white-space:nowrap; }
 .docs-brand span { color:inherit; font-weight:inherit; }
-.docs-navigation { margin:0; padding:0; border:0; background:transparent; }
+.docs-navigation { grid-row:2; margin:0; padding:0; border:0; background:transparent; }
 .docs-navigation > summary { display:none; }
 .docs-tree { display:grid; gap:var(--docs-nav-group-gap); font-size:var(--docs-nav-size); line-height:var(--docs-nav-line); }
 .docs-tree ul { margin:0; padding:0; list-style:none; }
@@ -352,7 +353,7 @@ body.details-document main.page-wrap .prompt-markdown > :last-child { margin-bot
 }
 @media (max-width: 900px) {
   body.details-document { grid-template-columns:minmax(0, 1fr); column-gap:0; padding:0 20px; }
-  .docs-sidebar { grid-column:1; grid-row:1; position:static; width:100%; height:auto; min-height:0; max-height:none; margin:var(--docs-top-space) 0 0; padding:0 0 16px; overflow:visible; overscroll-behavior:auto; border-right:0; border-bottom:var(--divider); background:var(--bg); }
+  .docs-sidebar { display:block; grid-column:1; grid-row:1; position:static; width:100%; height:auto; min-height:0; max-height:none; margin:var(--docs-top-space) 0 0; padding:0 0 16px; overflow:visible; overscroll-behavior:auto; border-right:0; border-bottom:var(--divider); background:var(--bg); }
   .docs-brand { margin-bottom:0; font-size:var(--docs-brand-size); }
   .docs-navigation { margin-top:16px; padding:0; }
   .docs-navigation > summary { display:flex; align-items:center; justify-content:flex-start; gap:0; padding:9px 0; color:var(--muted); font-size:14px; font-weight:400; list-style:none; }
@@ -390,7 +391,6 @@ body.details-document {
   --docs-section-gap:28px;
   --docs-title-gap:72px;
   --docs-content-indent:16px;
-  --docs-home-gap:calc(1.25 * var(--docs-title-size) + var(--docs-title-gap) + var(--docs-heading-extra-height, 0px) - var(--docs-home-line) - var(--docs-nav-line) - 3 * var(--docs-nav-row-padding) - var(--docs-nav-group-gap));
   --docs-table-row-height:97px;
 }
 body.details-document main.page-wrap { position:relative; width:100%; max-width:none; margin-left:0; margin-right:0; }
@@ -520,7 +520,7 @@ body.details-document main.page-wrap .page-content .prompt-long-body { padding-t
 body.details-document main.page-wrap .page-content .prompt-long-content > summary { padding-top:var(--docs-detail-gap); padding-bottom:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .prompt-roles { row-gap:var(--docs-section-gap); }
 body.details-document main.page-wrap .page-content .shopping_goal-row {
-  grid-template-columns:repeat(2,fit-content(47%));
+  grid-template-columns:repeat(2,min(47%,552px));
   justify-content:space-between;
   row-gap:var(--docs-section-gap);
 }
@@ -588,8 +588,10 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 
 <a class="skip-link" href="#main-content">Skip to content</a>
 <aside class="docs-sidebar" aria-label="Documentation navigation">
+  <div class="docs-sidebar-header">
   <a class="docs-brand" href="index.html">SituRecBench <span>Docs</span></a>
   <a class="docs-home" href="index.html"><span aria-hidden="true">←</span> Home</a>
+  </div>
   <details class="docs-navigation" open>
     <summary>Browse pages</summary>
     <nav class="docs-tree" aria-label="Documentation pages">
@@ -658,21 +660,6 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     menu.open = false;
     summary.focus();
   });
-  const alignHeading = () => {
-    const heading = document.querySelector('main .docs-page-heading');
-    const title = heading && heading.querySelector('h1');
-    if (!title) return;
-    const extra = Math.max(0, heading.getBoundingClientRect().height - parseFloat(getComputedStyle(title).lineHeight));
-    document.body.style.setProperty('--docs-heading-extra-height', `${extra}px`);
-  };
-  const observeHeading = () => {
-    alignHeading();
-    const heading = document.querySelector('main .docs-page-heading');
-    if (heading) new ResizeObserver(alignHeading).observe(heading);
-    if (document.fonts) document.fonts.ready.then(alignHeading);
-  };
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', observeHeading, {once:true});
-  else observeHeading();
 })();
 </script>
 
