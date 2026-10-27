@@ -1133,7 +1133,6 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   margin:0 auto;
 }
 .citation-card {
-  position:relative;
   min-width:0;
   overflow:hidden;
   border:0;
@@ -1142,15 +1141,11 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   box-shadow:none;
 }
 .citation-toolbar {
-  position:absolute;
-  top:8px;
-  left:0;
-  right:0;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  padding:0 22px;
+  padding:14px 22px;
   border-bottom:0;
   background:transparent;
 }
@@ -1166,8 +1161,8 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   justify-content:center;
   gap:7px;
   min-width:122px;
-  min-height:28px;
-  padding:3px 11px;
+  min-height:34px;
+  padding:7px 11px;
   border:var(--frame);
   border-radius:var(--radius-sm);
   background:var(--panel);
@@ -1175,7 +1170,6 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   font:inherit;
   font-size:var(--fs-sm);
   font-weight:600;
-  line-height:20px;
   cursor:pointer;
   transition:background 80ms ease, border-color 80ms ease;
 }
@@ -1213,7 +1207,7 @@ pre {
 }
 .citation-card pre {
   min-width:0;
-  padding:56px 24px;
+  padding:8px 24px 20px;
   border:0;
   border-radius:0;
   background:transparent;
@@ -1402,8 +1396,8 @@ pre {
   .demo-row { grid-template-columns:1fr; }
   .view-grid { grid-template-columns:1fr; }
   .benchmark-figure table { font-size:13px; }
-  .citation-toolbar { padding:0 16px; }
-  .citation-card pre { padding:56px 16px; }
+  .citation-toolbar { padding:12px 16px; }
+  .citation-card pre { padding:18px 16px; }
   .citation-note { padding:12px 16px; }
 }
 
