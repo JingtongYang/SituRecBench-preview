@@ -185,6 +185,11 @@ details[open] > pre { max-height:none; overflow:auto; }
 .action-call-body { display:grid; gap:12px; position:relative; min-width:0; padding:16px calc(2 * var(--docs-content-indent)) 12px; background:#fafafa; }
 .action-call-body p { margin:0; color:var(--muted); font-size:14px; }
 .action-call-body pre { padding:0; background:transparent; font:13px/1.65 var(--font-family); }
+.metric-formula { display:flex; align-items:center; min-width:0; max-width:100%; overflow-x:auto; padding:8px 0; color:var(--ink); font-size:16px; }
+.metric-formula math { flex:none; margin:0; }
+.metric-fold .action-name { white-space:normal; }
+.metric-body p { overflow-wrap:anywhere; }
+@media (max-width:600px) { .metric-formula { font-size:14px; } }
 .reference-page { display:grid; gap:40px; }
 .reference-header { display:grid; gap:12px; padding:8px 0 0; }
 .reference-header h1 { margin:0; font-size:30px; line-height:1.2; font-weight:600; letter-spacing:-.6px; }
