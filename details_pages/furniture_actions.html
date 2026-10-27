@@ -115,8 +115,11 @@ a { color:inherit; text-decoration:none; }
 .overview-directory { display:grid; gap:var(--docs-section-gap); }
 .overview-directory > section { display:grid; gap:12px; min-width:0; }
 .overview-directory h2 { margin:0; }
-.overview-links { display:flex; flex-wrap:wrap; gap:8px 24px; }
-.overview-directory a { text-decoration:underline; text-underline-offset:3px; }
+.overview-links { display:flex; flex-wrap:wrap; gap:12px; margin-left:var(--docs-content-indent); }
+.overview-directory .overview-button { display:inline-flex; align-items:center; justify-content:center; justify-self:start; min-height:42px; min-width:136px; max-width:100%; padding:10px 16px; border:0; border-radius:6px; background:var(--paper); color:var(--ink); font-size:14px; font-weight:500; line-height:1.6; text-decoration:none; transition:background 80ms ease; }
+.overview-directory .overview-button:hover { background:#ebebeb; }
+.overview-directory .overview-button:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.overview-human-link .overview-button { margin-left:var(--docs-content-indent); }
 .hero p, .muted { margin:0; color:var(--muted); }
 .hero > p { max-width:68ch; }
 .hero > p:first-child { color:var(--accent); font-size:14px; font-weight:600; }
@@ -167,21 +170,21 @@ details[open] > pre { max-height:none; overflow:auto; }
 .actions-header { padding:8px 0 0; }
 .actions-header h1 { margin:0; font-size:30px; line-height:1.2; font-weight:600; letter-spacing:-.6px; }
 .actions-header p, .actions-section-heading p { margin:0; color:var(--muted); font-size:15px; }
-.actions-section { display:grid; gap:12px; }
+.actions-section { display:grid; gap:20px; }
 .actions-section-heading h2 { margin:0; font-size:16px; font-weight:600; line-height:1.5; }
 .actions-section-heading p { font-size:13px; line-height:1.5; }
 .action-list { min-width:0; margin:0; padding:0; list-style:none; }
-.action-entry { min-width:0; padding:12px 0; border-bottom:var(--divider); }
-.action-entry:last-child { border-bottom:0; }
-.action-description { min-width:0; margin:0; color:var(--ink); font-size:14px; font-weight:400; line-height:1.6; overflow-wrap:anywhere; }
-.action-name { font-weight:600; white-space:nowrap; }
-.action-call > summary { display:flex; align-items:baseline; gap:16px; width:100%; padding:0; list-style:none; }
-.action-call > summary > .action-description { flex:1; }
-body.details-document main.page-wrap .action-call > summary > .action-call-toggle { flex:none; margin-left:0; }
+.action-entry { min-width:0; }
+.action-entry + .action-entry { border-top:var(--divider); }
+.action-description { min-width:0; margin:0; color:var(--muted); font-size:14px; font-weight:400; line-height:1.6; overflow-wrap:anywhere; }
+.action-description code { font-family:inherit; font-size:inherit; }
+.action-name { color:var(--ink); font-weight:600; white-space:nowrap; }
+.action-entry > .action-description, .action-call > summary { display:block; width:100%; padding:12px var(--docs-content-indent) 16px; font-size:14px; line-height:1.6; list-style:none; }
+.action-entry:first-child > .action-description, .action-entry:first-child .action-call > summary { padding-top:0; }
 .action-call > summary::-webkit-details-marker { display:none; }
-.action-call-body { display:grid; gap:12px; padding-top:14px; }
+.action-call-body { display:grid; gap:12px; position:relative; min-width:0; padding:16px calc(2 * var(--docs-content-indent)) 12px; background:#fafafa; }
 .action-call-body p { margin:0; color:var(--muted); font-size:14px; }
-.action-call-body pre { padding:16px; background:var(--paper); font:13px/1.65 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
+.action-call-body pre { padding:0; background:transparent; font:13px/1.65 var(--font-family); }
 .reference-page { display:grid; gap:40px; }
 .reference-header { display:grid; gap:12px; padding:8px 0 0; }
 .reference-header h1 { margin:0; font-size:30px; line-height:1.2; font-weight:600; letter-spacing:-.6px; }
@@ -400,9 +403,8 @@ body.details-document main.page-wrap .docs-page-heading ~ :not(script) {
 }
 /* Shared hierarchy: indent children once per semantic level, not per layout wrapper. */
 body.details-document main.page-wrap :is(.reference-section, .stack, .api-group, .overview-human, .human-feature, .catalog-section, .catalog-subgroup, #reference-snapshots) > :is(h2,h3,h4,h5,h6) ~ :not(h2,h3,h4,h5,h6,script,span[id]),
-body.details-document main.page-wrap .actions-section > .actions-section-heading ~ .action-list,
 body.details-document main.page-wrap .reference-fold-body > h3 ~ :is(details, pre, .api-compact),
-body.details-document main.page-wrap .page-content details:not(.prompt-message):not(.prompt-long-content) > :not(summary,script,style),
+body.details-document main.page-wrap .page-content details:not(.prompt-message):not(.prompt-long-content):not(.action-call) > :not(summary,script,style),
 body.details-document main.page-wrap .api-summary-desc,
 body.details-document main.page-wrap .api-lead > .class-signature + p,
 body.details-document main.page-wrap .api-card-body > .method-signature + p,
@@ -499,7 +501,7 @@ body.details-document main.page-wrap .page-content .reference-fold-body > h3 + .
 body.details-document main.page-wrap .page-content .prompt-message-list > .prompt-message:first-child > summary { padding-top:0; }
 body.details-document main.page-wrap .page-content :is(.api-card, .reference-fold) > summary { row-gap:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .api-subhead { margin-top:0; margin-bottom:0; }
-body.details-document main.page-wrap .page-content .action-call-body { padding-top:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content .actions-section { row-gap:20px; }
 body.details-document main.page-wrap .page-content :is(.prompt-message-body, .run-command) { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
 body.details-document main.page-wrap .page-content :is(.profile-shopping-goals, .shopping_goal-card) { padding:24px; }
 @media (max-width:700px) {
@@ -616,9 +618,9 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 <div class="actions-page">
 <header class="actions-header docs-page-heading"><h1>Home Furnishings Actions</h1></header>
 <section class="actions-section"><header class="actions-section-heading"><h2 id="assistant-action-types">Assistant Actions</h2></header>
-<ul class="action-list" aria-label="Assistant Actions"><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-greet">Greet:</strong> A stand-alone greeting, welcome, offer to help, thanks, apology, farewell, or another social courtesy.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-ask-preference">Ask Preference:</strong> Ask about a preference the customer has not yet expressed.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-clarify-need">Clarify Need:</strong> Clarify a need the customer has expressed ambiguously, inconsistently, or with an unclear reference.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-navigate">Navigate:</strong> Guide the customer to move, turn, look around, or go to a location.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-recommend">Recommend:</strong> Explicitly recommend a specific furniture item.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-explain">Explain:</strong> Proactively explain product information, features, uses, or recommendation rationale.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-answer-question">Answer Question:</strong> Directly answer an explicit customer question.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-compare">Compare:</strong> Compare two or more specific products.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-handle-rejection">Handle Rejection:</strong> Respond to a customer rejection and adjust based on the reason.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-confirm-purchase">Confirm Purchase:</strong> After the customer expresses acceptance, confirm the product or guide purchase completion.</span></p></li></ul></section>
+<ul class="action-list" aria-label="Assistant Actions"><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-greet">Greet</strong>: A stand-alone greeting, welcome, offer to help, thanks, apology, farewell, or another social courtesy.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-ask-preference">Ask Preference</strong>: Ask about a preference the customer has not yet expressed.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-clarify-need">Clarify Need</strong>: Clarify a need the customer has expressed ambiguously, inconsistently, or with an unclear reference.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-navigate">Navigate</strong>: Guide the customer to move, turn, look around, or go to a location.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-recommend">Recommend</strong>: Explicitly recommend a specific furniture item.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-explain">Explain</strong>: Proactively explain product information, features, uses, or recommendation rationale.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-answer-question">Answer Question</strong>: Directly answer an explicit customer question.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-compare">Compare</strong>: Compare two or more specific products.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-handle-rejection">Handle Rejection</strong>: Respond to a customer rejection and adjust based on the reason.</span></p></li><li class="action-entry"><p class="action-description"><span class="action-description"><strong class="action-name" id="assistant-confirm-purchase">Confirm Purchase</strong>: After the customer expresses acceptance, confirm the product or guide purchase completion.</span></p></li></ul></section>
 <section class="actions-section"><header class="actions-section-heading"><h2 id="customer-tool-methods">User Actions</h2></header>
-<ul class="action-list" aria-label="User Actions"><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-forward">Move Forward:</strong> Walk forward along the current facing direction, usually to approach the area in front.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-forward">{
+<ul class="action-list" aria-label="User Actions"><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-forward">Move Forward</strong>: Walk forward along the current facing direction, usually to approach the area in front.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-forward">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -629,7 +631,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-backward">Move Backward:</strong> Step backward without changing the final facing direction; useful to back away, avoid occlusion, adjust the view, or bring a doorway back into view.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-backward">{
+}</pre><p>Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-backward">Move Backward</strong>: Step backward without changing the final facing direction; useful to back away, avoid occlusion, adjust the view, or bring a doorway back into view.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-backward">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -640,7 +642,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="turn-and-move">Turn And Move:</strong> Turn left or right by an angle, then walk forward briefly; useful for exploring the left-front or right-front area.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-turn-and-move">{
+}</pre><p>Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="turn-and-move">Turn And Move</strong>: Turn left or right by an angle, then walk forward briefly; useful for exploring the left-front or right-front area.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-turn-and-move">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -653,7 +655,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Direction: right / left. Degree: a positive number (degrees). Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-and-turn">Move And Turn:</strong> Walk forward along the current facing direction, then turn left or right by an angle; useful for passing through the space ahead before observing the area after the turn.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-and-turn">{
+}</pre><p>Direction: right / left. Degree: a positive number (degrees). Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-and-turn">Move And Turn</strong>: Walk forward along the current facing direction, then turn left or right by an angle; useful for passing through the space ahead before observing the area after the turn.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-and-turn">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -666,7 +668,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Direction: right / left. Degree: a positive number (degrees). Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="side-step">Side Step:</strong> Step left or right without changing facing direction; useful to avoid occlusion, adjust the viewing angle, or bring a doorway into view.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-side-step">{
+}</pre><p>Direction: right / left. Degree: a positive number (degrees). Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="side-step">Side Step</strong>: Step left or right without changing facing direction; useful to avoid occlusion, adjust the viewing angle, or bring a doorway into view.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-side-step">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -678,7 +680,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Direction: left / right. Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="turn">Turn:</strong> Turn in place to the left or right; changes facing direction only.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-turn">{
+}</pre><p>Direction: left / right. Duration: a positive number (seconds).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="turn">Turn</strong>: Turn in place to the left or right; changes facing direction only.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-turn">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -690,7 +692,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Direction: right / left. Degree: a positive number (degrees).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="look-up-down">Look Up Down:</strong> Adjust pitch up or down only.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-look-up-down">{
+}</pre><p>Direction: right / left. Degree: a positive number (degrees).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="look-up-down">Look Up Down</strong>: Adjust pitch up or down only.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-look-up-down">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -702,7 +704,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Direction: up / down. Degree: a positive number (degrees).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-to-store">Move To Store:</strong> Move to a storefront or doorway currently visible in the overlay. It requires `store_id` and `approach`, where `approach` must be `outside_doorway` or `inside_doorway`.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-to-store">{
+}</pre><p>Direction: up / down. Degree: a positive number (degrees).</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-to-store">Move To Store</strong>: Move to a storefront or doorway currently visible in the overlay. It requires <code>store_id</code> and <code>approach</code>, where <code>approach</code> must be <code>outside_doorway</code> or <code>inside_doorway</code>.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-to-store">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -714,7 +716,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Replace store_id with a key from current_obs_for_customer.visible_stores. Approach: inside_doorway / outside_doorway.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-to-area">Move To Area:</strong> Move to the fixed point inside a currently visible area box. An area box covers a furniture display area, not a shelf.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-to-area">{
+}</pre><p>Replace store_id with a key from current_obs_for_customer.visible_stores. Approach: inside_doorway / outside_doorway.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="move-to-area">Move To Area</strong>: Move to the fixed point inside a currently visible area box. An area box covers a furniture display area, not a shelf.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-move-to-area">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -725,7 +727,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Replace area_id with a key from current_obs_for_customer.visible_areas.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="check-item">Check Item:</strong> Inspect and confirm details for a currently visible furniture item.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-check-item">{
+}</pre><p>Replace area_id with a key from current_obs_for_customer.visible_areas.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="check-item">Check Item</strong>: Inspect and confirm details for a currently visible furniture item.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-check-item">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -736,7 +738,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Replace item_id with a key from current_obs_for_customer.visible_items.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="add-to-cart">Add To Cart:</strong> Decide to buy the furniture currently being checked.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-add-to-cart">{
+}</pre><p>Replace item_id with a key from current_obs_for_customer.visible_items.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="add-to-cart">Add To Cart</strong>: Decide to buy the furniture currently being checked.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-add-to-cart">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -747,7 +749,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre><p>Replace item_id with the ID of the furniture currently being checked.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="do-not-add-to-cart">Do Not Add To Cart:</strong> Decide not to buy the furniture currently being checked and exit that confirmation state.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-do-not-add-to-cart">{
+}</pre><p>Replace item_id with the ID of the furniture currently being checked.</p></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="do-not-add-to-cart">Do Not Add To Cart</strong>: Decide not to buy the furniture currently being checked and exit that confirmation state.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-do-not-add-to-cart">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {
@@ -756,7 +758,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
     }
   ],
   &quot;content&quot;: &quot;...&quot;
-}</pre></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="idle">Idle:</strong> Do not move, inspect, or buy; only talk naturally or wait.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-idle">{
+}</pre></div></details></li><li class="action-entry"><details class="action-call"><summary tabindex="-1"><span class="action-description"><strong class="action-name" id="idle">Idle</strong>: Do not move, inspect, or buy; only talk naturally or wait.</span><button type="button" class="disclosure-hint action-call-toggle">Call</button></summary><div class="action-call-body"><pre id="call-idle">{
   &quot;type&quot;: &quot;final&quot;,
   &quot;tool_calls&quot;: [
     {

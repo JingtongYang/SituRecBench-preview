@@ -198,8 +198,11 @@ a { color:inherit; text-decoration:none; }
 .overview-directory { display:grid; gap:var(--docs-section-gap); }
 .overview-directory > section { display:grid; gap:12px; min-width:0; }
 .overview-directory h2 { margin:0; }
-.overview-links { display:flex; flex-wrap:wrap; gap:8px 24px; }
-.overview-directory a { text-decoration:underline; text-underline-offset:3px; }
+.overview-links { display:flex; flex-wrap:wrap; gap:12px; margin-left:var(--docs-content-indent); }
+.overview-directory .overview-button { display:inline-flex; align-items:center; justify-content:center; justify-self:start; min-height:42px; min-width:136px; max-width:100%; padding:10px 16px; border:0; border-radius:6px; background:var(--paper); color:var(--ink); font-size:14px; font-weight:500; line-height:1.6; text-decoration:none; transition:background 80ms ease; }
+.overview-directory .overview-button:hover { background:#ebebeb; }
+.overview-directory .overview-button:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.overview-human-link .overview-button { margin-left:var(--docs-content-indent); }
 .hero p, .muted { margin:0; color:var(--muted); }
 .hero > p { max-width:68ch; }
 .hero > p:first-child { color:var(--accent); font-size:14px; font-weight:600; }
@@ -250,21 +253,21 @@ details[open] > pre { max-height:none; overflow:auto; }
 .actions-header { padding:8px 0 0; }
 .actions-header h1 { margin:0; font-size:30px; line-height:1.2; font-weight:600; letter-spacing:-.6px; }
 .actions-header p, .actions-section-heading p { margin:0; color:var(--muted); font-size:15px; }
-.actions-section { display:grid; gap:12px; }
+.actions-section { display:grid; gap:20px; }
 .actions-section-heading h2 { margin:0; font-size:16px; font-weight:600; line-height:1.5; }
 .actions-section-heading p { font-size:13px; line-height:1.5; }
 .action-list { min-width:0; margin:0; padding:0; list-style:none; }
-.action-entry { min-width:0; padding:12px 0; border-bottom:var(--divider); }
-.action-entry:last-child { border-bottom:0; }
-.action-description { min-width:0; margin:0; color:var(--ink); font-size:14px; font-weight:400; line-height:1.6; overflow-wrap:anywhere; }
-.action-name { font-weight:600; white-space:nowrap; }
-.action-call > summary { display:flex; align-items:baseline; gap:16px; width:100%; padding:0; list-style:none; }
-.action-call > summary > .action-description { flex:1; }
-body.details-document main.page-wrap .action-call > summary > .action-call-toggle { flex:none; margin-left:0; }
+.action-entry { min-width:0; }
+.action-entry + .action-entry { border-top:var(--divider); }
+.action-description { min-width:0; margin:0; color:var(--muted); font-size:14px; font-weight:400; line-height:1.6; overflow-wrap:anywhere; }
+.action-description code { font-family:inherit; font-size:inherit; }
+.action-name { color:var(--ink); font-weight:600; white-space:nowrap; }
+.action-entry > .action-description, .action-call > summary { display:block; width:100%; padding:12px var(--docs-content-indent) 16px; font-size:14px; line-height:1.6; list-style:none; }
+.action-entry:first-child > .action-description, .action-entry:first-child .action-call > summary { padding-top:0; }
 .action-call > summary::-webkit-details-marker { display:none; }
-.action-call-body { display:grid; gap:12px; padding-top:14px; }
+.action-call-body { display:grid; gap:12px; position:relative; min-width:0; padding:16px calc(2 * var(--docs-content-indent)) 12px; background:#fafafa; }
 .action-call-body p { margin:0; color:var(--muted); font-size:14px; }
-.action-call-body pre { padding:16px; background:var(--paper); font:13px/1.65 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
+.action-call-body pre { padding:0; background:transparent; font:13px/1.65 var(--font-family); }
 .reference-page { display:grid; gap:40px; }
 .reference-header { display:grid; gap:12px; padding:8px 0 0; }
 .reference-header h1 { margin:0; font-size:30px; line-height:1.2; font-weight:600; letter-spacing:-.6px; }
@@ -483,9 +486,8 @@ body.details-document main.page-wrap .docs-page-heading ~ :not(script) {
 }
 /* Shared hierarchy: indent children once per semantic level, not per layout wrapper. */
 body.details-document main.page-wrap :is(.reference-section, .stack, .api-group, .overview-human, .human-feature, .catalog-section, .catalog-subgroup, #reference-snapshots) > :is(h2,h3,h4,h5,h6) ~ :not(h2,h3,h4,h5,h6,script,span[id]),
-body.details-document main.page-wrap .actions-section > .actions-section-heading ~ .action-list,
 body.details-document main.page-wrap .reference-fold-body > h3 ~ :is(details, pre, .api-compact),
-body.details-document main.page-wrap .page-content details:not(.prompt-message):not(.prompt-long-content) > :not(summary,script,style),
+body.details-document main.page-wrap .page-content details:not(.prompt-message):not(.prompt-long-content):not(.action-call) > :not(summary,script,style),
 body.details-document main.page-wrap .api-summary-desc,
 body.details-document main.page-wrap .api-lead > .class-signature + p,
 body.details-document main.page-wrap .api-card-body > .method-signature + p,
@@ -582,7 +584,7 @@ body.details-document main.page-wrap .page-content .reference-fold-body > h3 + .
 body.details-document main.page-wrap .page-content .prompt-message-list > .prompt-message:first-child > summary { padding-top:0; }
 body.details-document main.page-wrap .page-content :is(.api-card, .reference-fold) > summary { row-gap:var(--docs-detail-gap); }
 body.details-document main.page-wrap .page-content .api-subhead { margin-top:0; margin-bottom:0; }
-body.details-document main.page-wrap .page-content .action-call-body { padding-top:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content .actions-section { row-gap:20px; }
 body.details-document main.page-wrap .page-content :is(.prompt-message-body, .run-command) { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
 body.details-document main.page-wrap .page-content :is(.profile-shopping-goals, .shopping_goal-card) { padding:24px; }
 @media (max-width:700px) {
@@ -699,7 +701,7 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 
 <h1>Supermarket products</h1>
 
-</header><div class="catalog-map"><img class="catalog-map-image catalog-map-image-supermarket" src="../assets/supermarket_store_layout_map_current.png" alt="Supermarket layout with Assistant location labels corresponding to the map key"><nav class="catalog-map-key" aria-label="Map locations"><p class="catalog-map-title">Explore the map</p><a href="#group-shelf"><span>Shelves:</span> <code>10, 11, 12, 13, 14, 15, 22, 23, 24, 25, 26, 27</code></a><a href="#group-uprightFreezer"><span>Upright Freezers:</span> <code>1, 2, 4, 8, 16, 28, 29, 30</code></a><a href="#group-openCooler"><span>Open Coolers:</span> <code>18, 19, 20, 21</code></a><a href="#group-chestFreezer"><span>Chest Freezers:</span> <code>6, 9, 17</code></a><a href="#group-woodStand"><span>Produce Wood Stands:</span> <code>5, 7</code></a><p class="catalog-map-note">Checkout counter: <code>3</code></p></nav></div>
+</header><div class="catalog-map"><img class="catalog-map-image catalog-map-image-supermarket" src="../assets/supermarket_store_layout_map_current.png" alt="Supermarket layout with Assistant location labels corresponding to the map key"><nav class="catalog-map-key" aria-label="Map locations"><p class="catalog-map-title">Locations</p><a href="#group-shelf"><span>Shelves:</span> <code>10, 11, 12, 13, 14, 15, 22, 23, 24, 25, 26, 27</code></a><a href="#group-uprightFreezer"><span>Upright Freezers:</span> <code>1, 2, 4, 8, 16, 28, 29, 30</code></a><a href="#group-openCooler"><span>Open Coolers:</span> <code>18, 19, 20, 21</code></a><a href="#group-chestFreezer"><span>Chest Freezers:</span> <code>6, 9, 17</code></a><a href="#group-woodStand"><span>Produce Wood Stands:</span> <code>5, 7</code></a><p class="catalog-map-note">Checkout counter: <code>3</code></p></nav></div>
 <div class="catalog-tools"><div class="catalog-aux"><details class="location-index-panel" id="product-location-index"><summary tabindex="-1">Product Location Index （Assistant Input）<button type="button" class="disclosure-hint"><span class="disclosure-closed">View</span><span class="disclosure-open">Hide</span></button></summary><pre class="location-index">{
   &quot;1&quot;: [
     &quot;Andouille Sausage Chub&quot;,
