@@ -31,7 +31,7 @@
   --shadow-soft:none;
   --fs-body:15px;
   --fs-sm:14px;
-  --docs-nav-size:15px;
+  --docs-nav-size:14px;
   --docs-nav-line:24px;
   --docs-brand-size:18px;
   --docs-nav-row-padding:10px;
@@ -69,17 +69,17 @@ a { color:inherit; text-decoration:none; }
 .docs-group { margin:0; }
 .docs-scene { margin:0; }
 .docs-scene + .docs-scene { margin-top:var(--docs-nav-group-gap); }
-.docs-scene > .docs-scene-label { display:flex; align-items:center; justify-content:flex-start; gap:0; margin:0; padding:var(--docs-nav-row-padding) 8px; color:var(--ink); font-size:inherit; font-weight:600; line-height:inherit; list-style:none; border-radius:0; }
+.docs-scene > .docs-scene-label { display:flex; align-items:center; justify-content:flex-start; gap:0; margin:0; padding:var(--docs-nav-row-padding) 8px; color:var(--ink); font-size:inherit; font-weight:500; line-height:inherit; list-style:none; border-radius:0; }
 .docs-scene-label::-webkit-details-marker { display:none; }
 .docs-scene-label:hover { color:#505050; background:transparent; }
 .docs-scene-label:focus-visible { outline:2px solid var(--accent); outline-offset:-2px; }
 .docs-scene ul { padding:var(--docs-nav-item-gap) 0 0 24px; }
-.docs-human .docs-page-link { color:var(--ink); font-size:inherit; font-weight:600; line-height:inherit; }
+.docs-human .docs-page-link { color:var(--ink); font-size:inherit; font-weight:500; line-height:inherit; }
 .docs-tree li + li { margin-top:0; }
 .docs-scene li + li { margin-top:var(--docs-nav-item-gap); }
 .docs-page-link { display:block; padding:var(--docs-nav-row-padding) 8px; border-radius:0; color:var(--muted); font-size:inherit; font-weight:400; line-height:inherit; overflow-wrap:anywhere; transition:color 80ms ease; }
 .docs-page-link:hover { color:var(--ink); background:transparent; text-decoration:underline; text-underline-offset:4px; text-decoration-color:#aaa; }
-.docs-page-link[aria-current="page"] { color:var(--ink); background:transparent; font-weight:600; }
+.docs-page-link[aria-current="page"] { color:var(--ink); background:transparent; font-weight:500; }
 .docs-home { display:flex; align-items:center; gap:7px; width:fit-content; margin:0 0 var(--docs-home-gap); color:var(--ink); font-size:14px; font-weight:500; line-height:var(--docs-home-line); }
 .docs-home:hover { color:var(--ink); }
 .docs-sidebar a:focus-visible, .docs-navigation > summary:focus-visible { outline-offset:-2px; }
@@ -551,21 +551,23 @@ body.details-document main.page-wrap .profile-group {
 }
 body.details-document main.page-wrap .disclosure-preview { position:relative; min-width:0; }
 body.details-document main.page-wrap .profile-heading,
-body.details-document main.page-wrap .shopping_goal-heading { margin:0; padding-right:100px; }
+body.details-document main.page-wrap .shopping_goal-heading { margin:0; padding-right:88px; }
 body.details-document main.page-wrap .profile-heading { display:flex; align-items:baseline; gap:10px; font-weight:400; }
 body.details-document main.page-wrap .shopping_goal-heading { display:flex; align-items:baseline; gap:8px; }
 body.details-document main.page-wrap .shopping_goal-heading > .shopping_goal-text { min-width:0; }
 body.details-document main.page-wrap .disclosure-preview > .shopping_goal-meta { margin-top:var(--docs-detail-gap); }
 body.details-document main.page-wrap .disclosure-toggle {
   position:absolute; top:0; right:0; display:block;
-  width:fit-content; padding:0; color:var(--muted); font-size:13px; font-weight:400; line-height:1.75;
-  text-decoration:underline; text-underline-offset:3px;
+  width:fit-content; padding:0; color:#707070; font-size:12px; font-weight:400; line-height:23px;
+  text-decoration:none; text-underline-offset:3px;
 }
+body.details-document main.page-wrap .disclosure-toggle:is(:hover,:focus-visible) { color:var(--ink); text-decoration:underline; }
 body.details-document main.page-wrap .disclosure-hint {
-  display:inline-block; margin-left:10px; color:var(--muted);
+  display:inline-block; margin-left:10px; color:#707070;
   font-size:12px; font-weight:400; line-height:1.6;
-  text-decoration:underline; text-underline-offset:3px; white-space:nowrap;
+  text-decoration:none; text-underline-offset:3px; white-space:nowrap;
 }
+body.details-document main.page-wrap summary:is(:hover,:focus-visible) > .disclosure-hint { color:var(--ink); text-decoration:underline; }
 body.details-document main.page-wrap :is(.reference-fold, .api-card) > summary { position:relative; padding-right:50px; }
 body.details-document main.page-wrap :is(.reference-fold, .api-card) > summary > .disclosure-hint { position:absolute; top:var(--docs-row-space); right:0; margin:0; }
 body.details-document main.page-wrap .reference-section > div > .reference-fold:first-child > summary > .disclosure-hint,
@@ -891,12 +893,6 @@ document.querySelectorAll('[data-copy-action]').forEach((button) => {
   const profileGroups = Array.from(document.querySelectorAll('.shopping-goals-page .profile-group[data-nav-label]'));
   const promptRoles = Array.from(document.querySelectorAll('.prompt-roles > .prompt-role > .prompt-role-heading'));
   const headings = profileGroups.length ? profileGroups : promptRoles.length ? promptRoles : Array.from(document.querySelectorAll('main h1, main h2, main:not(.product-page-shell) h3[id]')).filter((node) => (node.textContent || '').trim() && !(node.tagName === 'H3' && node.closest('.actions-page')) && !node.closest('.reference-fold-body'));
-  if (profileGroups.length) {
-    const heading = document.createElement('div');
-    heading.className = 'floating-rail-heading';
-    heading.textContent = 'Profiles';
-    rail.insertBefore(heading, linksBox);
-  }
   const seen = new Set();
   const items = headings.map((node, index) => {
     if (!node.id) {
@@ -907,6 +903,8 @@ document.querySelectorAll('[data-copy-action]').forEach((button) => {
       node.id = id;
     }
     seen.add(node.id);
+    // Preserve existing title deep links without repeating the title in the chapter menu.
+    if (node.tagName === 'H1') return null;
     const link = document.createElement('a');
     link.href = `#${node.id}`;
     link.textContent = (node.dataset.navLabel || node.textContent || '').trim().replace(/\s+/g, ' ');
@@ -928,7 +926,7 @@ document.querySelectorAll('[data-copy-action]').forEach((button) => {
       setActive();
     });
     return {node, link};
-  });
+  }).filter(Boolean);
   if (!items.length) { (rail.closest('.section-nav') || rail).remove(); return; }
   const topOffset = () => 24;
   const setActive = () => {
