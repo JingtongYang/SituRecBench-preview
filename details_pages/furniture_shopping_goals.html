@@ -511,6 +511,60 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
   body.details-document main.page-wrap table tr > :first-child { padding-left:0; }
   body.details-document main.page-wrap table tr > :last-child { padding-right:0; }
 }
+/* Shared vertical rhythm: section 24, child 12, supporting text 8. */
+body.details-document {
+  --docs-section-gap:24px;
+  --docs-child-gap:12px;
+  --docs-detail-gap:8px;
+  --docs-row-space:12px;
+}
+body.details-document main.page-wrap .page-content :is(h2,h3,h4,h5,h6):not(.prompt-markdown *) { margin-top:0; margin-bottom:0; }
+body.details-document main.page-wrap .page-content :is(.reference-section, .actions-section, .stack, .api-group, .api-lead, .api-card-body, .reference-fold-body, .action-call-body, .profile-shopping-goals, .prompt-role, .prompt-message-body, .prompt-system-parts, .run-command, .human-feature, .overview-human) { row-gap:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content :is(.stack, .reference-fold-body, .human-feature) > p { margin-top:0; margin-bottom:0; }
+body.details-document main.page-wrap .page-content :is(.api-compact, .run-plan-layout, .api-list) { row-gap:0; }
+body.details-document main.page-wrap .page-content .api-list > li { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); row-gap:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .api-group { padding-top:var(--docs-row-space); }
+body.details-document main.page-wrap .page-content :is(.two-col, .api-grid, .eval-flow, .human-feature-grid) { row-gap:var(--docs-section-gap); }
+body.details-document main.page-wrap .page-content :is(.reference-fold-body, .api-card-body) { padding-top:0; padding-bottom:var(--docs-row-space); }
+body.details-document main.page-wrap .prompt-roles > .prompt-role > .reference-fold-body { padding:0; }
+body.details-document main.page-wrap .page-content :is(.reference-fold, .api-card, .api-snapshot, .prompt-message) > summary { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
+body.details-document main.page-wrap .page-content .reference-section > div > .reference-fold:first-child > summary,
+body.details-document main.page-wrap .page-content .api-compact > .api-card:first-child > summary,
+body.details-document main.page-wrap .page-content .reference-fold-body > h3 + .api-card > summary,
+body.details-document main.page-wrap .page-content .prompt-message-list > .prompt-message:first-child > summary { padding-top:0; }
+body.details-document main.page-wrap .page-content :is(.api-card, .reference-fold) > summary { row-gap:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .api-subhead { margin-top:0; margin-bottom:0; }
+body.details-document main.page-wrap .page-content .action-entry .action-call { margin-top:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .action-call-body { padding-top:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content :is(.prompt-message-body, .profile-shopping-goals, .shopping_goal-card, .run-command) { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
+body.details-document main.page-wrap .page-content .prompt-long-body { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
+body.details-document main.page-wrap .page-content .prompt-long-content > summary { padding-top:var(--docs-detail-gap); padding-bottom:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .prompt-roles { row-gap:var(--docs-section-gap); }
+body.details-document main.page-wrap .page-content .shopping_goal-row {
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));
+  row-gap:var(--docs-section-gap);
+}
+body.details-document main.page-wrap .page-content .shopping_goal-json > summary { row-gap:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content :is(.profile-json, .shopping_goal-json) > pre { margin-top:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content .catalog-section > h2 { margin-bottom:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content .catalog-subgroup { margin-bottom:0; }
+body.details-document main.page-wrap .page-content .catalog-info { padding-top:var(--docs-child-gap); row-gap:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .catalog-map-note { margin-top:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content .run-plan-stat { padding-top:0; padding-bottom:0; row-gap:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .prompt-markdown :is(h1,h2,h3,h4,h5,h6) { margin-top:16px; margin-bottom:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .prompt-markdown > :first-child { margin-top:0; }
+body.details-document main.page-wrap .page-content .prompt-markdown > :last-child { margin-bottom:0; }
+body.details-document main.page-wrap .shopping_goal-meta {
+  display:flex; flex-wrap:wrap; gap:5px; min-width:0;
+  margin-left:calc(2 * var(--docs-content-indent));
+  width:calc(100% - 2 * var(--docs-content-indent));
+  color:var(--muted); font-size:13px; font-weight:400; line-height:1.4;
+}
+body.details-document main.page-wrap .shopping_goal-attribute {
+  display:inline-block; max-width:100%; padding:2px 6px;
+  border-radius:4px; background:var(--paper); overflow-wrap:anywhere;
+}
+/* End shared vertical rhythm. */
 </style>
 </head>
 <body class="details-document shopping-goals-document">
@@ -651,7 +705,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want to make one corner of my room feel calmer. — User input"><span class="shopping_goal-number" aria-hidden="true">1.1</span><span class="shopping_goal-text">I want to make one corner of my room feel calmer.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want to make one corner of my room feel calmer. — User input"><span class="shopping_goal-number" aria-hidden="true">1.1</span><span class="shopping_goal-text">I want to make one corner of my room feel calmer.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 25</span><span class="shopping_goal-attribute">I want visible leaves, not a tiny accent.</span><span class="shopping_goal-attribute">It should soften the room without needing furniture changes.</span><span class="shopping_goal-attribute">Something floor-friendly would help.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want one corner of my room to feel calmer.&quot;,
   &quot;preferences&quot;: [
     &quot;I want visible leaves, not a tiny accent.&quot;,
@@ -670,7 +724,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a plant that already has some height. — User input"><span class="shopping_goal-number" aria-hidden="true">1.2</span><span class="shopping_goal-text">I need a plant that already has some height.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a plant that already has some height. — User input"><span class="shopping_goal-number" aria-hidden="true">1.2</span><span class="shopping_goal-text">I need a plant that already has some height.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 90</span><span class="shopping_goal-attribute">I want the plant to lift the eye.</span><span class="shopping_goal-attribute">A built-in stand or tall profile would help.</span><span class="shopping_goal-attribute">It should not feel like a small shelf object.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need greenery that already adds some height.&quot;,
   &quot;preferences&quot;: [
     &quot;I want the plant to lift the eye.&quot;,
@@ -689,7 +743,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a plant that will not feel too fussy. — User input"><span class="shopping_goal-number" aria-hidden="true">1.3</span><span class="shopping_goal-text">I want a plant that will not feel too fussy.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a plant that will not feel too fussy. — User input"><span class="shopping_goal-number" aria-hidden="true">1.3</span><span class="shopping_goal-text">I want a plant that will not feel too fussy.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 25</span><span class="shopping_goal-attribute">A clean upright shape would be nice.</span><span class="shopping_goal-attribute">I want something that reads low-maintenance.</span><span class="shopping_goal-attribute">It should not look delicate or sprawling.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want greenery that does not feel fussy.&quot;,
   &quot;preferences&quot;: [
     &quot;A clean upright shape would be nice.&quot;,
@@ -708,7 +762,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need a gentler light for that corner. — User input"><span class="shopping_goal-number" aria-hidden="true">1.4</span><span class="shopping_goal-text">I also need a gentler light for that corner.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need a gentler light for that corner. — User input"><span class="shopping_goal-number" aria-hidden="true">1.4</span><span class="shopping_goal-text">I also need a gentler light for that corner.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 150</span><span class="shopping_goal-attribute">It should make the area feel warm.</span><span class="shopping_goal-attribute">I want a small fixture rather than a main room light.</span><span class="shopping_goal-attribute">A softer material or shade would help.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also need gentler light for that corner.&quot;,
   &quot;preferences&quot;: [
     &quot;It should make the area feel warm.&quot;,
@@ -758,7 +812,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a lamp for reading at night. — User input"><span class="shopping_goal-number" aria-hidden="true">2.1</span><span class="shopping_goal-text">I need a lamp for reading at night.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a lamp for reading at night. — User input"><span class="shopping_goal-number" aria-hidden="true">2.1</span><span class="shopping_goal-text">I need a lamp for reading at night.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 160</span><span class="shopping_goal-attribute">It should sit near the bed or chair.</span><span class="shopping_goal-attribute">The glow should not feel harsh.</span><span class="shopping_goal-attribute">I want it for reading, not for lighting the whole room.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need light for reading at night.&quot;,
   &quot;preferences&quot;: [
     &quot;It should sit near the bed or chair.&quot;,
@@ -777,7 +831,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also want a smaller lamp option. — User input"><span class="shopping_goal-number" aria-hidden="true">2.2</span><span class="shopping_goal-text">I also want a smaller lamp option.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also want a smaller lamp option. — User input"><span class="shopping_goal-number" aria-hidden="true">2.2</span><span class="shopping_goal-text">I also want a smaller lamp option.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 100</span><span class="shopping_goal-attribute">It should fit on a nightstand.</span><span class="shopping_goal-attribute">A shade or softened glow would be better.</span><span class="shopping_goal-attribute">It should not take over the room.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also want a smaller light option.&quot;,
   &quot;preferences&quot;: [
     &quot;It should fit on a nightstand.&quot;,
@@ -796,7 +850,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a floor lamp instead of another table lamp. — User input"><span class="shopping_goal-number" aria-hidden="true">2.3</span><span class="shopping_goal-text">I may need a floor lamp instead of another table lamp.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a floor lamp instead of another table lamp. — User input"><span class="shopping_goal-number" aria-hidden="true">2.3</span><span class="shopping_goal-text">I may need a floor lamp instead of another table lamp.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 140</span><span class="shopping_goal-attribute">It should reach a seated reader.</span><span class="shopping_goal-attribute">I want it separate from the table surface.</span><span class="shopping_goal-attribute">Adjustability would be useful.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I may need a light beside the reading chair.&quot;,
   &quot;preferences&quot;: [
     &quot;It should reach a seated reader.&quot;,
@@ -815,7 +869,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a comfortable chair for a reading corner. — User input"><span class="shopping_goal-number" aria-hidden="true">2.4</span><span class="shopping_goal-text">I need a comfortable chair for a reading corner.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a comfortable chair for a reading corner. — User input"><span class="shopping_goal-number" aria-hidden="true">2.4</span><span class="shopping_goal-text">I need a comfortable chair for a reading corner.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 310</span><span class="shopping_goal-attribute">It should support longer sitting.</span><span class="shopping_goal-attribute">A single-person seat is enough.</span><span class="shopping_goal-attribute">It should pair with a lamp nearby.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need somewhere comfortable to read.&quot;,
   &quot;preferences&quot;: [
     &quot;It should support longer sitting.&quot;,
@@ -865,7 +919,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;low&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a storage piece that can anchor a living room wall. — User input"><span class="shopping_goal-number" aria-hidden="true">3.1</span><span class="shopping_goal-text">I need a storage piece that can anchor a living room wall.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a storage piece that can anchor a living room wall. — User input"><span class="shopping_goal-number" aria-hidden="true">3.1</span><span class="shopping_goal-text">I need a storage piece that can anchor a living room wall.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 800</span><span class="shopping_goal-attribute">It should feel like furniture rather than office storage.</span><span class="shopping_goal-attribute">A warmer finish would suit the room.</span><span class="shopping_goal-attribute">Closed storage would help keep the wall calm.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need storage that can anchor a living room wall.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel like furniture rather than office storage.&quot;,
@@ -884,7 +938,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need one sculptural accent chair. — User input"><span class="shopping_goal-number" aria-hidden="true">3.2</span><span class="shopping_goal-text">I also need one sculptural accent chair.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need one sculptural accent chair. — User input"><span class="shopping_goal-number" aria-hidden="true">3.2</span><span class="shopping_goal-text">I also need one sculptural accent chair.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 1800</span><span class="shopping_goal-attribute">It should feel intentional in a styled room.</span><span class="shopping_goal-attribute">A darker frame or contrast would connect to the scheme.</span><span class="shopping_goal-attribute">It should not be a bulky sofa module.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also need one sculptural seat.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel intentional in a styled room.&quot;,
@@ -903,7 +957,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a central coffee table for the seating area. — User input"><span class="shopping_goal-number" aria-hidden="true">3.3</span><span class="shopping_goal-text">I need a central coffee table for the seating area.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a central coffee table for the seating area. — User input"><span class="shopping_goal-number" aria-hidden="true">3.3</span><span class="shopping_goal-text">I need a central coffee table for the seating area.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 300</span><span class="shopping_goal-attribute">It should balance the seating layout.</span><span class="shopping_goal-attribute">A lighter top would keep the room from feeling heavy.</span><span class="shopping_goal-attribute">It needs to work as the main surface.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a central surface for the seating area.&quot;,
   &quot;preferences&quot;: [
     &quot;It should balance the seating layout.&quot;,
@@ -922,7 +976,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a finishing accent for the coffee table. — User input"><span class="shopping_goal-number" aria-hidden="true">3.4</span><span class="shopping_goal-text">I need a finishing accent for the coffee table.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a finishing accent for the coffee table. — User input"><span class="shopping_goal-number" aria-hidden="true">3.4</span><span class="shopping_goal-text">I need a finishing accent for the coffee table.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 150</span><span class="shopping_goal-attribute">It should make the surface feel intentional.</span><span class="shopping_goal-attribute">A darker accent could tie the room together.</span><span class="shopping_goal-attribute">It should be decor, not another table.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a finishing accent for the table.&quot;,
   &quot;preferences&quot;: [
     &quot;It should make the surface feel intentional.&quot;,
@@ -972,7 +1026,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;low&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need something for kids to play in at home. — User input"><span class="shopping_goal-number" aria-hidden="true">4.1</span><span class="shopping_goal-text">I need something for kids to play in at home.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need something for kids to play in at home. — User input"><span class="shopping_goal-number" aria-hidden="true">4.1</span><span class="shopping_goal-text">I need something for kids to play in at home.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 70</span><span class="shopping_goal-attribute">It should work indoors.</span><span class="shopping_goal-attribute">I want calmer pretend play rather than a sports item.</span><span class="shopping_goal-attribute">It needs to feel contained enough for a room.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need something for quiet play at home.&quot;,
   &quot;preferences&quot;: [
     &quot;It should work indoors.&quot;,
@@ -991,7 +1045,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;none&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I might need a more active soft-play item. — User input"><span class="shopping_goal-number" aria-hidden="true">4.2</span><span class="shopping_goal-text">I might need a more active soft-play item.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I might need a more active soft-play item. — User input"><span class="shopping_goal-number" aria-hidden="true">4.2</span><span class="shopping_goal-text">I might need a more active soft-play item.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 70</span><span class="shopping_goal-attribute">Kids can move around with it.</span><span class="shopping_goal-attribute">It should still feel padded or contained.</span><span class="shopping_goal-attribute">I want an indoor activity.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I may need a more active soft-play item.&quot;,
   &quot;preferences&quot;: [
     &quot;Kids can move around with it.&quot;,
@@ -1010,7 +1064,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;if_uncertain&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need one outdoor active-play option. — User input"><span class="shopping_goal-number" aria-hidden="true">4.3</span><span class="shopping_goal-text">I need one outdoor active-play option.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need one outdoor active-play option. — User input"><span class="shopping_goal-number" aria-hidden="true">4.3</span><span class="shopping_goal-text">I need one outdoor active-play option.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 100</span><span class="shopping_goal-attribute">It should encourage running or kicking.</span><span class="shopping_goal-attribute">I want something for the yard.</span><span class="shopping_goal-attribute">It should not be a quiet pretend-play piece.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need one outdoor active-play option.&quot;,
   &quot;preferences&quot;: [
     &quot;It should encourage running or kicking.&quot;,
@@ -1029,7 +1083,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;if_uncertain&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also want something for contained backyard play. — User input"><span class="shopping_goal-number" aria-hidden="true">4.4</span><span class="shopping_goal-text">I also want something for contained backyard play.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also want something for contained backyard play. — User input"><span class="shopping_goal-number" aria-hidden="true">4.4</span><span class="shopping_goal-text">I also want something for contained backyard play.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 100</span><span class="shopping_goal-attribute">It should keep the activity in one spot.</span><span class="shopping_goal-attribute">I want something younger kids can use.</span><span class="shopping_goal-attribute">It should be more tactile than sporty.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also want a contained backyard activity.&quot;,
   &quot;preferences&quot;: [
     &quot;It should keep the activity in one spot.&quot;,
@@ -1079,7 +1133,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;high&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a better chair for long work sessions. — User input"><span class="shopping_goal-number" aria-hidden="true">5.1</span><span class="shopping_goal-text">I need a better chair for long work sessions.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a better chair for long work sessions. — User input"><span class="shopping_goal-number" aria-hidden="true">5.1</span><span class="shopping_goal-text">I need a better chair for long work sessions.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 300</span><span class="shopping_goal-attribute">It should look professional.</span><span class="shopping_goal-attribute">Back support matters.</span><span class="shopping_goal-attribute">It should be for desk work, not lounging.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a better seat for long work sessions.&quot;,
   &quot;preferences&quot;: [
     &quot;It should look professional.&quot;,
@@ -1098,7 +1152,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I might prefer a darker office chair. — User input"><span class="shopping_goal-number" aria-hidden="true">5.2</span><span class="shopping_goal-text">I might prefer a darker office chair.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I might prefer a darker office chair. — User input"><span class="shopping_goal-number" aria-hidden="true">5.2</span><span class="shopping_goal-text">I might prefer a darker office chair.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 350</span><span class="shopping_goal-attribute">It should match a serious office.</span><span class="shopping_goal-attribute">I still need desk support.</span><span class="shopping_goal-attribute">It should not read as a casual accent chair.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I might prefer a darker work seat.&quot;,
   &quot;preferences&quot;: [
     &quot;It should match a serious office.&quot;,
@@ -1117,7 +1171,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a desk that can be the main work surface. — User input"><span class="shopping_goal-number" aria-hidden="true">5.3</span><span class="shopping_goal-text">I need a desk that can be the main work surface.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a desk that can be the main work surface. — User input"><span class="shopping_goal-number" aria-hidden="true">5.3</span><span class="shopping_goal-text">I need a desk that can be the main work surface.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 400</span><span class="shopping_goal-attribute">It should be more useful than another shelf.</span><span class="shopping_goal-attribute">A darker or warmer finish would fit the mood.</span><span class="shopping_goal-attribute">It needs to support daily work.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need the main work surface for my office.&quot;,
   &quot;preferences&quot;: [
     &quot;It should be more useful than another shelf.&quot;,
@@ -1136,7 +1190,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need storage for books and files. — User input"><span class="shopping_goal-number" aria-hidden="true">5.4</span><span class="shopping_goal-text">I need storage for books and files.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need storage for books and files. — User input"><span class="shopping_goal-number" aria-hidden="true">5.4</span><span class="shopping_goal-text">I need storage for books and files.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 300</span><span class="shopping_goal-attribute">Some open access would be useful.</span><span class="shopping_goal-attribute">It should still hide some clutter.</span><span class="shopping_goal-attribute">It should feel appropriate near a desk.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need storage for books and files.&quot;,
   &quot;preferences&quot;: [
     &quot;Some open access would be useful.&quot;,
@@ -1186,7 +1240,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a plant that can fit in a smaller room. — User input"><span class="shopping_goal-number" aria-hidden="true">6.1</span><span class="shopping_goal-text">I need a plant that can fit in a smaller room.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a plant that can fit in a smaller room. — User input"><span class="shopping_goal-number" aria-hidden="true">6.1</span><span class="shopping_goal-text">I need a plant that can fit in a smaller room.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 20</span><span class="shopping_goal-attribute">It should not dominate the floor.</span><span class="shopping_goal-attribute">Visible leaves still matter.</span><span class="shopping_goal-attribute">I want something easy to place.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need greenery for a smaller room.&quot;,
   &quot;preferences&quot;: [
     &quot;It should not dominate the floor.&quot;,
@@ -1205,7 +1259,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one taller plant accent. — User input"><span class="shopping_goal-number" aria-hidden="true">6.2</span><span class="shopping_goal-text">I want one taller plant accent.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one taller plant accent. — User input"><span class="shopping_goal-number" aria-hidden="true">6.2</span><span class="shopping_goal-text">I want one taller plant accent.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 45</span><span class="shopping_goal-attribute">It should add height.</span><span class="shopping_goal-attribute">A trailing or climbing feel would be okay.</span><span class="shopping_goal-attribute">It should be more than a tabletop accent.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want one taller green accent.&quot;,
   &quot;preferences&quot;: [
     &quot;It should add height.&quot;,
@@ -1224,7 +1278,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a cleaner-looking planter. — User input"><span class="shopping_goal-number" aria-hidden="true">6.3</span><span class="shopping_goal-text">I may need a cleaner-looking planter.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a cleaner-looking planter. — User input"><span class="shopping_goal-number" aria-hidden="true">6.3</span><span class="shopping_goal-text">I may need a cleaner-looking planter.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 95</span><span class="shopping_goal-attribute">I want the planter to look clean and uncluttered.</span><span class="shopping_goal-attribute">It can sit on the floor.</span><span class="shopping_goal-attribute">I want greenery without visual clutter.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I may need a cleaner-looking plant display.&quot;,
   &quot;preferences&quot;: [
     &quot;I want the planter to look clean and uncluttered.&quot;,
@@ -1243,7 +1297,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a tiny plant accent too. — User input"><span class="shopping_goal-number" aria-hidden="true">6.4</span><span class="shopping_goal-text">I need a tiny plant accent too.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a tiny plant accent too. — User input"><span class="shopping_goal-number" aria-hidden="true">6.4</span><span class="shopping_goal-text">I need a tiny plant accent too.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 90</span><span class="shopping_goal-attribute">It should fit on a shelf or small ledge.</span><span class="shopping_goal-attribute">A soft leafy texture would be nice.</span><span class="shopping_goal-attribute">It should not need a large floor footprint.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a tiny green accent too.&quot;,
   &quot;preferences&quot;: [
     &quot;It should fit on a shelf or small ledge.&quot;,
@@ -1293,7 +1347,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;high&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a lamp that feels softer and decorative. — User input"><span class="shopping_goal-number" aria-hidden="true">7.1</span><span class="shopping_goal-text">I want a lamp that feels softer and decorative.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a lamp that feels softer and decorative. — User input"><span class="shopping_goal-number" aria-hidden="true">7.1</span><span class="shopping_goal-text">I want a lamp that feels softer and decorative.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 250</span><span class="shopping_goal-attribute">It should feel warmer than a plain utility lamp.</span><span class="shopping_goal-attribute">It is for mood more than task work.</span><span class="shopping_goal-attribute">A gentle color or material would be welcome.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want a light that feels softer and decorative.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel warmer than a plain utility lamp.&quot;,
@@ -1312,7 +1366,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a smaller accent lamp instead. — User input"><span class="shopping_goal-number" aria-hidden="true">7.2</span><span class="shopping_goal-text">I may need a smaller accent lamp instead.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a smaller accent lamp instead. — User input"><span class="shopping_goal-number" aria-hidden="true">7.2</span><span class="shopping_goal-text">I may need a smaller accent lamp instead.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 150</span><span class="shopping_goal-attribute">It can be a little playful if it stays compact.</span><span class="shopping_goal-attribute">It should work on a small surface.</span><span class="shopping_goal-attribute">I do not need a main lamp.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I may need a smaller accent light instead.&quot;,
   &quot;preferences&quot;: [
     &quot;It can be a little playful if it stays compact.&quot;,
@@ -1331,7 +1385,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I am also considering something wall-mounted. — User input"><span class="shopping_goal-number" aria-hidden="true">7.3</span><span class="shopping_goal-text">I am also considering something wall-mounted.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I am also considering something wall-mounted. — User input"><span class="shopping_goal-number" aria-hidden="true">7.3</span><span class="shopping_goal-text">I am also considering something wall-mounted.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 130</span><span class="shopping_goal-attribute">It should keep the surface clear.</span><span class="shopping_goal-attribute">A softened shade would help at night.</span><span class="shopping_goal-attribute">I do not want a harsh exposed glow.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I am also considering light mounted off the table.&quot;,
   &quot;preferences&quot;: [
     &quot;It should keep the surface clear.&quot;,
@@ -1350,7 +1404,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a warmer brass wall light. — User input"><span class="shopping_goal-number" aria-hidden="true">7.4</span><span class="shopping_goal-text">Maybe a warmer brass wall light.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a warmer brass wall light. — User input"><span class="shopping_goal-number" aria-hidden="true">7.4</span><span class="shopping_goal-text">Maybe a warmer brass wall light.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 170</span><span class="shopping_goal-attribute">It should feel less clinical.</span><span class="shopping_goal-attribute">A shade or softened direction matters.</span><span class="shopping_goal-attribute">It is for ambience, not bright work.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe a warmer wall light would work.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel less clinical.&quot;,
@@ -1400,7 +1454,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a storage piece, but not something too dark. — User input"><span class="shopping_goal-number" aria-hidden="true">8.1</span><span class="shopping_goal-text">I need a storage piece, but not something too dark.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a storage piece, but not something too dark. — User input"><span class="shopping_goal-number" aria-hidden="true">8.1</span><span class="shopping_goal-text">I need a storage piece, but not something too dark.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 550</span><span class="shopping_goal-attribute">It should still feel useful in a living or dining room.</span><span class="shopping_goal-attribute">A lighter finish would help.</span><span class="shopping_goal-attribute">It should not look like office storage.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need storage that does not make the room too dark.&quot;,
   &quot;preferences&quot;: [
     &quot;It should still feel useful in a living or dining room.&quot;,
@@ -1419,7 +1473,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a rounded lounge chair. — User input"><span class="shopping_goal-number" aria-hidden="true">8.2</span><span class="shopping_goal-text">I want a rounded lounge chair.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a rounded lounge chair. — User input"><span class="shopping_goal-number" aria-hidden="true">8.2</span><span class="shopping_goal-text">I want a rounded lounge chair.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 330</span><span class="shopping_goal-attribute">The shape should soften the room.</span><span class="shopping_goal-attribute">It is for lounging, not dining.</span><span class="shopping_goal-attribute">A single chair is enough.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want a rounded lounge seat.&quot;,
   &quot;preferences&quot;: [
     &quot;The shape should soften the room.&quot;,
@@ -1438,7 +1492,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a coffee table that keeps the room light. — User input"><span class="shopping_goal-number" aria-hidden="true">8.3</span><span class="shopping_goal-text">I need a coffee table that keeps the room light.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a coffee table that keeps the room light. — User input"><span class="shopping_goal-number" aria-hidden="true">8.3</span><span class="shopping_goal-text">I need a coffee table that keeps the room light.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 750</span><span class="shopping_goal-attribute">It should avoid making the room heavy.</span><span class="shopping_goal-attribute">A simple square table shape would keep the room feeling open.</span><span class="shopping_goal-attribute">It should work with softer seating.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a table that keeps the room light.&quot;,
   &quot;preferences&quot;: [
     &quot;It should avoid making the room heavy.&quot;,
@@ -1457,7 +1511,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need one small decor piece to finish it. — User input"><span class="shopping_goal-number" aria-hidden="true">8.4</span><span class="shopping_goal-text">I need one small decor piece to finish it.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need one small decor piece to finish it. — User input"><span class="shopping_goal-number" aria-hidden="true">8.4</span><span class="shopping_goal-text">I need one small decor piece to finish it.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 90</span><span class="shopping_goal-attribute">It should add a soft color note.</span><span class="shopping_goal-attribute">A curved shape would fit.</span><span class="shopping_goal-attribute">It should be small rather than a statement.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need one small decor piece to finish it.&quot;,
   &quot;preferences&quot;: [
     &quot;It should add a soft color note.&quot;,
@@ -1507,7 +1561,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;low&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a bigger outdoor activity for kids. — User input"><span class="shopping_goal-number" aria-hidden="true">9.1</span><span class="shopping_goal-text">I want a bigger outdoor activity for kids.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a bigger outdoor activity for kids. — User input"><span class="shopping_goal-number" aria-hidden="true">9.1</span><span class="shopping_goal-text">I want a bigger outdoor activity for kids.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 330</span><span class="shopping_goal-attribute">It should give kids a back-and-forth motion activity.</span><span class="shopping_goal-attribute">A climbing or ladder element would help.</span><span class="shopping_goal-attribute">I want something more substantial than a small toy.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want a bigger outdoor activity for kids.&quot;,
   &quot;preferences&quot;: [
     &quot;It should give kids a back-and-forth motion activity.&quot;,
@@ -1526,7 +1580,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I might need an indoor game table. — User input"><span class="shopping_goal-number" aria-hidden="true">9.2</span><span class="shopping_goal-text">I might need an indoor game table.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I might need an indoor game table. — User input"><span class="shopping_goal-number" aria-hidden="true">9.2</span><span class="shopping_goal-text">I might need an indoor game table.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 700</span><span class="shopping_goal-attribute">People can play face to face.</span><span class="shopping_goal-attribute">It should suit a recreation room.</span><span class="shopping_goal-attribute">I want fast rounds rather than seating or dining.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I might need an indoor game table.&quot;,
   &quot;preferences&quot;: [
     &quot;People can play face to face.&quot;,
@@ -1545,7 +1599,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I am also considering a more active table game. — User input"><span class="shopping_goal-number" aria-hidden="true">9.3</span><span class="shopping_goal-text">I am also considering a more active table game.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I am also considering a more active table game. — User input"><span class="shopping_goal-number" aria-hidden="true">9.3</span><span class="shopping_goal-text">I am also considering a more active table game.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 490</span><span class="shopping_goal-attribute">Players should move around it.</span><span class="shopping_goal-attribute">It works for casual competition.</span><span class="shopping_goal-attribute">It needs more room than a board game.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I am considering a more active table game.&quot;,
   &quot;preferences&quot;: [
     &quot;Players should move around it.&quot;,
@@ -1564,7 +1618,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="If I go more adult, I might want a pool table. — User input"><span class="shopping_goal-number" aria-hidden="true">9.4</span><span class="shopping_goal-text">If I go more adult, I might want a pool table.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="If I go more adult, I might want a pool table. — User input"><span class="shopping_goal-number" aria-hidden="true">9.4</span><span class="shopping_goal-text">If I go more adult, I might want a pool table.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 700</span><span class="shopping_goal-attribute">It should anchor the room.</span><span class="shopping_goal-attribute">The activity can be slower and social.</span><span class="shopping_goal-attribute">It needs a generous footprint.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;If the room feels more adult, I want a game centerpiece.&quot;,
   &quot;preferences&quot;: [
     &quot;It should anchor the room.&quot;,
@@ -1614,7 +1668,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;high&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need storage for paperwork. — User input"><span class="shopping_goal-number" aria-hidden="true">10.1</span><span class="shopping_goal-text">I need storage for paperwork.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need storage for paperwork. — User input"><span class="shopping_goal-number" aria-hidden="true">10.1</span><span class="shopping_goal-text">I need storage for paperwork.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 800</span><span class="shopping_goal-attribute">Drawers are more useful than open display.</span><span class="shopping_goal-attribute">It should feel office-like.</span><span class="shopping_goal-attribute">I want to reduce paper clutter.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need storage for paperwork.&quot;,
   &quot;preferences&quot;: [
     &quot;Drawers are more useful than open display.&quot;,
@@ -1633,7 +1687,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;none&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a narrower file cabinet would be better. — User input"><span class="shopping_goal-number" aria-hidden="true">10.2</span><span class="shopping_goal-text">Maybe a narrower file cabinet would be better.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a narrower file cabinet would be better. — User input"><span class="shopping_goal-number" aria-hidden="true">10.2</span><span class="shopping_goal-text">Maybe a narrower file cabinet would be better.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 250</span><span class="shopping_goal-attribute">Vertical storage matters because floor space is limited.</span><span class="shopping_goal-attribute">It should handle files rather than decor.</span><span class="shopping_goal-attribute">I want practical office organization.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe a narrower storage piece would be better.&quot;,
   &quot;preferences&quot;: [
     &quot;Vertical storage matters because floor space is limited.&quot;,
@@ -1652,7 +1706,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;none&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a lamp for the office corner. — User input"><span class="shopping_goal-number" aria-hidden="true">10.3</span><span class="shopping_goal-text">I need a lamp for the office corner.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a lamp for the office corner. — User input"><span class="shopping_goal-number" aria-hidden="true">10.3</span><span class="shopping_goal-text">I need a lamp for the office corner.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 90</span><span class="shopping_goal-attribute">It should match serious office furniture.</span><span class="shopping_goal-attribute">It should be compact.</span><span class="shopping_goal-attribute">I do not need a standing lamp here.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a light for the office corner.&quot;,
   &quot;preferences&quot;: [
     &quot;It should match serious office furniture.&quot;,
@@ -1671,7 +1725,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;if_uncertain&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I should finish the office with a wastebasket. — User input"><span class="shopping_goal-number" aria-hidden="true">10.4</span><span class="shopping_goal-text">I should finish the office with a wastebasket.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I should finish the office with a wastebasket. — User input"><span class="shopping_goal-number" aria-hidden="true">10.4</span><span class="shopping_goal-text">I should finish the office with a wastebasket.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 60</span><span class="shopping_goal-attribute">It belongs near a desk.</span><span class="shopping_goal-attribute">It should collect paper scraps and small waste.</span><span class="shopping_goal-attribute">I do not need another chair or lamp.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I should finish the office with a practical small item.&quot;,
   &quot;preferences&quot;: [
     &quot;It belongs near a desk.&quot;,
@@ -1721,7 +1775,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a plant that already feels styled. — User input"><span class="shopping_goal-number" aria-hidden="true">11.1</span><span class="shopping_goal-text">I want a plant that already feels styled.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a plant that already feels styled. — User input"><span class="shopping_goal-number" aria-hidden="true">11.1</span><span class="shopping_goal-text">I want a plant that already feels styled.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 150</span><span class="shopping_goal-attribute">It should look intentional right away.</span><span class="shopping_goal-attribute">A stand or elevated look would help.</span><span class="shopping_goal-attribute">I want leafy presence.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want a plant that already feels styled.&quot;,
   &quot;preferences&quot;: [
     &quot;It should look intentional right away.&quot;,
@@ -1740,7 +1794,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need something that looks hardy. — User input"><span class="shopping_goal-number" aria-hidden="true">11.2</span><span class="shopping_goal-text">I need something that looks hardy.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need something that looks hardy. — User input"><span class="shopping_goal-number" aria-hidden="true">11.2</span><span class="shopping_goal-text">I need something that looks hardy.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 45</span><span class="shopping_goal-attribute">It should not look fragile.</span><span class="shopping_goal-attribute">A grass-like or upright shape is okay.</span><span class="shopping_goal-attribute">I want something forgiving.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need greenery that looks hardy.&quot;,
   &quot;preferences&quot;: [
     &quot;It should not look fragile.&quot;,
@@ -1759,7 +1813,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a cactus would be the safest plant for me. — User input"><span class="shopping_goal-number" aria-hidden="true">11.3</span><span class="shopping_goal-text">Maybe a cactus would be the safest plant for me.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a cactus would be the safest plant for me. — User input"><span class="shopping_goal-number" aria-hidden="true">11.3</span><span class="shopping_goal-text">Maybe a cactus would be the safest plant for me.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 30</span><span class="shopping_goal-attribute">It should look structured and sturdy.</span><span class="shopping_goal-attribute">I want something that does not read as delicate.</span><span class="shopping_goal-attribute">It should not need a lush care routine.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe I should choose the safest greenery option.&quot;,
   &quot;preferences&quot;: [
     &quot;It should look structured and sturdy.&quot;,
@@ -1778,7 +1832,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also like the idea of a softer trailing plant. — User input"><span class="shopping_goal-number" aria-hidden="true">11.4</span><span class="shopping_goal-text">I also like the idea of a softer trailing plant.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also like the idea of a softer trailing plant. — User input"><span class="shopping_goal-number" aria-hidden="true">11.4</span><span class="shopping_goal-text">I also like the idea of a softer trailing plant.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 90</span><span class="shopping_goal-attribute">It should feel relaxed.</span><span class="shopping_goal-attribute">A hanging or cascading shape would work.</span><span class="shopping_goal-attribute">I want something less rigid.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also like a softer trailing green look.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel relaxed.&quot;,
@@ -1828,7 +1882,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;high&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a main light that is not too harsh. — User input"><span class="shopping_goal-number" aria-hidden="true">12.1</span><span class="shopping_goal-text">I need a main light that is not too harsh.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a main light that is not too harsh. — User input"><span class="shopping_goal-number" aria-hidden="true">12.1</span><span class="shopping_goal-text">I need a main light that is not too harsh.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 150</span><span class="shopping_goal-attribute">It should spread light rather than glare.</span><span class="shopping_goal-attribute">I want something calmer than a bare fixture.</span><span class="shopping_goal-attribute">It should work for the whole room.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a main light that is not too harsh.&quot;,
   &quot;preferences&quot;: [
     &quot;It should spread light rather than glare.&quot;,
@@ -1847,7 +1901,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I am considering a wall light for near the doorway. — User input"><span class="shopping_goal-number" aria-hidden="true">12.2</span><span class="shopping_goal-text">I am considering a wall light for near the doorway.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I am considering a wall light for near the doorway. — User input"><span class="shopping_goal-number" aria-hidden="true">12.2</span><span class="shopping_goal-text">I am considering a wall light for near the doorway.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 100</span><span class="shopping_goal-attribute">It should avoid glare at night.</span><span class="shopping_goal-attribute">It needs to feel practical near a passage.</span><span class="shopping_goal-attribute">It should not be purely decorative.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I am considering a wall light near the doorway.&quot;,
   &quot;preferences&quot;: [
     &quot;It should avoid glare at night.&quot;,
@@ -1866,7 +1920,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a warmer wall sconce would work. — User input"><span class="shopping_goal-number" aria-hidden="true">12.3</span><span class="shopping_goal-text">Maybe a warmer wall sconce would work.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a warmer wall sconce would work. — User input"><span class="shopping_goal-number" aria-hidden="true">12.3</span><span class="shopping_goal-text">Maybe a warmer wall sconce would work.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 90</span><span class="shopping_goal-attribute">It should look less cold than chrome.</span><span class="shopping_goal-attribute">I want evening ambience, not bright task light.</span><span class="shopping_goal-attribute">A warmer finish would help.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe a warmer wall light would work.&quot;,
   &quot;preferences&quot;: [
     &quot;It should look less cold than chrome.&quot;,
@@ -1885,7 +1939,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need one pendant over a small table. — User input"><span class="shopping_goal-number" aria-hidden="true">12.4</span><span class="shopping_goal-text">I may need one pendant over a small table.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need one pendant over a small table. — User input"><span class="shopping_goal-number" aria-hidden="true">12.4</span><span class="shopping_goal-text">I may need one pendant over a small table.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 270</span><span class="shopping_goal-attribute">It should define one area.</span><span class="shopping_goal-attribute">A warm finish would fit.</span><span class="shopping_goal-attribute">It should feel intentional over the surface.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I may need one light over a small table.&quot;,
   &quot;preferences&quot;: [
     &quot;It should define one area.&quot;,
@@ -1935,7 +1989,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need something to ground a formal dining area. — User input"><span class="shopping_goal-number" aria-hidden="true">13.1</span><span class="shopping_goal-text">I need something to ground a formal dining area.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need something to ground a formal dining area. — User input"><span class="shopping_goal-number" aria-hidden="true">13.1</span><span class="shopping_goal-text">I need something to ground a formal dining area.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 75</span><span class="shopping_goal-attribute">It should visually anchor the dining furniture.</span><span class="shopping_goal-attribute">A traditional pattern would fit.</span><span class="shopping_goal-attribute">It is not the table itself.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need something to ground a formal dining area.&quot;,
   &quot;preferences&quot;: [
     &quot;It should visually anchor the dining furniture.&quot;,
@@ -1954,7 +2008,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;if_uncertain&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a centerpiece with a more formal feeling. — User input"><span class="shopping_goal-number" aria-hidden="true">13.2</span><span class="shopping_goal-text">I want a centerpiece with a more formal feeling.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a centerpiece with a more formal feeling. — User input"><span class="shopping_goal-number" aria-hidden="true">13.2</span><span class="shopping_goal-text">I want a centerpiece with a more formal feeling.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 40</span><span class="shopping_goal-attribute">It should make the table feel dressed.</span><span class="shopping_goal-attribute">A warm metal look would fit.</span><span class="shopping_goal-attribute">It should be more ceremonial than a simple bowl.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want a centerpiece with a formal feeling.&quot;,
   &quot;preferences&quot;: [
     &quot;It should make the table feel dressed.&quot;,
@@ -1973,7 +2027,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;none&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need the main table for a formal dining room. — User input"><span class="shopping_goal-number" aria-hidden="true">13.3</span><span class="shopping_goal-text">I need the main table for a formal dining room.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need the main table for a formal dining room. — User input"><span class="shopping_goal-number" aria-hidden="true">13.3</span><span class="shopping_goal-text">I need the main table for a formal dining room.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 500</span><span class="shopping_goal-attribute">It should suit seated meals.</span><span class="shopping_goal-attribute">A more traditional silhouette would fit.</span><span class="shopping_goal-attribute">It needs to be the central piece.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need the main surface for a formal dining room.&quot;,
   &quot;preferences&quot;: [
     &quot;It should suit seated meals.&quot;,
@@ -1992,7 +2046,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;if_uncertain&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need one decorative object with color. — User input"><span class="shopping_goal-number" aria-hidden="true">13.4</span><span class="shopping_goal-text">I need one decorative object with color.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need one decorative object with color. — User input"><span class="shopping_goal-number" aria-hidden="true">13.4</span><span class="shopping_goal-text">I need one decorative object with color.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 130</span><span class="shopping_goal-attribute">It should add color and shine.</span><span class="shopping_goal-attribute">It can sit on a table or display surface.</span><span class="shopping_goal-attribute">It is not seating or lighting.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need one decorative object with color.&quot;,
   &quot;preferences&quot;: [
     &quot;It should add color and shine.&quot;,
@@ -2042,7 +2096,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a game table that still looks decent in the room. — User input"><span class="shopping_goal-number" aria-hidden="true">14.1</span><span class="shopping_goal-text">I want a game table that still looks decent in the room.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a game table that still looks decent in the room. — User input"><span class="shopping_goal-number" aria-hidden="true">14.1</span><span class="shopping_goal-text">I want a game table that still looks decent in the room.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 500</span><span class="shopping_goal-attribute">It should suit quick matches.</span><span class="shopping_goal-attribute">A furniture-like finish would help.</span><span class="shopping_goal-attribute">It needs to be more than a small wall game.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want a game table that still looks decent in the room.&quot;,
   &quot;preferences&quot;: [
     &quot;It should suit quick matches.&quot;,
@@ -2061,7 +2115,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I am tempted by a classic arcade piece. — User input"><span class="shopping_goal-number" aria-hidden="true">14.2</span><span class="shopping_goal-text">I am tempted by a classic arcade piece.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I am tempted by a classic arcade piece. — User input"><span class="shopping_goal-number" aria-hidden="true">14.2</span><span class="shopping_goal-text">I am tempted by a classic arcade piece.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 600</span><span class="shopping_goal-attribute">It should feel like a throwback entertainment piece.</span><span class="shopping_goal-attribute">People can take turns playing.</span><span class="shopping_goal-attribute">It is a statement piece, not a table for meals.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I am tempted by a classic game-room statement.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel like a throwback entertainment piece.&quot;,
@@ -2080,7 +2134,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe something smaller for guests to play. — User input"><span class="shopping_goal-number" aria-hidden="true">14.3</span><span class="shopping_goal-text">Maybe something smaller for guests to play.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe something smaller for guests to play. — User input"><span class="shopping_goal-number" aria-hidden="true">14.3</span><span class="shopping_goal-text">Maybe something smaller for guests to play.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 60</span><span class="shopping_goal-attribute">It should not take much floor space.</span><span class="shopping_goal-attribute">Guests can play casually.</span><span class="shopping_goal-attribute">It should be lighter than a full table game.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe something smaller for guests to play.&quot;,
   &quot;preferences&quot;: [
     &quot;It should not take much floor space.&quot;,
@@ -2099,7 +2153,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also like foosball for quick games. — User input"><span class="shopping_goal-number" aria-hidden="true">14.4</span><span class="shopping_goal-text">I also like foosball for quick games.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also like foosball for quick games. — User input"><span class="shopping_goal-number" aria-hidden="true">14.4</span><span class="shopping_goal-text">I also like foosball for quick games.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 160</span><span class="shopping_goal-attribute">Players stand around it.</span><span class="shopping_goal-attribute">It should be easy to start and stop.</span><span class="shopping_goal-attribute">It is for casual competition.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also want a fast game for quick rounds.&quot;,
   &quot;preferences&quot;: [
     &quot;Players stand around it.&quot;,
@@ -2149,7 +2203,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;high&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a seat for reading and quick breaks. — User input"><span class="shopping_goal-number" aria-hidden="true">15.1</span><span class="shopping_goal-text">I need a seat for reading and quick breaks.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a seat for reading and quick breaks. — User input"><span class="shopping_goal-number" aria-hidden="true">15.1</span><span class="shopping_goal-text">I need a seat for reading and quick breaks.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 900</span><span class="shopping_goal-attribute">It should allow a more restful posture.</span><span class="shopping_goal-attribute">It still needs to look appropriate near work furniture.</span><span class="shopping_goal-attribute">It is not the primary desk chair.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a seat for reading and quick breaks.&quot;,
   &quot;preferences&quot;: [
     &quot;It should allow a more restful posture.&quot;,
@@ -2168,7 +2222,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need seating for one or two visitors. — User input"><span class="shopping_goal-number" aria-hidden="true">15.2</span><span class="shopping_goal-text">I need seating for one or two visitors.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need seating for one or two visitors. — User input"><span class="shopping_goal-number" aria-hidden="true">15.2</span><span class="shopping_goal-text">I need seating for one or two visitors.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 650</span><span class="shopping_goal-attribute">It should feel businesslike.</span><span class="shopping_goal-attribute">It should support a short conversation.</span><span class="shopping_goal-attribute">I want more than a single stool.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need seating for one or two visitors.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel businesslike.&quot;,
@@ -2187,7 +2241,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a small table between chairs. — User input"><span class="shopping_goal-number" aria-hidden="true">15.3</span><span class="shopping_goal-text">I need a small table between chairs.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a small table between chairs. — User input"><span class="shopping_goal-number" aria-hidden="true">15.3</span><span class="shopping_goal-text">I need a small table between chairs.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 400</span><span class="shopping_goal-attribute">It should make conversation easier.</span><span class="shopping_goal-attribute">It is for coffee and notes, not dining.</span><span class="shopping_goal-attribute">A compact shape matters.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a small surface between chairs.&quot;,
   &quot;preferences&quot;: [
     &quot;It should make conversation easier.&quot;,
@@ -2206,7 +2260,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need lighting for the lounge corner. — User input"><span class="shopping_goal-number" aria-hidden="true">15.4</span><span class="shopping_goal-text">I need lighting for the lounge corner.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need lighting for the lounge corner. — User input"><span class="shopping_goal-number" aria-hidden="true">15.4</span><span class="shopping_goal-text">I need lighting for the lounge corner.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 250</span><span class="shopping_goal-attribute">It should light a corner without using desk space.</span><span class="shopping_goal-attribute">A little visual interest is okay.</span><span class="shopping_goal-attribute">It should still feel office-appropriate.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need lighting for the lounge corner.&quot;,
   &quot;preferences&quot;: [
     &quot;It should light a corner without using desk space.&quot;,
@@ -2256,7 +2310,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;low&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a larger plant to anchor the room. — User input"><span class="shopping_goal-number" aria-hidden="true">16.1</span><span class="shopping_goal-text">I need a larger plant to anchor the room.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a larger plant to anchor the room. — User input"><span class="shopping_goal-number" aria-hidden="true">16.1</span><span class="shopping_goal-text">I need a larger plant to anchor the room.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 90</span><span class="shopping_goal-attribute">It should anchor the room rather than disappear among smaller objects.</span><span class="shopping_goal-attribute">A tree-like shape would work well.</span><span class="shopping_goal-attribute">I want a substantial floor plant.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a larger plant to anchor the room.&quot;,
   &quot;preferences&quot;: [
     &quot;It should anchor the room rather than disappear among smaller objects.&quot;,
@@ -2275,7 +2329,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one fuller plant for the shelf area. — User input"><span class="shopping_goal-number" aria-hidden="true">16.2</span><span class="shopping_goal-text">I want one fuller plant for the shelf area.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one fuller plant for the shelf area. — User input"><span class="shopping_goal-number" aria-hidden="true">16.2</span><span class="shopping_goal-text">I want one fuller plant for the shelf area.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 40</span><span class="shopping_goal-attribute">It should have more volume.</span><span class="shopping_goal-attribute">A warmer-toned pot would help soften the shelf area.</span><span class="shopping_goal-attribute">It should soften the shelf area.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want one fuller plant for the shelf area.&quot;,
   &quot;preferences&quot;: [
     &quot;It should have more volume.&quot;,
@@ -2294,7 +2348,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a palm would soften the room. — User input"><span class="shopping_goal-number" aria-hidden="true">16.3</span><span class="shopping_goal-text">Maybe a palm would soften the room.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a palm would soften the room. — User input"><span class="shopping_goal-number" aria-hidden="true">16.3</span><span class="shopping_goal-text">Maybe a palm would soften the room.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 150</span><span class="shopping_goal-attribute">It should feel gentle rather than spiky.</span><span class="shopping_goal-attribute">It can sit with other plants.</span><span class="shopping_goal-attribute">I want a manageable footprint.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe a soft leafy plant would help the room.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel gentle rather than spiky.&quot;,
@@ -2313,7 +2367,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need somewhere to put the smaller plants. — User input"><span class="shopping_goal-number" aria-hidden="true">16.4</span><span class="shopping_goal-text">I need somewhere to put the smaller plants.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need somewhere to put the smaller plants. — User input"><span class="shopping_goal-number" aria-hidden="true">16.4</span><span class="shopping_goal-text">I need somewhere to put the smaller plants.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 120</span><span class="shopping_goal-attribute">It should hold multiple small pieces.</span><span class="shopping_goal-attribute">An open shape would keep plants visible.</span><span class="shopping_goal-attribute">It is support furniture, not the plant itself.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need somewhere to put smaller plants.&quot;,
   &quot;preferences&quot;: [
     &quot;It should hold multiple small pieces.&quot;,
@@ -2363,7 +2417,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;high&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one light that feels like a focal point. — User input"><span class="shopping_goal-number" aria-hidden="true">17.1</span><span class="shopping_goal-text">I want one light that feels like a focal point.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one light that feels like a focal point. — User input"><span class="shopping_goal-number" aria-hidden="true">17.1</span><span class="shopping_goal-text">I want one light that feels like a focal point.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 200</span><span class="shopping_goal-attribute">It should feel softer than a metal work light.</span><span class="shopping_goal-attribute">It could work over a small table or corner.</span><span class="shopping_goal-attribute">It should be noticeable without being harsh.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want one light that feels like a focal point.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel softer than a metal work light.&quot;,
@@ -2382,7 +2436,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a floor lamp for a chair corner. — User input"><span class="shopping_goal-number" aria-hidden="true">17.2</span><span class="shopping_goal-text">I may need a floor lamp for a chair corner.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a floor lamp for a chair corner. — User input"><span class="shopping_goal-number" aria-hidden="true">17.2</span><span class="shopping_goal-text">I may need a floor lamp for a chair corner.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 120</span><span class="shopping_goal-attribute">It should not take table space.</span><span class="shopping_goal-attribute">A classic, simple floor-lamp style would fit the corner.</span><span class="shopping_goal-attribute">It should work beside a seat.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I may need a standing light for a chair corner.&quot;,
   &quot;preferences&quot;: [
     &quot;It should not take table space.&quot;,
@@ -2401,7 +2455,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a warmer textured floor lamp. — User input"><span class="shopping_goal-number" aria-hidden="true">17.3</span><span class="shopping_goal-text">Maybe a warmer textured floor lamp.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a warmer textured floor lamp. — User input"><span class="shopping_goal-number" aria-hidden="true">17.3</span><span class="shopping_goal-text">Maybe a warmer textured floor lamp.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 200</span><span class="shopping_goal-attribute">It should make the room less sterile.</span><span class="shopping_goal-attribute">It still needs enough height for a seating corner.</span><span class="shopping_goal-attribute">A natural texture would be welcome.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe a warmer textured standing light would help.&quot;,
   &quot;preferences&quot;: [
     &quot;It should make the room less sterile.&quot;,
@@ -2420,7 +2474,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="If the room can handle it, I might want a chandelier. — User input"><span class="shopping_goal-number" aria-hidden="true">17.4</span><span class="shopping_goal-text">If the room can handle it, I might want a chandelier.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="If the room can handle it, I might want a chandelier. — User input"><span class="shopping_goal-number" aria-hidden="true">17.4</span><span class="shopping_goal-text">If the room can handle it, I might want a chandelier.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 1400</span><span class="shopping_goal-attribute">It should feel ceremonial.</span><span class="shopping_goal-attribute">Warm metal details would fit.</span><span class="shopping_goal-attribute">It is not for a bedside corner.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;If the room can handle it, I might want a more formal overhead light.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel ceremonial.&quot;,
@@ -2470,7 +2524,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;low&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need something to make a small entry feel bigger. — User input"><span class="shopping_goal-number" aria-hidden="true">18.1</span><span class="shopping_goal-text">I need something to make a small entry feel bigger.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need something to make a small entry feel bigger. — User input"><span class="shopping_goal-number" aria-hidden="true">18.1</span><span class="shopping_goal-text">I need something to make a small entry feel bigger.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 110</span><span class="shopping_goal-attribute">It should help with last checks before leaving.</span><span class="shopping_goal-attribute">A narrow footprint matters.</span><span class="shopping_goal-attribute">It should go on or near the wall.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need something to make a small entry feel bigger.&quot;,
   &quot;preferences&quot;: [
     &quot;It should help with last checks before leaving.&quot;,
@@ -2489,7 +2543,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;if_uncertain&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need one comfortable seat for the apartment living area. — User input"><span class="shopping_goal-number" aria-hidden="true">18.2</span><span class="shopping_goal-text">I need one comfortable seat for the apartment living area.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need one comfortable seat for the apartment living area. — User input"><span class="shopping_goal-number" aria-hidden="true">18.2</span><span class="shopping_goal-text">I need one comfortable seat for the apartment living area.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 310</span><span class="shopping_goal-attribute">It should keep the room feeling airy.</span><span class="shopping_goal-attribute">It should be comfortable enough for regular sitting.</span><span class="shopping_goal-attribute">It should not take sofa-sized space.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need one comfortable seat for the apartment living area.&quot;,
   &quot;preferences&quot;: [
     &quot;It should keep the room feeling airy.&quot;,
@@ -2508,7 +2562,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;none&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a small table beside the sofa. — User input"><span class="shopping_goal-number" aria-hidden="true">18.3</span><span class="shopping_goal-text">I need a small table beside the sofa.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a small table beside the sofa. — User input"><span class="shopping_goal-number" aria-hidden="true">18.3</span><span class="shopping_goal-text">I need a small table beside the sofa.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 60</span><span class="shopping_goal-attribute">It should hold a drink or book.</span><span class="shopping_goal-attribute">A compact footprint matters.</span><span class="shopping_goal-attribute">It should feel light enough for an apartment.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a small surface beside the sofa.&quot;,
   &quot;preferences&quot;: [
     &quot;It should hold a drink or book.&quot;,
@@ -2527,7 +2581,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;if_uncertain&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need one floor lamp for the sofa area. — User input"><span class="shopping_goal-number" aria-hidden="true">18.4</span><span class="shopping_goal-text">I also need one floor lamp for the sofa area.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need one floor lamp for the sofa area. — User input"><span class="shopping_goal-number" aria-hidden="true">18.4</span><span class="shopping_goal-text">I also need one floor lamp for the sofa area.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 150</span><span class="shopping_goal-attribute">It should stand beside furniture.</span><span class="shopping_goal-attribute">Warm ambient light matters.</span><span class="shopping_goal-attribute">I do not want another ceiling fixture.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also need light for the sofa area.&quot;,
   &quot;preferences&quot;: [
     &quot;It should stand beside furniture.&quot;,
@@ -2577,7 +2631,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one fun statement piece for the game room. — User input"><span class="shopping_goal-number" aria-hidden="true">19.1</span><span class="shopping_goal-text">I want one fun statement piece for the game room.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one fun statement piece for the game room. — User input"><span class="shopping_goal-number" aria-hidden="true">19.1</span><span class="shopping_goal-text">I want one fun statement piece for the game room.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 1100</span><span class="shopping_goal-attribute">It should help set the room&#x27;s mood.</span><span class="shopping_goal-attribute">People can gather around it between games.</span><span class="shopping_goal-attribute">It is more of a feature than a small toy.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want one fun statement piece for the game room.&quot;,
   &quot;preferences&quot;: [
     &quot;It should help set the room&#x27;s mood.&quot;,
@@ -2596,7 +2650,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;none&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a game people can actually play for a while. — User input"><span class="shopping_goal-number" aria-hidden="true">19.2</span><span class="shopping_goal-text">Maybe a game people can actually play for a while.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a game people can actually play for a while. — User input"><span class="shopping_goal-number" aria-hidden="true">19.2</span><span class="shopping_goal-text">Maybe a game people can actually play for a while.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 1100</span><span class="shopping_goal-attribute">It should support repeated rounds.</span><span class="shopping_goal-attribute">One player or a small group can take turns.</span><span class="shopping_goal-attribute">It needs a dedicated spot.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe a game people can play for a while.&quot;,
   &quot;preferences&quot;: [
     &quot;It should support repeated rounds.&quot;,
@@ -2615,7 +2669,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;none&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a seat near the game table or counter. — User input"><span class="shopping_goal-number" aria-hidden="true">19.3</span><span class="shopping_goal-text">I need a seat near the game table or counter.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a seat near the game table or counter. — User input"><span class="shopping_goal-number" aria-hidden="true">19.3</span><span class="shopping_goal-text">I need a seat near the game table or counter.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 180</span><span class="shopping_goal-attribute">It should work at a counter-height surface.</span><span class="shopping_goal-attribute">A single seat is enough.</span><span class="shopping_goal-attribute">It should be easy to move around.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a seat near the game area or counter.&quot;,
   &quot;preferences&quot;: [
     &quot;It should work at a counter-height surface.&quot;,
@@ -2634,7 +2688,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;none&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need one simple extra chair. — User input"><span class="shopping_goal-number" aria-hidden="true">19.4</span><span class="shopping_goal-text">I also need one simple extra chair.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need one simple extra chair. — User input"><span class="shopping_goal-number" aria-hidden="true">19.4</span><span class="shopping_goal-text">I also need one simple extra chair.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 180</span><span class="shopping_goal-attribute">It should be straightforward.</span><span class="shopping_goal-attribute">I do not need lounge upholstery.</span><span class="shopping_goal-attribute">It can move between rooms.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also need one simple extra chair.&quot;,
   &quot;preferences&quot;: [
     &quot;It should be straightforward.&quot;,
@@ -2684,7 +2738,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need one small extra seat in the office. — User input"><span class="shopping_goal-number" aria-hidden="true">20.1</span><span class="shopping_goal-text">I need one small extra seat in the office.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need one small extra seat in the office. — User input"><span class="shopping_goal-number" aria-hidden="true">20.1</span><span class="shopping_goal-text">I need one small extra seat in the office.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 100</span><span class="shopping_goal-attribute">It should not crowd the room.</span><span class="shopping_goal-attribute">It can be simpler than a full chair.</span><span class="shopping_goal-attribute">A lighter material would keep it flexible.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need one small extra seat in the office.&quot;,
   &quot;preferences&quot;: [
     &quot;It should not crowd the room.&quot;,
@@ -2703,7 +2757,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need something to keep weekly notes visible. — User input"><span class="shopping_goal-number" aria-hidden="true">20.2</span><span class="shopping_goal-text">I need something to keep weekly notes visible.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need something to keep weekly notes visible. — User input"><span class="shopping_goal-number" aria-hidden="true">20.2</span><span class="shopping_goal-text">I need something to keep weekly notes visible.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 30</span><span class="shopping_goal-attribute">It should sit where I can see it.</span><span class="shopping_goal-attribute">It supports reminders rather than storage.</span><span class="shopping_goal-attribute">I do not need another desk lamp.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need something to keep weekly notes visible.&quot;,
   &quot;preferences&quot;: [
     &quot;It should sit where I can see it.&quot;,
@@ -2722,7 +2776,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need narrow storage for books and files. — User input"><span class="shopping_goal-number" aria-hidden="true">20.3</span><span class="shopping_goal-text">I need narrow storage for books and files.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need narrow storage for books and files. — User input"><span class="shopping_goal-number" aria-hidden="true">20.3</span><span class="shopping_goal-text">I need narrow storage for books and files.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 60</span><span class="shopping_goal-attribute">It should use vertical space.</span><span class="shopping_goal-attribute">Open shelves would be useful.</span><span class="shopping_goal-attribute">It needs to fit a tight office.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need narrow storage for books and files.&quot;,
   &quot;preferences&quot;: [
     &quot;It should use vertical space.&quot;,
@@ -2741,7 +2795,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need a few drawers for small things. — User input"><span class="shopping_goal-number" aria-hidden="true">20.4</span><span class="shopping_goal-text">I also need a few drawers for small things.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need a few drawers for small things. — User input"><span class="shopping_goal-number" aria-hidden="true">20.4</span><span class="shopping_goal-text">I also need a few drawers for small things.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 220</span><span class="shopping_goal-attribute">Closed storage matters.</span><span class="shopping_goal-attribute">It should not be a full bookcase.</span><span class="shopping_goal-attribute">A compact chest would work.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also need drawers for small office things.&quot;,
   &quot;preferences&quot;: [
     &quot;Closed storage matters.&quot;,
@@ -2791,7 +2845,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need the main piece for a calmer bedroom. — User input"><span class="shopping_goal-number" aria-hidden="true">21.1</span><span class="shopping_goal-text">I need the main piece for a calmer bedroom.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need the main piece for a calmer bedroom. — User input"><span class="shopping_goal-number" aria-hidden="true">21.1</span><span class="shopping_goal-text">I need the main piece for a calmer bedroom.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 1200</span><span class="shopping_goal-attribute">Comfort matters.</span><span class="shopping_goal-attribute">A classic softer look would help.</span><span class="shopping_goal-attribute">It should make the room feel finished.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need the main piece for a calmer bedroom.&quot;,
   &quot;preferences&quot;: [
     &quot;Comfort matters.&quot;,
@@ -2810,7 +2864,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a chair for quiet reading. — User input"><span class="shopping_goal-number" aria-hidden="true">21.2</span><span class="shopping_goal-text">I want a chair for quiet reading.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a chair for quiet reading. — User input"><span class="shopping_goal-number" aria-hidden="true">21.2</span><span class="shopping_goal-text">I want a chair for quiet reading.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 300</span><span class="shopping_goal-attribute">It should feel calm.</span><span class="shopping_goal-attribute">A gentle back-and-forth motion would be nice.</span><span class="shopping_goal-attribute">It should support a quiet reading corner.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want a chair for quiet reading in the bedroom.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel calm.&quot;,
@@ -2829,7 +2883,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a lamp for the bedroom. — User input"><span class="shopping_goal-number" aria-hidden="true">21.3</span><span class="shopping_goal-text">I need a lamp for the bedroom.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a lamp for the bedroom. — User input"><span class="shopping_goal-number" aria-hidden="true">21.3</span><span class="shopping_goal-text">I need a lamp for the bedroom.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 120</span><span class="shopping_goal-attribute">It should feel classic and calm.</span><span class="shopping_goal-attribute">A table-height light would work.</span><span class="shopping_goal-attribute">It should support evening reading.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a lamp for the bedroom.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel classic and calm.&quot;,
@@ -2848,7 +2902,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also want one planter to soften the room. — User input"><span class="shopping_goal-number" aria-hidden="true">21.4</span><span class="shopping_goal-text">I also want one planter to soften the room.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also want one planter to soften the room. — User input"><span class="shopping_goal-number" aria-hidden="true">21.4</span><span class="shopping_goal-text">I also want one planter to soften the room.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 40</span><span class="shopping_goal-attribute">It should keep the room calm.</span><span class="shopping_goal-attribute">A quiet neutral finish would help.</span><span class="shopping_goal-attribute">The planter finish matters as much as the greenery.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also want one planter to soften the room.&quot;,
   &quot;preferences&quot;: [
     &quot;It should keep the room calm.&quot;,
@@ -2898,7 +2952,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a bookcase that can anchor a study wall. — User input"><span class="shopping_goal-number" aria-hidden="true">22.1</span><span class="shopping_goal-text">I need a bookcase that can anchor a study wall.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a bookcase that can anchor a study wall. — User input"><span class="shopping_goal-number" aria-hidden="true">22.1</span><span class="shopping_goal-text">I need a bookcase that can anchor a study wall.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 600</span><span class="shopping_goal-attribute">It should make the room feel like a study.</span><span class="shopping_goal-attribute">Open shelves plus lower storage would be useful.</span><span class="shopping_goal-attribute">It needs more presence than a small rack.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need storage that can anchor a study wall.&quot;,
   &quot;preferences&quot;: [
     &quot;It should make the room feel like a study.&quot;,
@@ -2917,7 +2971,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one piece that makes the study feel classic. — User input"><span class="shopping_goal-number" aria-hidden="true">22.2</span><span class="shopping_goal-text">I want one piece that makes the study feel classic.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one piece that makes the study feel classic. — User input"><span class="shopping_goal-number" aria-hidden="true">22.2</span><span class="shopping_goal-text">I want one piece that makes the study feel classic.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 350</span><span class="shopping_goal-attribute">It should feel more substantial than wall art.</span><span class="shopping_goal-attribute">Dark wood or an old-fashioned presence is okay.</span><span class="shopping_goal-attribute">It should support the study mood without adding book storage.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want one piece that makes the study feel classic.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel more substantial than wall art.&quot;,
@@ -2936,7 +2990,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe I need a narrower bookcase instead. — User input"><span class="shopping_goal-number" aria-hidden="true">22.3</span><span class="shopping_goal-text">Maybe I need a narrower bookcase instead.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe I need a narrower bookcase instead. — User input"><span class="shopping_goal-number" aria-hidden="true">22.3</span><span class="shopping_goal-text">Maybe I need a narrower bookcase instead.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 600</span><span class="shopping_goal-attribute">It should fit a side wall.</span><span class="shopping_goal-attribute">A traditional look still matters.</span><span class="shopping_goal-attribute">It should hold books rather than display only decor.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe I need a narrower storage piece instead.&quot;,
   &quot;preferences&quot;: [
     &quot;It should fit a side wall.&quot;,
@@ -2955,7 +3009,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a simpler open shelf too. — User input"><span class="shopping_goal-number" aria-hidden="true">22.4</span><span class="shopping_goal-text">I may need a simpler open shelf too.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a simpler open shelf too. — User input"><span class="shopping_goal-number" aria-hidden="true">22.4</span><span class="shopping_goal-text">I may need a simpler open shelf too.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 100</span><span class="shopping_goal-attribute">It should be lighter than a formal bookcase.</span><span class="shopping_goal-attribute">Open access matters.</span><span class="shopping_goal-attribute">It can handle books or everyday items.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I may need a simpler open shelf too.&quot;,
   &quot;preferences&quot;: [
     &quot;It should be lighter than a formal bookcase.&quot;,
@@ -3005,7 +3059,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a formal dining chair. — User input"><span class="shopping_goal-number" aria-hidden="true">23.1</span><span class="shopping_goal-text">I need a formal dining chair.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a formal dining chair. — User input"><span class="shopping_goal-number" aria-hidden="true">23.1</span><span class="shopping_goal-text">I need a formal dining chair.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 280</span><span class="shopping_goal-attribute">It should suit a dressed-up table.</span><span class="shopping_goal-attribute">Upholstery or tufting would fit.</span><span class="shopping_goal-attribute">It should not be a lounge seat.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a formal chair for the dining area.&quot;,
   &quot;preferences&quot;: [
     &quot;It should suit a dressed-up table.&quot;,
@@ -3024,7 +3078,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a formal lounge chair. — User input"><span class="shopping_goal-number" aria-hidden="true">23.2</span><span class="shopping_goal-text">I want a formal lounge chair.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a formal lounge chair. — User input"><span class="shopping_goal-number" aria-hidden="true">23.2</span><span class="shopping_goal-text">I want a formal lounge chair.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 450</span><span class="shopping_goal-attribute">It should feel more relaxed than dining seating.</span><span class="shopping_goal-attribute">Traditional details would fit.</span><span class="shopping_goal-attribute">Arms and a settled club-room feel would help.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want a formal chair for a sitting area.&quot;,
   &quot;preferences&quot;: [
     &quot;It should feel more relaxed than dining seating.&quot;,
@@ -3043,7 +3097,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe I need seating for two instead. — User input"><span class="shopping_goal-number" aria-hidden="true">23.3</span><span class="shopping_goal-text">Maybe I need seating for two instead.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe I need seating for two instead. — User input"><span class="shopping_goal-number" aria-hidden="true">23.3</span><span class="shopping_goal-text">Maybe I need seating for two instead.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 650</span><span class="shopping_goal-attribute">It should stay consistent with formal seating.</span><span class="shopping_goal-attribute">It needs to work for guests.</span><span class="shopping_goal-attribute">It should not be a dining chair.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe I need seating for two instead.&quot;,
   &quot;preferences&quot;: [
     &quot;It should stay consistent with formal seating.&quot;,
@@ -3062,7 +3116,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a cleaner storage piece to balance the ornate seating. — User input"><span class="shopping_goal-number" aria-hidden="true">23.4</span><span class="shopping_goal-text">I may need a cleaner storage piece to balance the ornate seating.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need a cleaner storage piece to balance the ornate seating. — User input"><span class="shopping_goal-number" aria-hidden="true">23.4</span><span class="shopping_goal-text">I may need a cleaner storage piece to balance the ornate seating.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 800</span><span class="shopping_goal-attribute">It should reduce visual heaviness.</span><span class="shopping_goal-attribute">A darker simple finish could work.</span><span class="shopping_goal-attribute">It needs to complement, not match exactly.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I may need cleaner storage to balance the ornate seating.&quot;,
   &quot;preferences&quot;: [
     &quot;It should reduce visual heaviness.&quot;,
@@ -3112,7 +3166,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;low&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a lounge chair with a sharper frame. — User input"><span class="shopping_goal-number" aria-hidden="true">24.1</span><span class="shopping_goal-text">I need a lounge chair with a sharper frame.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a lounge chair with a sharper frame. — User input"><span class="shopping_goal-number" aria-hidden="true">24.1</span><span class="shopping_goal-text">I need a lounge chair with a sharper frame.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 1800</span><span class="shopping_goal-attribute">It should connect to darker accents.</span><span class="shopping_goal-attribute">It should feel more structured than a soft rounded chair.</span><span class="shopping_goal-attribute">A single lounge piece is enough.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a lounge seat with a sharper frame.&quot;,
   &quot;preferences&quot;: [
     &quot;It should connect to darker accents.&quot;,
@@ -3131,7 +3185,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a coffee table with more visual interest. — User input"><span class="shopping_goal-number" aria-hidden="true">24.2</span><span class="shopping_goal-text">I want a coffee table with more visual interest.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want a coffee table with more visual interest. — User input"><span class="shopping_goal-number" aria-hidden="true">24.2</span><span class="shopping_goal-text">I want a coffee table with more visual interest.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 230</span><span class="shopping_goal-attribute">It should offer some styling or storage potential.</span><span class="shopping_goal-attribute">A richer surface could work with the palette.</span><span class="shopping_goal-attribute">It should stay central to the seating area.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want a table with more visual interest.&quot;,
   &quot;preferences&quot;: [
     &quot;It should offer some styling or storage potential.&quot;,
@@ -3150,7 +3204,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a warmer rounded chair would be better. — User input"><span class="shopping_goal-number" aria-hidden="true">24.3</span><span class="shopping_goal-text">Maybe a warmer rounded chair would be better.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="Maybe a warmer rounded chair would be better. — User input"><span class="shopping_goal-number" aria-hidden="true">24.3</span><span class="shopping_goal-text">Maybe a warmer rounded chair would be better.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 310</span><span class="shopping_goal-attribute">It should soften the sharper pieces.</span><span class="shopping_goal-attribute">A warmer upholstery tone would help.</span><span class="shopping_goal-attribute">It should be a chair, not a sofa.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;Maybe a warmer rounded seat would be better.&quot;,
   &quot;preferences&quot;: [
     &quot;It should soften the sharper pieces.&quot;,
@@ -3169,7 +3223,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need one modular sofa piece. — User input"><span class="shopping_goal-number" aria-hidden="true">24.4</span><span class="shopping_goal-text">I may need one modular sofa piece.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I may need one modular sofa piece. — User input"><span class="shopping_goal-number" aria-hidden="true">24.4</span><span class="shopping_goal-text">I may need one modular sofa piece.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 2900</span><span class="shopping_goal-attribute">It should keep the room flexible.</span><span class="shopping_goal-attribute">A light fabric would help.</span><span class="shopping_goal-attribute">I do not want to commit to a huge sectional.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I may need one flexible sofa piece.&quot;,
   &quot;preferences&quot;: [
     &quot;It should keep the room flexible.&quot;,
@@ -3219,7 +3273,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
       &quot;talkativeness&quot;: &quot;medium&quot;
     }
   }
-}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a simple coffee table to finish the living room. — User input"><span class="shopping_goal-number" aria-hidden="true">25.1</span><span class="shopping_goal-text">I need a simple coffee table to finish the living room.</span></summary><pre>{
+}</pre></details><div class="shopping_goal-row"><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need a simple coffee table to finish the living room. — User input"><span class="shopping_goal-number" aria-hidden="true">25.1</span><span class="shopping_goal-text">I need a simple coffee table to finish the living room.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 280</span><span class="shopping_goal-attribute">It should keep the space from feeling cramped.</span><span class="shopping_goal-attribute">A pale finish would help.</span><span class="shopping_goal-attribute">I do not need a whole matching set.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need a simple table to finish the living room.&quot;,
   &quot;preferences&quot;: [
     &quot;It should keep the space from feeling cramped.&quot;,
@@ -3238,7 +3292,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;ask_clarification&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one small decor piece, but not much. — User input"><span class="shopping_goal-number" aria-hidden="true">25.2</span><span class="shopping_goal-text">I want one small decor piece, but not much.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I want one small decor piece, but not much. — User input"><span class="shopping_goal-number" aria-hidden="true">25.2</span><span class="shopping_goal-text">I want one small decor piece, but not much.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 20</span><span class="shopping_goal-attribute">It should be enough for a table.</span><span class="shopping_goal-attribute">A dark small accent is okay if it stays simple.</span><span class="shopping_goal-attribute">It should hold a tiny floral or stem detail without adding clutter.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I want one small decor piece, but not much.&quot;,
   &quot;preferences&quot;: [
     &quot;It should be enough for a table.&quot;,
@@ -3257,7 +3311,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;compare_alternatives&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need more prep space in the apartment kitchen. — User input"><span class="shopping_goal-number" aria-hidden="true">25.3</span><span class="shopping_goal-text">I need more prep space in the apartment kitchen.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I need more prep space in the apartment kitchen. — User input"><span class="shopping_goal-number" aria-hidden="true">25.3</span><span class="shopping_goal-text">I need more prep space in the apartment kitchen.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 400</span><span class="shopping_goal-attribute">It should add usable counter space.</span><span class="shopping_goal-attribute">Some storage underneath would help.</span><span class="shopping_goal-attribute">It must fit an apartment layout.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I need more prep space in a small kitchen.&quot;,
   &quot;preferences&quot;: [
     &quot;It should add usable counter space.&quot;,
@@ -3276,7 +3330,7 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
     &quot;explanation_requirement&quot;: &quot;before_accepting&quot;,
     &quot;critique_style&quot;: &quot;reject_with_reason&quot;
   }
-}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need a small task light for the kitchen area. — User input"><span class="shopping_goal-number" aria-hidden="true">25.4</span><span class="shopping_goal-text">I also need a small task light for the kitchen area.</span></summary><pre>{
+}</pre></details></section><section class="shopping_goal-card"><details class="shopping_goal-json"><summary title="View goal input to User" aria-label="I also need a small task light for the kitchen area. — User input"><span class="shopping_goal-number" aria-hidden="true">25.4</span><span class="shopping_goal-text">I also need a small task light for the kitchen area.</span><span class="shopping_goal-meta" data-preserve-text><span class="shopping_goal-attribute">budget: 80</span><span class="shopping_goal-attribute">It should focus light on the prep surface.</span><span class="shopping_goal-attribute">It should not take floor or counter space.</span><span class="shopping_goal-attribute">A compact wall-mounted option would fit better than a large fixture.</span></span></summary><pre>{
   &quot;shopping_goal&quot;: &quot;I also need a small task light for the kitchen area.&quot;,
   &quot;preferences&quot;: [
     &quot;It should focus light on the prep surface.&quot;,

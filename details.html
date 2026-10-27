@@ -511,6 +511,60 @@ body.details-document main.page-wrap .docs-page-heading > .page-tools { position
   body.details-document main.page-wrap table tr > :first-child { padding-left:0; }
   body.details-document main.page-wrap table tr > :last-child { padding-right:0; }
 }
+/* Shared vertical rhythm: section 24, child 12, supporting text 8. */
+body.details-document {
+  --docs-section-gap:24px;
+  --docs-child-gap:12px;
+  --docs-detail-gap:8px;
+  --docs-row-space:12px;
+}
+body.details-document main.page-wrap .page-content :is(h2,h3,h4,h5,h6):not(.prompt-markdown *) { margin-top:0; margin-bottom:0; }
+body.details-document main.page-wrap .page-content :is(.reference-section, .actions-section, .stack, .api-group, .api-lead, .api-card-body, .reference-fold-body, .action-call-body, .profile-shopping-goals, .prompt-role, .prompt-message-body, .prompt-system-parts, .run-command, .human-feature, .overview-human) { row-gap:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content :is(.stack, .reference-fold-body, .human-feature) > p { margin-top:0; margin-bottom:0; }
+body.details-document main.page-wrap .page-content :is(.api-compact, .run-plan-layout, .api-list) { row-gap:0; }
+body.details-document main.page-wrap .page-content .api-list > li { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); row-gap:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .api-group { padding-top:var(--docs-row-space); }
+body.details-document main.page-wrap .page-content :is(.two-col, .api-grid, .eval-flow, .human-feature-grid) { row-gap:var(--docs-section-gap); }
+body.details-document main.page-wrap .page-content :is(.reference-fold-body, .api-card-body) { padding-top:0; padding-bottom:var(--docs-row-space); }
+body.details-document main.page-wrap .prompt-roles > .prompt-role > .reference-fold-body { padding:0; }
+body.details-document main.page-wrap .page-content :is(.reference-fold, .api-card, .api-snapshot, .prompt-message) > summary { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
+body.details-document main.page-wrap .page-content .reference-section > div > .reference-fold:first-child > summary,
+body.details-document main.page-wrap .page-content .api-compact > .api-card:first-child > summary,
+body.details-document main.page-wrap .page-content .reference-fold-body > h3 + .api-card > summary,
+body.details-document main.page-wrap .page-content .prompt-message-list > .prompt-message:first-child > summary { padding-top:0; }
+body.details-document main.page-wrap .page-content :is(.api-card, .reference-fold) > summary { row-gap:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .api-subhead { margin-top:0; margin-bottom:0; }
+body.details-document main.page-wrap .page-content .action-entry .action-call { margin-top:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .action-call-body { padding-top:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content :is(.prompt-message-body, .profile-shopping-goals, .shopping_goal-card, .run-command) { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
+body.details-document main.page-wrap .page-content .prompt-long-body { padding-top:var(--docs-row-space); padding-bottom:var(--docs-row-space); }
+body.details-document main.page-wrap .page-content .prompt-long-content > summary { padding-top:var(--docs-detail-gap); padding-bottom:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .prompt-roles { row-gap:var(--docs-section-gap); }
+body.details-document main.page-wrap .page-content .shopping_goal-row {
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));
+  row-gap:var(--docs-section-gap);
+}
+body.details-document main.page-wrap .page-content .shopping_goal-json > summary { row-gap:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content :is(.profile-json, .shopping_goal-json) > pre { margin-top:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content .catalog-section > h2 { margin-bottom:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content .catalog-subgroup { margin-bottom:0; }
+body.details-document main.page-wrap .page-content .catalog-info { padding-top:var(--docs-child-gap); row-gap:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .catalog-map-note { margin-top:var(--docs-child-gap); }
+body.details-document main.page-wrap .page-content .run-plan-stat { padding-top:0; padding-bottom:0; row-gap:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .prompt-markdown :is(h1,h2,h3,h4,h5,h6) { margin-top:16px; margin-bottom:var(--docs-detail-gap); }
+body.details-document main.page-wrap .page-content .prompt-markdown > :first-child { margin-top:0; }
+body.details-document main.page-wrap .page-content .prompt-markdown > :last-child { margin-bottom:0; }
+body.details-document main.page-wrap .shopping_goal-meta {
+  display:flex; flex-wrap:wrap; gap:5px; min-width:0;
+  margin-left:calc(2 * var(--docs-content-indent));
+  width:calc(100% - 2 * var(--docs-content-indent));
+  color:var(--muted); font-size:13px; font-weight:400; line-height:1.4;
+}
+body.details-document main.page-wrap .shopping_goal-attribute {
+  display:inline-block; max-width:100%; padding:2px 6px;
+  border-radius:4px; background:var(--paper); overflow-wrap:anywhere;
+}
+/* End shared vertical rhythm. */
 </style>
 </head>
 <body class="details-document overview-document">
