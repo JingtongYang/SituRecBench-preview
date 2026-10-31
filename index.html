@@ -1234,8 +1234,9 @@ pre {
   top:50%;
   z-index:18;
   display:grid;
+  grid-template-columns:minmax(0, 1fr);
   gap:10px;
-  width:104px;
+  width:max-content;
   overflow:visible;
   padding:0;
   border:0;
@@ -1247,6 +1248,7 @@ pre {
   display:flex;
   align-items:center;
   justify-content:flex-end;
+  min-width:0;
   min-height:40px;
   padding:4px 0;
   border:0;
@@ -1262,6 +1264,7 @@ pre {
 }
 .jump-rail a span {
   display:inline-block;
+  max-width:100%;
   font-size:var(--fs-sm);
   opacity:.5;
   transition:font-size 80ms ease-out, opacity 80ms ease-out;
