@@ -902,9 +902,9 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   font-family:inherit;
   font-size:13px;
 }
-.benchmark-figure .benchmark-name-column { width:240px; }
+.benchmark-figure .benchmark-name-column { width:190px; }
 .benchmark-figure .benchmark-indicator-columns { width:auto; }
-.benchmark-figure .benchmark-domain-column { width:160px; }
+.benchmark-figure .benchmark-domain-column { width:210px; }
 .benchmark-figure caption {
   padding:0 0 18px;
   color:var(--muted);
@@ -918,6 +918,7 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   padding:7px 9px;
   border-bottom:var(--divider);
   white-space:nowrap;
+  text-align:center;
 }
 .benchmark-figure th {
   padding-left:3px;
@@ -928,8 +929,9 @@ tr:last-child td { border-bottom:var(--strong-frame); }
   font-weight:600;
   text-align:center;
 }
-.benchmark-figure td:first-child,
-.benchmark-figure td:last-child { white-space:normal; }
+.benchmark-figure td:first-child { white-space:normal; }
+.benchmark-figure th:last-child,
+.benchmark-figure td:last-child { white-space:nowrap; }
 .benchmark-figure tbody td { height:52px; }
 .benchmark-citation {
   color:var(--muted);
@@ -940,7 +942,7 @@ tr:last-child td { border-bottom:var(--strong-frame); }
 a.benchmark-citation:hover,
 a.benchmark-citation:focus-visible { text-decoration:underline; }
 .benchmark-figure th:first-child,
-.benchmark-figure th:last-child {
+.benchmark-figure td:first-child {
   text-align:left;
 }
 .benchmark-figure tr.siturec-row td {
