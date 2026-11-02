@@ -35,8 +35,8 @@
   --docs-nav-line:20px;
   --docs-brand-size:17px;
   --docs-nav-row-padding:5px;
-  --docs-nav-item-gap:2px;
-  --docs-nav-group-gap:10px;
+  --docs-nav-item-gap:4px;
+  --docs-nav-group-gap:12px;
   --docs-top-space:29.3px;
   --docs-brand-line:26px;
   --docs-brand-gap:16px;
@@ -79,8 +79,11 @@ a { color:inherit; text-decoration:none; }
 .docs-home { display:flex; align-items:center; gap:7px; width:fit-content; margin:0 0 var(--docs-home-gap); color:var(--ink); font-size:13px; font-weight:500; line-height:var(--docs-home-line); }
 .docs-home:hover { color:var(--ink); }
 .docs-sidebar a:focus-visible { outline-offset:-2px; }
+@media (min-width:901px) and (max-height:760px) {
+  .docs-sidebar { --docs-nav-row-padding:4px; --docs-nav-item-gap:5px; --docs-nav-group-gap:10px; --docs-home-gap:20px; }
+}
 @media (min-width:901px) and (max-height:680px) {
-  .docs-sidebar { --docs-nav-row-padding:2px; --docs-nav-item-gap:1px; --docs-nav-group-gap:8px; --docs-home-gap:16px; }
+  .docs-sidebar { --docs-nav-row-padding:2px; --docs-nav-item-gap:2px; --docs-nav-group-gap:9px; --docs-home-gap:16px; }
 }
 .page-wrap { grid-column:2; grid-row:1; width:100%; min-width:0; max-width:var(--content-width); padding:0; margin:var(--docs-main-top) auto 64px; scroll-margin-top:24px; }
 .overview-document .page-wrap { grid-column:2 / -1; grid-row:1; }
@@ -624,26 +627,12 @@ body.details-document main.page-wrap .shopping_goal-attribute {
 <section class="hero docs-page-heading"><h1 id="explore-as-the-user">Interactive Human Evaluation Guide</h1>
 <p class="human-developer-credit">Developed by <a href="#explore-as-the-user">Ruiman Huang</a> from The Hong Kong Polytechnic University.</p>
 </section>
-<section class="stack"><h2 id="preparation">Preparation</h2>
-<p class="api-group-note">Review your assigned shopping goal and preferences before starting the interaction.</p>
+<section class="stack"><h2 id="preparation">Interface</h2>
 <figure class="human-interface-figure">
   <div class="human-interface-placeholder" aria-label="Reserved space for the human evaluation interface screenshot">
-    <span>Interface preview · Coming soon</span>
+    <span>Coming Soon</span>
   </div>
 </figure>
-</section>
-<section class="stack"><span id="explore-and-converse"></span><h2 id="interaction-procedure">Interaction Procedure</h2>
-  <div class="human-feature-grid">
-    <div class="human-feature"><h3>Explore</h3>
-      <p class="api-group-note">Navigate the scene and inspect products.</p></div>
-    <div class="human-feature"><h3>Converse</h3>
-      <p class="api-group-note">Discuss preferences and recommendations.</p></div>
-    <div class="human-feature"><h3>Evaluate</h3>
-      <p class="api-group-note">Review the interaction and share feedback.</p></div>
-  </div>
-</section>
-<section class="stack"><span id="review-the-interaction"></span><h2 id="rating-criteria">Rating Criteria</h2>
-  <p class="api-group-note">Rate the assistant from 1 to 5 and leave comments.</p>
 </section>
 </div>
 </div>
